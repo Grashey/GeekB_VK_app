@@ -10,6 +10,9 @@ import UIKit
 
 class LoginController: UIViewController {
 
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,5 +27,8 @@ class LoginController: UIViewController {
         super.viewWillLayoutSubviews()
     }
 
+    @IBAction func LogInButtonPressed(_ sender: Any) {
+        print("username: \(usernameTextField.text ?? "")")
+        print("password: \(passwordTextField.text ?? "")")
+    }
 }
-
