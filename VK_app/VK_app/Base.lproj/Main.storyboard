@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A9h-65-g1a">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYb-Tm-Udn">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQq-Ev-98A">
                                         <rect key="frame" x="81" y="279" width="96" height="23"/>
@@ -78,6 +78,7 @@
                                         </state>
                                         <connections>
                                             <action selector="LogInButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="68T-VM-o4u"/>
+                                            <segue destination="7os-Ol-CRt" kind="show" identifier="LoginSegue" id="l9r-XH-jmd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -117,6 +118,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="9dI-Yn-Orw"/>
                     <connections>
                         <outlet property="passwordTextField" destination="OxI-kL-mIP" id="dPc-DC-WUK"/>
                         <outlet property="scrollView" destination="SYb-Tm-Udn" id="JXo-6s-fl1"/>
@@ -125,7 +127,40 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="57.971014492753625" y="20.758928571428569"/>
+            <point key="canvasLocation" x="2610" y="21"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DTu-Wq-n5G">
+            <objects>
+                <viewController id="7os-Ol-CRt" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qZy-ee-aWN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.35043464740000002" green="0.63662924259999998" blue="0.8449036593" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="aXB-Ed-Nnx"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Xp-lr-gMT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3365" y="21"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YO0-Lf-ZYS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A9h-65-g1a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QcR-6u-YpV">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="oyz-sl-kXU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OTy-8S-pvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1878.2608695652175" y="20.758928571428569"/>
         </scene>
     </scenes>
     <resources>
