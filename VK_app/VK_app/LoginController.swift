@@ -23,6 +23,8 @@ class LoginController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        navigationController?.navigationBar.isHidden = true
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -32,12 +34,14 @@ class LoginController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-         NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
+        
+        navigationController?.navigationBar.isHidden = false
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }
-
+    
     @IBAction func LogInButtonPressed(_ sender: Any) {
         print("username: \(usernameTextField.text ?? "")")
         print("password: \(passwordTextField.text ?? "")")
@@ -57,4 +61,23 @@ class LoginController: UIViewController {
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "LoginSegue"
+            //usernameTextField.text == "admin",
+            //passwordTextField.text == "123456"
+                                                {
+                return true
+        } else {
+            return false
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LoginSegue"{
+            passwordTextField.text = ""
+        }
+    }
+    
 }
