@@ -47,10 +47,6 @@ class LoginController: UIViewController {
         print("password: \(passwordTextField.text ?? "")")
     }
     
-    @IBAction func globalGroupSearch(_ sender: UIBarButtonItem) {
-       self.performSegue(withIdentifier: "GlobalGroups", sender: self)
-    }
-    
     @objc private func keyboardWasShown(notification: Notification){
         let info = notification.userInfo as NSDictionary?
         let keyboardSize = (info?.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
@@ -67,9 +63,10 @@ class LoginController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "LoginSegue" ,
-            usernameTextField.text == "admin",
-            passwordTextField.text == "123456"{
+        if identifier == "LoginSegue"
+            //usernameTextField.text == "admin",
+            //passwordTextField.text == "123456"
+                                                {
                 return true
         } else {
             return false
@@ -80,8 +77,6 @@ class LoginController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LoginSegue"{
             passwordTextField.text = ""
-        } else if segue.identifier == "GlobalGroups"{
-            _ = segue.destination // понимаю что нужен as! но к какому типу??
         }
     }
     
