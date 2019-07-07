@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B62B20E722D0F3BB007F9161 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20E622D0F3BB007F9161 /* FriendCell.swift */; };
-		B62B20EB22D0FC3F007F9161 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20EA22D0FC3F007F9161 /* FriendsController.swift */; };
 		B62B20ED22D22CA2007F9161 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20EC22D22CA2007F9161 /* Friends.swift */; };
 		B62B20EF22D22EAC007F9161 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20EE22D22EAC007F9161 /* Groups.swift */; };
 		B62B20F122D22EF0007F9161 /* GroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20F022D22EF0007F9161 /* GroupsController.swift */; };
@@ -18,22 +17,24 @@
 		B675DC9422C679C30074C418 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9222C679C30074C418 /* Main.storyboard */; };
 		B675DC9622C679C40074C418 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9522C679C40074C418 /* Assets.xcassets */; };
 		B675DC9922C679C40074C418 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9722C679C40074C418 /* LaunchScreen.storyboard */; };
+		B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B62B20E622D0F3BB007F9161 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendCell.swift; path = ../FriendCell.swift; sourceTree = "<group>"; };
-		B62B20EA22D0FC3F007F9161 /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendsController.swift; path = ../../FriendsController.swift; sourceTree = "<group>"; };
-		B62B20EC22D22CA2007F9161 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Friends.swift; path = ../Friends.swift; sourceTree = "<group>"; };
-		B62B20EE22D22EAC007F9161 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Groups.swift; path = ../Groups.swift; sourceTree = "<group>"; };
-		B62B20F022D22EF0007F9161 /* GroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupsController.swift; path = ../GroupsController.swift; sourceTree = "<group>"; };
-		B62B20F222D22FA9007F9161 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupCell.swift; path = ../GroupCell.swift; sourceTree = "<group>"; };
+		B62B20E622D0F3BB007F9161 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		B62B20EC22D22CA2007F9161 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
+		B62B20EE22D22EAC007F9161 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
+		B62B20F022D22EF0007F9161 /* GroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsController.swift; sourceTree = "<group>"; };
+		B62B20F222D22FA9007F9161 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		B675DC8B22C679C30074C418 /* VK_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B675DC8E22C679C30074C418 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B675DC9022C679C30074C418 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginController.swift; path = ../LoginController.swift; sourceTree = "<group>"; };
+		B675DC9022C679C30074C418 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		B675DC9322C679C30074C418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B675DC9522C679C40074C418 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B675DC9822C679C40074C418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B675DC9A22C679C40074C418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B68F97BD22D24CE800E0ACB4 /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
+		B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,34 +48,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B62B20F522D2313A007F9161 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				B675DC9022C679C30074C418 /* LoginController.swift */,
-				B62B20EA22D0FC3F007F9161 /* FriendsController.swift */,
-				B62B20F022D22EF0007F9161 /* GroupsController.swift */,
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		B62B20F622D231AC007F9161 /* New Group1 */ = {
-			isa = PBXGroup;
-			children = (
-				B62B20EC22D22CA2007F9161 /* Friends.swift */,
-				B62B20EE22D22EAC007F9161 /* Groups.swift */,
-			);
-			path = "New Group1";
-			sourceTree = "<group>";
-		};
-		B62B20F722D231BE007F9161 /* New Group2 */ = {
-			isa = PBXGroup;
-			children = (
-				B62B20E622D0F3BB007F9161 /* FriendCell.swift */,
-				B62B20F222D22FA9007F9161 /* GroupCell.swift */,
-			);
-			path = "New Group2";
-			sourceTree = "<group>";
-		};
 		B675DC8222C679C30074C418 = {
 			isa = PBXGroup;
 			children = (
@@ -94,16 +67,53 @@
 		B675DC8D22C679C30074C418 /* VK_app */ = {
 			isa = PBXGroup;
 			children = (
-				B62B20F522D2313A007F9161 /* New Group */,
-				B62B20F622D231AC007F9161 /* New Group1 */,
-				B62B20F722D231BE007F9161 /* New Group2 */,
 				B675DC8E22C679C30074C418 /* AppDelegate.swift */,
-				B675DC9222C679C30074C418 /* Main.storyboard */,
-				B675DC9522C679C40074C418 /* Assets.xcassets */,
-				B675DC9722C679C40074C418 /* LaunchScreen.storyboard */,
+				B68F97C322D24E0B00E0ACB4 /* View */,
+				B68F97C122D24DE400E0ACB4 /* Controllers */,
+				B68F97C022D24DCD00E0ACB4 /* Cell */,
+				B68F97C222D24DF900E0ACB4 /* Model */,
 				B675DC9A22C679C40074C418 /* Info.plist */,
 			);
 			path = VK_app;
+			sourceTree = "<group>";
+		};
+		B68F97C022D24DCD00E0ACB4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B62B20E622D0F3BB007F9161 /* FriendCell.swift */,
+				B62B20F222D22FA9007F9161 /* GroupCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B68F97C122D24DE400E0ACB4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B675DC9022C679C30074C418 /* LoginController.swift */,
+				B68F97BD22D24CE800E0ACB4 /* FriendsController.swift */,
+				B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */,
+				B62B20F022D22EF0007F9161 /* GroupsController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B68F97C222D24DF900E0ACB4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B62B20EC22D22CA2007F9161 /* Friends.swift */,
+				B62B20EE22D22EAC007F9161 /* Groups.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B68F97C322D24E0B00E0ACB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B675DC9222C679C30074C418 /* Main.storyboard */,
+				B675DC9522C679C40074C418 /* Assets.xcassets */,
+				B675DC9722C679C40074C418 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,7 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B675DC9122C679C30074C418 /* LoginController.swift in Sources */,
-				B62B20EB22D0FC3F007F9161 /* FriendsController.swift in Sources */,
+				B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */,
 				B62B20E722D0F3BB007F9161 /* FriendCell.swift in Sources */,
 				B62B20ED22D22CA2007F9161 /* Friends.swift in Sources */,
 				B62B20F122D22EF0007F9161 /* GroupsController.swift in Sources */,
