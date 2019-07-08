@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B618FDC622D370B5004467E2 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC522D370B5004467E2 /* FriendsController.swift */; };
 		B618FDC822D378A5004467E2 /* AllGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC722D378A5004467E2 /* AllGroupsCell.swift */; };
+		B618FDCA22D389AD004467E2 /* FriendsFotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC922D389AD004467E2 /* FriendsFotoController.swift */; };
+		B618FDCC22D38A8C004467E2 /* FriendsFotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDCB22D38A8C004467E2 /* FriendsFotoCell.swift */; };
 		B62B20E722D0F3BB007F9161 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20E622D0F3BB007F9161 /* FriendCell.swift */; };
 		B62B20ED22D22CA2007F9161 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20EC22D22CA2007F9161 /* Friends.swift */; };
 		B62B20EF22D22EAC007F9161 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20EE22D22EAC007F9161 /* Groups.swift */; };
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		B618FDC522D370B5004467E2 /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		B618FDC722D378A5004467E2 /* AllGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsCell.swift; sourceTree = "<group>"; };
+		B618FDC922D389AD004467E2 /* FriendsFotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFotoController.swift; sourceTree = "<group>"; };
+		B618FDCB22D38A8C004467E2 /* FriendsFotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFotoCell.swift; sourceTree = "<group>"; };
 		B62B20E622D0F3BB007F9161 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		B62B20EC22D22CA2007F9161 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		B62B20EE22D22EAC007F9161 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
@@ -71,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				B675DC8E22C679C30074C418 /* AppDelegate.swift */,
-				B68F97C322D24E0B00E0ACB4 /* View */,
+				B68F97C322D24E0B00E0ACB4 /* Storyboard */,
 				B68F97C122D24DE400E0ACB4 /* Controllers */,
 				B68F97C022D24DCD00E0ACB4 /* Cell */,
 				B68F97C222D24DF900E0ACB4 /* Model */,
@@ -86,6 +90,7 @@
 				B62B20E622D0F3BB007F9161 /* FriendCell.swift */,
 				B62B20F222D22FA9007F9161 /* GroupCell.swift */,
 				B618FDC722D378A5004467E2 /* AllGroupsCell.swift */,
+				B618FDCB22D38A8C004467E2 /* FriendsFotoCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -97,6 +102,7 @@
 				B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */,
 				B62B20F022D22EF0007F9161 /* GroupsController.swift */,
 				B618FDC522D370B5004467E2 /* FriendsController.swift */,
+				B618FDC922D389AD004467E2 /* FriendsFotoController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -110,14 +116,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B68F97C322D24E0B00E0ACB4 /* View */ = {
+		B68F97C322D24E0B00E0ACB4 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				B675DC9222C679C30074C418 /* Main.storyboard */,
 				B675DC9522C679C40074C418 /* Assets.xcassets */,
 				B675DC9722C679C40074C418 /* LaunchScreen.storyboard */,
 			);
-			path = View;
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,9 +200,11 @@
 				B675DC9122C679C30074C418 /* LoginController.swift in Sources */,
 				B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */,
 				B62B20E722D0F3BB007F9161 /* FriendCell.swift in Sources */,
+				B618FDCC22D38A8C004467E2 /* FriendsFotoCell.swift in Sources */,
 				B618FDC822D378A5004467E2 /* AllGroupsCell.swift in Sources */,
 				B62B20ED22D22CA2007F9161 /* Friends.swift in Sources */,
 				B62B20F122D22EF0007F9161 /* GroupsController.swift in Sources */,
+				B618FDCA22D389AD004467E2 /* FriendsFotoController.swift in Sources */,
 				B675DC8F22C679C30074C418 /* AppDelegate.swift in Sources */,
 				B62B20EF22D22EAC007F9161 /* Groups.swift in Sources */,
 				B618FDC622D370B5004467E2 /* FriendsController.swift in Sources */,
