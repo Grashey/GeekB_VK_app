@@ -35,9 +35,9 @@ class AllGroupsController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let groupCell = tableView.dequeueReusableCell(withIdentifier: "AllGroupsCell", for: indexPath) as! AllGroupsCell
+        let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
         
-        groupCell.allGroupNameLabel.text = allGroups[indexPath.row].name
+        groupCell.groupNameLabel.text = allGroups[indexPath.row].name
         return groupCell
         
     }
