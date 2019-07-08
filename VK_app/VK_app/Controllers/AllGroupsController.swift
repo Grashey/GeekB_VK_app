@@ -11,13 +11,13 @@ import UIKit
 class AllGroupsController: UITableViewController {
     
     var allGroups = [
-        Group(name: "123", avatar: nil),
-        Group(name: "234", avatar: nil),
-        Group(name: "345", avatar: nil),
-        Group(name: "456", avatar: nil),
-        Group(name: "567", avatar: nil),
-        Group(name: "678", avatar: nil),
-        Group(name: "789", avatar: nil),]
+        Group(name: "Mortal Combat", avatar: UIImage(named: "GroupMortalCombat")),
+        Group(name: "Funny Bunnies", avatar: UIImage(named: "GroupBunny")),
+        Group(name: "Euphoria", avatar: UIImage(named: "GroupDrugs")),
+        Group(name: "Hulk Fan Club", avatar: UIImage(named: "GroupHulk")),
+        Group(name: "Video Games", avatar: UIImage(named: "GroupMinion")),
+        Group(name: "Hackers", avatar: UIImage(named: "GroupRadiation")),
+        Group(name: "Passion", avatar: UIImage(named: "GroupLips")),]
     
     @IBOutlet var allGroupsTable: UITableView!
     
@@ -38,6 +38,11 @@ class AllGroupsController: UITableViewController {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
         
         groupCell.groupNameLabel.text = allGroups[indexPath.row].name
+        if allGroups[indexPath.row].avatar == nil {
+            groupCell.groupAvatarView.image = UIImage(named: "defaultGroup")
+        } else {
+            groupCell.groupAvatarView.image = allGroups[indexPath.row].avatar
+        }
         return groupCell
         
     }

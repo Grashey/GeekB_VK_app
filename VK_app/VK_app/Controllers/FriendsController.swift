@@ -11,13 +11,13 @@ import UIKit
 class FriendsController: UITableViewController {
     
     fileprivate let friends = [
-        Friend(name: "Bart", avatar: nil),
-        Friend(name: "Butters", avatar: nil),
-        Friend(name: "Cartman", avatar: nil),
-        Friend(name: "Homer", avatar: nil),
-        Friend(name: "Kenny", avatar: nil),
-        Friend(name: "Kyle", avatar: nil),
-        Friend(name: "Stan", avatar: nil),]
+        Friend(name: "Bart Simpson", avatar: UIImage(named: "Bart")),
+        Friend(name: "Butters Stotch", avatar: UIImage(named: "Butters")),
+        Friend(name: "Eric Cartman", avatar: UIImage(named: "Cartman")),
+        Friend(name: "Homer Simpson", avatar: UIImage(named: "Homer")),
+        Friend(name: "Kenny McCormick", avatar: UIImage(named: "Kenny")),
+        Friend(name: "Kyle Broflovski", avatar: UIImage(named: "Kyle")),
+        Friend(name: "Stan Marsh", avatar: UIImage(named: "Stan")),]
     
 
     @IBOutlet var friendsTable: UITableView!
@@ -39,6 +39,11 @@ class FriendsController: UITableViewController {
         let friendCell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
         
         friendCell.friendNameLabel.text = friends[indexPath.row].name
+        if friends[indexPath.row].avatar == nil {
+           friendCell.friendAvatarView.image = UIImage(named: "defaultAva")
+        } else {
+            friendCell.friendAvatarView.image = friends[indexPath.row].avatar
+        }
         return friendCell
         
     }
