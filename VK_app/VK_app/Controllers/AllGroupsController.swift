@@ -10,14 +10,14 @@ import UIKit
 
 class AllGroupsController: UITableViewController {
     
-    fileprivate let allGroups = [
-        Group(name: "Bart", avatar: nil),
-        Group(name: "Butters", avatar: nil),
-        Group(name: "Cartman", avatar: nil),
-        Group(name: "Homer", avatar: nil),
-        Group(name: "Kenny", avatar: nil),
-        Group(name: "Kyle", avatar: nil),
-        Group(name: "Stan", avatar: nil),]
+    var allGroups = [
+        Group(name: "123", avatar: nil),
+        Group(name: "234", avatar: nil),
+        Group(name: "345", avatar: nil),
+        Group(name: "456", avatar: nil),
+        Group(name: "567", avatar: nil),
+        Group(name: "678", avatar: nil),
+        Group(name: "789", avatar: nil),]
     
     @IBOutlet var allGroupsTable: UITableView!
     

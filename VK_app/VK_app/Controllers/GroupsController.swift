@@ -10,16 +10,31 @@ import UIKit
 
 class GroupsController: UITableViewController {
     
-    fileprivate let groups = [
-        Group(name: "Bart", avatar: nil),
-        Group(name: "Butters", avatar: nil),
-        Group(name: "Cartman", avatar: nil),
-        Group(name: "Homer", avatar: nil),
-        Group(name: "Kenny", avatar: nil),
-        Group(name: "Kyle", avatar: nil),
-        Group(name: "Stan", avatar: nil),]
+    fileprivate var groups = [
+        Group(name: "111", avatar: nil),
+        Group(name: "222", avatar: nil),
+        Group(name: "333", avatar: nil),
+        Group(name: "444", avatar: nil),
+        Group(name: "555", avatar: nil),
+        Group(name: "666", avatar: nil),
+        Group(name: "777", avatar: nil),]
     
     @IBOutlet var groupsTable: UITableView!
+    @IBAction func addGroup(segue: UIStoryboardSegue){
+        guard let allGroupsVC = segue.source as? AllGroupsController,
+            let indexPath = allGroupsVC.tableView.indexPathForSelectedRow
+        else { return }
+        
+        let newGroup = allGroupsVC.allGroups[indexPath.row]
+        
+        guard !groups.contains(where: {group -> Bool in
+            group.name == newGroup.name
+            
+        }) else { return }
+        groups.append(newGroup)
+        tableView.reloadData()
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +43,10 @@ class GroupsController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
