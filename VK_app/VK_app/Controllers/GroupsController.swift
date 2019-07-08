@@ -19,7 +19,7 @@ class GroupsController: UITableViewController {
         Group(name: "Kyle", avatar: nil),
         Group(name: "Stan", avatar: nil),]
     
-    @IBOutlet var GroupsTable: UITableView!
+    @IBOutlet var groupsTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
