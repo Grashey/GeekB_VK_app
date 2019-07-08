@@ -11,7 +11,6 @@ import UIKit
 class GroupCell: UITableViewCell {
     
     @IBOutlet weak var groupNameLabel: UILabel!
-    
     @IBOutlet weak var groupAvatarView: UIImageView!
     
     

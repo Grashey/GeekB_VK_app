@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B618FDC622D370B5004467E2 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC522D370B5004467E2 /* FriendsController.swift */; };
+		B618FDC822D378A5004467E2 /* AllGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC722D378A5004467E2 /* AllGroupsCell.swift */; };
 		B62B20E722D0F3BB007F9161 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20E622D0F3BB007F9161 /* FriendCell.swift */; };
 		B62B20ED22D22CA2007F9161 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20EC22D22CA2007F9161 /* Friends.swift */; };
 		B62B20EF22D22EAC007F9161 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20EE22D22EAC007F9161 /* Groups.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		B618FDC522D370B5004467E2 /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
+		B618FDC722D378A5004467E2 /* AllGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsCell.swift; sourceTree = "<group>"; };
 		B62B20E622D0F3BB007F9161 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		B62B20EC22D22CA2007F9161 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		B62B20EE22D22EAC007F9161 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				B62B20E622D0F3BB007F9161 /* FriendCell.swift */,
 				B62B20F222D22FA9007F9161 /* GroupCell.swift */,
+				B618FDC722D378A5004467E2 /* AllGroupsCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				B675DC9122C679C30074C418 /* LoginController.swift in Sources */,
 				B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */,
 				B62B20E722D0F3BB007F9161 /* FriendCell.swift in Sources */,
+				B618FDC822D378A5004467E2 /* AllGroupsCell.swift in Sources */,
 				B62B20ED22D22CA2007F9161 /* Friends.swift in Sources */,
 				B62B20F122D22EF0007F9161 /* GroupsController.swift in Sources */,
 				B675DC8F22C679C30074C418 /* AppDelegate.swift in Sources */,
