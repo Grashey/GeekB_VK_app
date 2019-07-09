@@ -14,3 +14,7 @@ struct Friend {
     
 }
 
+struct FriendsPhoto{
+    let name: String
+    let photos: [UIImage?]
+}

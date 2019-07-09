@@ -13,7 +13,7 @@ class FriendsFotoController: UICollectionViewController {
     
     @IBOutlet var fotosView: UICollectionView!
     
-    var photo: UIImage?
+    var photo: [UIImage]?
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
 
@@ -21,16 +21,23 @@ class FriendsFotoController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-        return 10
+        
+        if photo != nil {
+        return photo!.count
+        } else {return 1}
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendsFotoCell", for: indexPath) as! FriendsFotoCell
         
-        cell.fotoView.image = photo
+        if photo != nil {
+            for i in 0..<photo!.count {
+                cell.fotoView.image = photo![i]
+            }} else {
+                cell.fotoView.image = UIImage(named: "defaultAva")
+            }
         
         return cell
     }
-    
 }

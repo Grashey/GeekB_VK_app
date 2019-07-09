@@ -18,6 +18,33 @@ class FriendsController: UITableViewController {
         Friend(name: "Kenny McCormick", avatar: UIImage(named: "Kenny")),
         Friend(name: "Kyle Broflovski", avatar: UIImage(named: "Kyle")),
         Friend(name: "Stan Marsh", avatar: UIImage(named: "Stan")),]
+    
+    let friendsPhotos = [
+        FriendsPhoto(name: "Bart Simpson", photos: [UIImage(named: "BartFoto1"),
+                                                    UIImage(named: "BartFoto2"),]),
+        FriendsPhoto(name: "Butters Stotch", photos: [UIImage(named: "ButtersFoto1")]),
+        FriendsPhoto(name: "Eric Cartman", photos: [UIImage(named: "CartmanFoto1"),
+                                                    UIImage(named: "CartmanFoto2"),
+                                                    UIImage(named: "CartmanFoto3"),
+                                                    UIImage(named: "CartmanFoto4")]),
+        FriendsPhoto(name: "Homer Simpson", photos: [UIImage(named: "HomerFoto1"),
+                                                     UIImage(named: "HomerFoto2"),
+                                                     UIImage(named: "HomerFoto3")]),
+        FriendsPhoto(name: "Kenny McCormick", photos: [UIImage(named: "KennyFoto1"),
+                                                       UIImage(named: "KennyFoto2"),
+                                                       UIImage(named: "KennyFoto3"),
+                                                       UIImage(named: "KennyFoto4"),]),
+        FriendsPhoto(name: "Kyle Broflovski", photos: [UIImage(named: "KyleFoto1"),
+                                                       UIImage(named: "KyleFoto2"),
+                                                       UIImage(named: "KyleFoto3"),
+                                                       UIImage(named: "KyleFoto4")]),
+        FriendsPhoto(name: "Stan Marsh", photos: [UIImage(named: "StanFoto1"),
+                                                  UIImage(named: "StanFoto2"),
+                                                  UIImage(named: "StanFoto3"),
+                                                  UIImage(named: "StanFoto4"),
+                                                  UIImage(named: "StanFoto5"),
+                                                  UIImage(named: "StanFoto6")])
+    ]
 
     @IBOutlet var friendsTable: UITableView!
     
@@ -53,11 +80,11 @@ class FriendsController: UITableViewController {
             // Получаем indexPath выбранной ячейки с помощью метода indexPathForCell:
             let indexPath = self.tableView.indexPath(for: (sender as! UITableViewCell))
             // Получаем объект под нужным индексом
-            let image = self.friends[indexPath!.row].avatar
+            let image = self.friendsPhotos[indexPath!.row].photos
             // Получаем контроллер, на который юзер попадёт с этим segue
             let photoVC: FriendsFotoController = segue.destination as! FriendsFotoController
             // Задаём атрибут объекту в VC
-            photoVC.photo = image
+            photoVC.photo = image as? [UIImage]
         }
     }
 }
