@@ -10,7 +10,7 @@ import UIKit
 
 class FriendsController: UITableViewController {
     
-    fileprivate let friends = [
+    let friends = [
         Friend(name: "Bart Simpson", avatar: UIImage(named: "Bart")),
         Friend(name: "Butters Stotch", avatar: UIImage(named: "Butters")),
         Friend(name: "Eric Cartman", avatar: UIImage(named: "Cartman")),
@@ -18,7 +18,6 @@ class FriendsController: UITableViewController {
         Friend(name: "Kenny McCormick", avatar: UIImage(named: "Kenny")),
         Friend(name: "Kyle Broflovski", avatar: UIImage(named: "Kyle")),
         Friend(name: "Stan Marsh", avatar: UIImage(named: "Stan")),]
-    
 
     @IBOutlet var friendsTable: UITableView!
     
@@ -46,5 +45,19 @@ class FriendsController: UITableViewController {
         }
         return friendCell
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FriendsFotoSegue" {
+            // Здесь объектом sender является ячейка, на которую нажимает юзер
+            // Получаем indexPath выбранной ячейки с помощью метода indexPathForCell:
+            let indexPath = self.tableView.indexPath(for: (sender as! UITableViewCell))
+            // Получаем объект под нужным индексом
+            let image = self.friends[indexPath!.row].avatar
+            // Получаем контроллер, на который юзер попадёт с этим segue
+            let photoVC: FriendsFotoController = segue.destination as! FriendsFotoController
+            // Задаём атрибут объекту в VC
+            photoVC.photo = image
+        }
     }
 }

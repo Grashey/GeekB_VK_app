@@ -13,3 +13,4 @@ struct Friend {
     let avatar: UIImage?
     
 }
+

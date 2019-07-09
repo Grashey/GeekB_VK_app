@@ -9,14 +9,16 @@
 import UIKit
 
 class FriendsFotoController: UICollectionViewController {
-
-  
+    
+    
+    @IBOutlet var fotosView: UICollectionView!
+    
+    var photo: UIImage?
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
 
         return 1
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
@@ -25,8 +27,10 @@ class FriendsFotoController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendsFotoCell", for: indexPath) as! FriendsFotoCell
-    
+        
+        cell.fotoView.image = photo
+        
         return cell
     }
-
+    
 }
