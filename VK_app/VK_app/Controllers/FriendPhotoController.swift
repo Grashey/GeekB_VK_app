@@ -23,7 +23,7 @@ class FriendsFotoController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if photo != nil {
-        return photo!.count
+            return photo!.count
         } else {return 1}
     }
     
