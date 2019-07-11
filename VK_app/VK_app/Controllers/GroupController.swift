@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupsController: UITableViewController {
+class GroupController: UITableViewController {
     
     fileprivate var groups = [
         Group(name: "MIB", avatar: UIImage(named: "GroupMIB")),
@@ -57,11 +57,8 @@ class GroupsController: UITableViewController {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
         
         groupCell.groupNameLabel.text = groups[indexPath.row].name
-        if groups[indexPath.row].avatar == nil {
-            groupCell.groupAvatarView.image = UIImage(named: "defaultGroup")
-        } else {
-            groupCell.groupAvatarView.image = groups[indexPath.row].avatar
-        }
+        groupCell.groupAvatarView.image = groups[indexPath.row].avatar
+        
         return groupCell
         
     }

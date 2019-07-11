@@ -8,8 +8,8 @@
 
 import UIKit
 
-class FriendsFotoCell: UICollectionViewCell {
+class FriendPhotoCell: UICollectionViewCell {
   
-    @IBOutlet weak var fotoView: UIImageView!
     
+    @IBOutlet weak var photoView: UIImageView!
 }

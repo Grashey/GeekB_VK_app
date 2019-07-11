@@ -8,35 +8,24 @@
 
 import UIKit
 
-class FriendsFotoController: UICollectionViewController {
+class FriendPhotoController: UICollectionViewController {
     
     
-    @IBOutlet var fotosView: UICollectionView!
+    @IBOutlet var photoView: UICollectionView!
     
-    var photo: [UIImage]?
+    var photos = [UIImage]()
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-
-        return 1
-    }
-
+    //MARK: - CollectionViewDataSource methods
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if photo != nil {
-            return photo!.count
-        } else {return 1}
+            return photos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendsFotoCell", for: indexPath) as! FriendsFotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendFotoCell", for: indexPath) as! FriendPhotoCell
         
-        if photo != nil {
-            for i in 0..<photo!.count {
-                cell.fotoView.image = photo![i]
-            }} else {
-                cell.fotoView.image = UIImage(named: "defaultAva")
-            }
+           cell.photoView.image = photos[indexPath.item]
         
         return cell
     }

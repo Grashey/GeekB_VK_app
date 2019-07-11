@@ -45,11 +45,8 @@ class AllGroupsController: UITableViewController {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
         
         groupCell.groupNameLabel.text = allGroups[indexPath.row].name
-        if allGroups[indexPath.row].avatar == nil {
-            groupCell.groupAvatarView.image = UIImage(named: "defaultGroup")
-        } else {
-            groupCell.groupAvatarView.image = allGroups[indexPath.row].avatar
-        }
+        groupCell.groupAvatarView.image = allGroups[indexPath.row].avatar
+    
         return groupCell
         
     }
