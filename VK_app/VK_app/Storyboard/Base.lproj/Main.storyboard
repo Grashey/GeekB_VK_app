@@ -316,6 +316,10 @@
                                         <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="9rh-5g-0ab" customClass="FriendAvatarView" customModule="VK_app" customModuleProvider="target">
                                             <rect key="frame" x="10" y="10" width="100" height="100"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZlO-Ei-yHy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="Rv1-Yv-Nk4">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <constraints>
@@ -327,25 +331,38 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstItem="ZlO-Ei-yHy" firstAttribute="centerX" secondItem="9rh-5g-0ab" secondAttribute="centerX" id="2oP-vj-In8"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZlO-Ei-yHy" secondAttribute="trailing" id="30L-Fl-al4"/>
+                                                <constraint firstItem="ZlO-Ei-yHy" firstAttribute="leading" secondItem="9rh-5g-0ab" secondAttribute="leading" id="Axb-WT-9hJ"/>
                                                 <constraint firstItem="Rv1-Yv-Nk4" firstAttribute="leading" secondItem="9rh-5g-0ab" secondAttribute="leading" id="EGK-Q8-AlI"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZlO-Ei-yHy" secondAttribute="bottom" id="Gye-ZX-vnP"/>
                                                 <constraint firstItem="Rv1-Yv-Nk4" firstAttribute="top" secondItem="9rh-5g-0ab" secondAttribute="top" id="HTV-af-zEb"/>
                                                 <constraint firstItem="Rv1-Yv-Nk4" firstAttribute="centerX" secondItem="9rh-5g-0ab" secondAttribute="centerX" id="Nmq-EP-UST"/>
                                                 <constraint firstAttribute="width" constant="100" id="Rlz-LR-bUI"/>
                                                 <constraint firstItem="Rv1-Yv-Nk4" firstAttribute="centerY" secondItem="9rh-5g-0ab" secondAttribute="centerY" id="UIZ-6g-GGu"/>
+                                                <constraint firstItem="ZlO-Ei-yHy" firstAttribute="top" secondItem="9rh-5g-0ab" secondAttribute="top" id="azr-rt-3Rk"/>
                                                 <constraint firstAttribute="height" constant="100" id="d0G-jP-4JQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="Rv1-Yv-Nk4" secondAttribute="bottom" id="i1m-Wq-Vqc"/>
                                                 <constraint firstAttribute="trailing" secondItem="Rv1-Yv-Nk4" secondAttribute="trailing" id="jGu-0v-eQV"/>
+                                                <constraint firstItem="ZlO-Ei-yHy" firstAttribute="centerY" secondItem="9rh-5g-0ab" secondAttribute="centerY" id="kbX-ko-EcG"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.071860352180000003" green="0.1350347794" blue="0.3082546766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderSize">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                                     <real key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <outlet property="avatarImageView" destination="Rv1-Yv-Nk4" id="yhH-4S-NQg"/>
+                                                <outlet property="shadowView" destination="ZlO-Ei-yHy" id="owG-cf-2sE"/>
                                             </connections>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gai-e0-TRD">

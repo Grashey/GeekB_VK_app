@@ -13,24 +13,30 @@ import UIKit
 class FriendAvatarView: UIView {
     
     @IBOutlet var avatarImageView: UIImageView!
+    @IBOutlet var shadowView: UIView!
+    
+    @IBInspectable var shadowColor: UIColor = UIColor.black;
+    @IBInspectable var shadowOffset: CGSize = .zero
+    @IBInspectable var shadowRadius: CGFloat = 6
+    @IBInspectable var shadowOpacity: Float = 1
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
-        avatarImageView.clipsToBounds = true
+        shadowView.layer.shadowColor = shadowColor.cgColor
+        shadowView.layer.shadowOffset = shadowOffset
+        shadowView.layer.shadowRadius = shadowRadius
+        shadowView.layer.shadowOpacity = shadowOpacity
+        
+        shadowView.backgroundColor = UIColor.white
+        shadowView.layer.cornerRadius = shadowView.frame.height/2
+        
+        avatarImageView.layer.cornerRadius = shadowView.layer.cornerRadius
+        
             
     }
 
-    @IBInspectable var borderColor: UIColor = UIColor.black;
-    @IBInspectable var borderSize: CGFloat = 1
     
-    override func draw(_ rect: CGRect){
-        layer.borderColor = borderColor.cgColor
-        layer.borderWidth = borderSize
-        layer.cornerRadius = self.frame.height/2
-    }
-    
-
     
 }
