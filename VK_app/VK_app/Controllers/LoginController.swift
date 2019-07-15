@@ -17,6 +17,10 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGR.numberOfTapsRequired = 1
+        scrollView.addGestureRecognizer(tapGR)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -60,6 +64,10 @@ class LoginController: UIViewController {
         let contentInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    @objc private func hideKeyboard(){
+        self.scrollView.endEditing(true)
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
