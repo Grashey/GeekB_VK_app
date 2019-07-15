@@ -347,12 +347,6 @@
                                                 <constraint firstItem="ZlO-Ei-yHy" firstAttribute="centerY" secondItem="9rh-5g-0ab" secondAttribute="centerY" id="kbX-ko-EcG"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderSize">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                     <real key="value" value="8"/>
                                                 </userDefinedRuntimeAttribute>

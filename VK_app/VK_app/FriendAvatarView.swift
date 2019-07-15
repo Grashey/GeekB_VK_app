@@ -33,7 +33,6 @@ class FriendAvatarView: UIView {
         shadowView.layer.cornerRadius = shadowView.frame.height/2
         
         avatarImageView.layer.cornerRadius = shadowView.layer.cornerRadius
-        
             
     }
 
