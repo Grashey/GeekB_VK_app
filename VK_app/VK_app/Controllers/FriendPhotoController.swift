@@ -14,6 +14,7 @@ class FriendPhotoController: UICollectionViewController {
     @IBOutlet var photoView: UICollectionView!
     
     var photos = [UIImage]()
+    
 
     //MARK: - CollectionViewDataSource methods
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -29,4 +30,12 @@ class FriendPhotoController: UICollectionViewController {
         
         return cell
     }
+    
+    override func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+   //TODO добавить передачу выбранного фото в PhotoViewController
+    }
+    
 }
+
+

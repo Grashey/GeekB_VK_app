@@ -22,6 +22,7 @@
 		B675DC9622C679C40074C418 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9522C679C40074C418 /* Assets.xcassets */; };
 		B675DC9922C679C40074C418 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9722C679C40074C418 /* LaunchScreen.storyboard */; };
 		B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */; };
+		B6FF586322DE33E200B1604D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF586222DE33E200B1604D /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		B675DC9822C679C40074C418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B675DC9A22C679C40074C418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
+		B6FF586222DE33E200B1604D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				B62B20F022D22EF0007F9161 /* GroupController.swift */,
 				B618FDC522D370B5004467E2 /* FriendController.swift */,
 				B618FDC922D389AD004467E2 /* FriendPhotoController.swift */,
+				B6FF586222DE33E200B1604D /* PhotoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				B618FDC622D370B5004467E2 /* FriendController.swift in Sources */,
 				B62B20F322D22FA9007F9161 /* GroupCell.swift in Sources */,
 				B62992DC22DA288A00452C80 /* FriendAvatarView.swift in Sources */,
+				B6FF586322DE33E200B1604D /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
