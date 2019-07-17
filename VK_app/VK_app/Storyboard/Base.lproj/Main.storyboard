@@ -450,12 +450,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="TCu-tC-1v4">
-                                <rect key="frame" x="87" y="264" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b68-nn-JUQ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="TCu-tC-1v4">
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="225"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="TCu-tC-1v4" firstAttribute="top" secondItem="b68-nn-JUQ" secondAttribute="top" id="KhX-Zp-i6T"/>
+                                    <constraint firstAttribute="bottom" secondItem="TCu-tC-1v4" secondAttribute="bottom" id="R2R-8m-HuG"/>
+                                    <constraint firstAttribute="trailing" secondItem="TCu-tC-1v4" secondAttribute="trailing" id="T26-lf-gP2"/>
+                                    <constraint firstItem="TCu-tC-1v4" firstAttribute="leading" secondItem="b68-nn-JUQ" secondAttribute="leading" id="YRv-hz-3v1"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="TCu-tC-1v4" id="7P1-U1-qHt"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="b68-nn-JUQ" firstAttribute="trailing" secondItem="Qc9-SH-501" secondAttribute="trailing" id="66o-Gv-F7u"/>
+                            <constraint firstItem="b68-nn-JUQ" firstAttribute="top" secondItem="Qc9-SH-501" secondAttribute="top" id="DFj-uj-e89"/>
+                            <constraint firstItem="b68-nn-JUQ" firstAttribute="bottom" secondItem="Qc9-SH-501" secondAttribute="bottom" id="IV6-rT-wJK"/>
+                            <constraint firstItem="b68-nn-JUQ" firstAttribute="centerX" secondItem="Qc9-SH-501" secondAttribute="centerX" id="J8A-CE-PkB"/>
+                            <constraint firstItem="b68-nn-JUQ" firstAttribute="centerY" secondItem="Qc9-SH-501" secondAttribute="centerY" id="l5x-wi-2p8"/>
+                            <constraint firstItem="b68-nn-JUQ" firstAttribute="leading" secondItem="Qc9-SH-501" secondAttribute="leading" id="mY1-ZH-7kc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Qc9-SH-501"/>
                     </view>
                     <connections>
@@ -464,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTP-Kw-LQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6619" y="-386"/>
+            <point key="canvasLocation" x="6618.840579710145" y="-386.38392857142856"/>
         </scene>
         <!--Groups-->
         <scene sceneID="pSt-9l-BL1">
