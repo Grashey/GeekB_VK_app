@@ -453,23 +453,33 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="TCu-tC-1v4">
                                 <rect key="frame" x="0.0" y="335.66666666666669" width="414" height="225.00000000000006"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hB4-Gs-mGc" customClass="LikeCountCell" customModule="VK_app" customModuleProvider="target">
+                                <rect key="frame" x="5" y="827" width="30" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hB4-Gs-mGc" secondAttribute="height" multiplier="1:1" id="1Ff-cP-RoH"/>
+                                    <constraint firstAttribute="width" constant="30" id="YQW-P6-E16"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="hB4-Gs-mGc" firstAttribute="leading" secondItem="Qc9-SH-501" secondAttribute="leading" constant="5" id="Hle-C4-3MD"/>
                             <constraint firstItem="TCu-tC-1v4" firstAttribute="centerY" secondItem="Sem-KO-wzZ" secondAttribute="centerY" id="P4I-Jb-Vra"/>
                             <constraint firstItem="TCu-tC-1v4" firstAttribute="centerX" secondItem="Sem-KO-wzZ" secondAttribute="centerX" id="VvN-8k-O4c"/>
                             <constraint firstItem="Qc9-SH-501" firstAttribute="trailing" secondItem="TCu-tC-1v4" secondAttribute="trailing" id="u5o-Wk-dzZ"/>
                             <constraint firstItem="TCu-tC-1v4" firstAttribute="leading" secondItem="Qc9-SH-501" secondAttribute="leading" id="v7V-Rp-7Ok"/>
+                            <constraint firstItem="Qc9-SH-501" firstAttribute="bottom" secondItem="hB4-Gs-mGc" secondAttribute="bottom" constant="5" id="yEE-BY-Qin"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qc9-SH-501"/>
                     </view>
                     <connections>
-                        <outlet property="photoFullScreenView" destination="TCu-tC-1v4" id="qKG-5X-iSD"/>
+                        <outlet property="photoFullScreenView" destination="TCu-tC-1v4" id="g0g-PX-kHy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTP-Kw-LQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6552" y="-382"/>
+            <point key="canvasLocation" x="6613" y="-382"/>
         </scene>
         <!--Groups-->
         <scene sceneID="pSt-9l-BL1">

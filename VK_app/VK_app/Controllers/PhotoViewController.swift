@@ -10,7 +10,7 @@ import UIKit
 
 class PhotoViewController: UIViewController {
 
-   // @IBOutlet var photoScrollView: UIScrollView!
+   
     @IBOutlet weak var photoFullScreenView: UIImageView!
     var photoFullScreen = UIImage()
     
@@ -19,3 +19,4 @@ class PhotoViewController: UIViewController {
     }
     
 }
+
