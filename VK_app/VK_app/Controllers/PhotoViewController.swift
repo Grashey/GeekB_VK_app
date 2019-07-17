@@ -10,8 +10,12 @@ import UIKit
 
 class PhotoViewController: UIViewController {
 
-    @IBOutlet var photoScrollView: UIScrollView!
+   // @IBOutlet var photoScrollView: UIScrollView!
     @IBOutlet weak var photoFullSizeView: UIImageView!
+    var photoFullSize = UIImage()
     
+    override func viewDidLoad() {
+     photoFullSizeView.image = photoFullSize
+    }
     
 }
