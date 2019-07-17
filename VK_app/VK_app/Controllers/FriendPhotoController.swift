@@ -32,9 +32,9 @@ class FriendPhotoController: UICollectionViewController {
     }
     
     override func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "FullScreenPhotoViewController") as! PhotoViewController
         let photo = collectionView.cellForItem(at: indexPath) as! FriendPhotoCell
-        vc.photoFullSize = photo.photoView.image!
+        vc.photoFullScreen = photo.photoView.image!
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
