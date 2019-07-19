@@ -451,7 +451,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="TCu-tC-1v4">
-                                <rect key="frame" x="0.0" y="335.66666666666669" width="414" height="225.00000000000006"/>
+                                <rect key="frame" x="0.0" y="69" width="414" height="758"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hB4-Gs-mGc" customClass="LikeImageView" customModule="VK_app" customModuleProvider="target">
                                 <rect key="frame" x="5" y="827" width="30" height="30"/>
@@ -479,6 +479,7 @@
                             <constraint firstItem="Qc9-SH-501" firstAttribute="bottom" secondItem="hB4-Gs-mGc" secondAttribute="bottom" constant="5" id="Nhp-SA-6TX"/>
                             <constraint firstItem="TCu-tC-1v4" firstAttribute="centerY" secondItem="Sem-KO-wzZ" secondAttribute="centerY" id="P4I-Jb-Vra"/>
                             <constraint firstItem="TCu-tC-1v4" firstAttribute="centerX" secondItem="Sem-KO-wzZ" secondAttribute="centerX" id="VvN-8k-O4c"/>
+                            <constraint firstItem="hB4-Gs-mGc" firstAttribute="top" secondItem="TCu-tC-1v4" secondAttribute="bottom" id="dRi-rj-GrE"/>
                             <constraint firstItem="ndQ-XO-Uik" firstAttribute="leading" secondItem="hB4-Gs-mGc" secondAttribute="trailing" constant="5" id="eoW-Sc-AFC"/>
                             <constraint firstItem="hB4-Gs-mGc" firstAttribute="leading" secondItem="Qc9-SH-501" secondAttribute="leading" constant="5" id="jPl-hr-NjA"/>
                             <constraint firstItem="Qc9-SH-501" firstAttribute="bottom" secondItem="ndQ-XO-Uik" secondAttribute="bottom" constant="5" id="mb3-mV-bWB"/>

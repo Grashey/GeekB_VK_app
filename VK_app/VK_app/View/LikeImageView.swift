@@ -9,6 +9,7 @@
 
 import UIKit
 
+@IBDesignable
 class LikeImageView: UIControl {
     
     override func awakeFromNib() {
