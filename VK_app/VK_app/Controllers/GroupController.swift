@@ -36,6 +36,7 @@ class GroupController: UITableViewController {
         
     }
     
+    //MARK: - TableViewDataSource methods
     override func viewDidLoad() {
         super.viewDidLoad()
     }

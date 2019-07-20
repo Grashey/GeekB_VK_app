@@ -24,7 +24,7 @@ class PhotoViewController: UIViewController {
         likeCountView.text = String(likeCount)
         
         let likeGR = UITapGestureRecognizer(target: self, action: #selector(heartStateChanged))
-        likeGR.numberOfTapsRequired = 1
+        likeGR.numberOfTapsRequired = 2
         photoFullScreenView.addGestureRecognizer(likeGR)
         
     }

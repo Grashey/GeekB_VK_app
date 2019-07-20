@@ -47,6 +47,7 @@ class FriendController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let sortedFriends = friends.sorted(by: { $0.surname < $1.surname })
@@ -58,6 +59,10 @@ class FriendController: UITableViewController {
         
         return friendCell
         
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Characters"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

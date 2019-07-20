@@ -11,5 +11,4 @@ import UIKit
 struct Group {
     let name: String
     let avatar: UIImage?
-    
 }

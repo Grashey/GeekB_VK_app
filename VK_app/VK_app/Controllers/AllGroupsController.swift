@@ -28,6 +28,7 @@ class AllGroupsController: UITableViewController {
     
     @IBOutlet var allGroupsTable: UITableView!
     
+    //MARK: - TableViewDataSource methods
     override func viewDidLoad() {
         super.viewDidLoad()
     }
