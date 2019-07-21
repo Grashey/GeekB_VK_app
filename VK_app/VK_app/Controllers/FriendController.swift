@@ -37,32 +37,76 @@ class FriendController: UITableViewController {
                                                                             UIImage(named: "StanFoto6")])
     ]
     
+    var firstCharacter = [Character]()
+    var sortedFriends: [Character: [Friend]] = [:]
+    
+    
     @IBOutlet var friendsTable: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        (firstCharacter, sortedFriends) = sort(friends)
+    }
     
     //MARK: - UITableViewDataSource methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return firstCharacter.count
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        
+        let character = firstCharacter[section]
+        let friendsCount = sortedFriends[character]?.count
+        return friendsCount ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let sortedFriends = friends.sorted(by: { $0.surname < $1.surname })
-        
         let friendCell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
         
-        friendCell.friendNameLabel.text = sortedFriends[indexPath.row].name + " " + sortedFriends[indexPath.row].surname
-        friendCell.friendAvatarView.image = sortedFriends[indexPath.row].avatar
+        let character = firstCharacter[indexPath.section]
+        if let friends = sortedFriends[character] {
+            friendCell.friendNameLabel.text = friends[indexPath.row].name + " " + friends[indexPath.row].surname
+            friendCell.friendAvatarView.image = friends[indexPath.row].avatar
+            return friendCell
+        }
         
-        return friendCell
+        return UITableViewCell()
         
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Characters"
+        let character = firstCharacter[section]
+        return String(character)
+    }
+    
+    /// Sorts friends + first letters
+    ///
+    /// - Parameter friends: input friends
+    /// - Returns: tuple with characters & friends
+    private func sort(_: [Friend]) -> (characters: [Character], sortedFriends: [Character: [Friend]]){
+        
+        var characters = [Character]()
+        var sortedFriends = [Character: [Friend]]()
+        
+        friends.forEach { friend in
+            guard let character = friend.surname.first else { return }
+            if var thisCharFriends = sortedFriends[character] {
+                thisCharFriends.append(friend)
+                sortedFriends[character] = thisCharFriends
+            } else {
+                sortedFriends[character] = [friend]
+                characters.append(character)
+            }
+        }
+        characters.sort()
+        
+        return (characters, sortedFriends)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,8 +114,7 @@ class FriendController: UITableViewController {
             let indexPath = tableView.indexPathForSelectedRow,
             let photoVC = segue.destination as? FriendPhotoController
         {
-            let sortedFriends = friends.sorted(by: { $0.surname < $1.surname })
-            let friend = sortedFriends[indexPath.row]
+            let friend = friends[indexPath.row]
             let photo = friend.photos
             photoVC.photos = photo as! [UIImage]
         }
