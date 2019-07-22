@@ -8,12 +8,12 @@
 
 import UIKit
 
-enum Character: Int {
+enum Characters: Int {
     case a
     case b
     case c
     
-    static let firstCharacter: [Character] = [a, b, c]
+    static let firstCharacter: [Characters] = [a, b, c]
     
     var title: String {
         switch self {
@@ -27,7 +27,7 @@ enum Character: Int {
 
 class CharacterPickerView: UIControl {
 
-    var selectedChar: Character? = nil {
+    var selectedChar: Characters? = nil {
         didSet {
             self.updateSelectedChar()
             self.sendActions(for: .valueChanged)
@@ -38,7 +38,7 @@ class CharacterPickerView: UIControl {
     private var stackView: UIStackView!
     
     private func setupView() {
-        for character in Character.firstCharacter {
+        for character in Characters.firstCharacter {
             let button = UIButton(type: .system)
             button.setTitle(character.title, for: .normal)
             button.addTarget(self, action: #selector(selectChar(_:)), for: .touchUpInside)
@@ -58,7 +58,7 @@ class CharacterPickerView: UIControl {
     
     private func updateSelectedChar() {
         for (index, button) in self.buttons.enumerated()  {
-            guard let character = Character(rawValue: index) else { continue }
+            guard let character = Characters(rawValue: index) else { continue }
             button.isSelected = character == self.selectedChar
         }
     }
@@ -80,7 +80,7 @@ class CharacterPickerView: UIControl {
     
     @objc private func selectChar(_ sender: UIButton) {
         guard let index = self.buttons.firstIndex(of: sender) else { return }
-        guard let character = Character(rawValue: index) else { return }
+        guard let character = Characters(rawValue: index) else { return }
         self.selectedChar = character
     }
 
