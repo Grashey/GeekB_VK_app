@@ -47,6 +47,7 @@ class FriendController: UITableViewController {
         super.viewDidLoad()
         
         (firstCharacter, sortedFriends) = sort(friends)
+        
     }
     
     //MARK: - UITableViewDataSource methods
@@ -80,9 +81,22 @@ class FriendController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let character = firstCharacter[section]
-        return String(character)
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let header = GradientView()
+        header.startColor = .lightGray
+        header.endColor = .clear
+        header.startPoint = .zero
+        header.endPoint = CGPoint(x: 1, y: 0.1)
+        header.startLocation = 0
+        header.endLocation = 0.3
+        
+        let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 18))
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.text = String(firstCharacter[section])
+        header.addSubview(label)
+        
+        return header
     }
     
     /// Sorts friends + first letters
