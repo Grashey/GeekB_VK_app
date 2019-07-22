@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendPhotoController: UICollectionViewController {
+class FriendPhotoController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     
     @IBOutlet var photoView: UICollectionView!
@@ -16,9 +16,16 @@ class FriendPhotoController: UICollectionViewController {
     var photos = [UIImage]()
 
     //MARK: - CollectionViewDataSource methods
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
             return photos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let width = (view.frame.width-20)/3
+        return CGSize(width: width, height: width)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
