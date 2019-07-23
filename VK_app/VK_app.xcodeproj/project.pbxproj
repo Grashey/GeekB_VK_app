@@ -63,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B60C84AD22E7633200007A8E /* TO DO */ = {
+			isa = PBXGroup;
+			children = (
+				B6A1B84622E6383E009FC00E /* CharacterPickerView.swift */,
+			);
+			path = "TO DO";
+			sourceTree = "<group>";
+		};
 		B675DC8222C679C30074C418 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +96,7 @@
 				B68F97C022D24DCD00E0ACB4 /* Cell */,
 				B68F97C222D24DF900E0ACB4 /* Model */,
 				B6A16EBE22E10E18001E10D0 /* View */,
+				B60C84AD22E7633200007A8E /* TO DO */,
 				B675DC9A22C679C40074C418 /* Info.plist */,
 			);
 			path = VK_app;
@@ -139,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				B62992DB22DA288A00452C80 /* FriendAvatarView.swift */,
-				B6A1B84622E6383E009FC00E /* CharacterPickerView.swift */,
 				B6A1B84222E5B8E8009FC00E /* GradientView.swift */,
 				B6A16EBC22E10DD3001E10D0 /* LikeImageView.swift */,
 			);

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupController: UITableViewController {
+class GroupController: UITableViewController, UISearchBarDelegate {
     
     fileprivate var groups = [
         Group(name: "MIB", avatar: UIImage(named: "GroupMIB")),
@@ -20,6 +20,7 @@ class GroupController: UITableViewController {
         Group(name: "Engineering", avatar: UIImage(named: "GroupLabirint")),]
     
     @IBOutlet var groupsTable: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func addGroup(segue: UIStoryboardSegue){
         guard let allGroupsVC = segue.source as? AllGroupsController,
             let indexPath = allGroupsVC.tableView.indexPathForSelectedRow
@@ -36,13 +37,16 @@ class GroupController: UITableViewController {
         
     }
     
+    var searchActive : Bool = false
+    var filteredGroups:[Group] = []
+    
     //MARK: - TableViewDataSource methods
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchBar.delegate = self
         
     }
     
@@ -51,23 +55,57 @@ class GroupController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(searchActive) {
+            return filteredGroups.count
+        }
         return groups.count
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
-        
-        groupCell.groupNameLabel.text = groups[indexPath.row].name
-        groupCell.groupAvatarView.image = groups[indexPath.row].avatar
+        if(searchActive){
+            groupCell.groupNameLabel.text = filteredGroups[indexPath.row].name
+            groupCell.groupAvatarView.image = filteredGroups[indexPath.row].avatar
+        } else {
+            groupCell.groupNameLabel.text = groups[indexPath.row].name
+            groupCell.groupAvatarView.image = groups[indexPath.row].avatar
+        }
         
         return groupCell
         
     }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             groups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+    //MARK: - UISearchBar methods
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
 
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filteredGroups = groups.filter ({ (group) -> Bool in
+            let tmp: NSString = group.name as NSString
+            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            return range.location != NSNotFound
+        })
+        if searchText == "" {
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        self.tableView.reloadData()
+    }
+    
 }

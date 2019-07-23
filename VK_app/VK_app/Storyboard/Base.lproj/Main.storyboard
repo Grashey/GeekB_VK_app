@@ -152,13 +152,18 @@
         <scene sceneID="9hy-Sd-b9e">
             <objects>
                 <tableViewController id="Buq-12-c9x" customClass="GroupController" customModule="VK_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="W7t-dt-6ra">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="W7t-dt-6ra">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" translucent="NO" id="R8l-mm-BU7">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="208" id="6Zk-Bh-kBA" customClass="GroupCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="208"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="208"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Zk-Bh-kBA" id="T2W-27-X1T">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="207.66666666666666"/>
@@ -195,7 +200,6 @@
                         </prototypes>
                         <sections/>
                         <connections>
-                            <outlet property="dataSource" destination="Buq-12-c9x" id="VV9-5A-RAR"/>
                             <outlet property="delegate" destination="Buq-12-c9x" id="XWd-3q-Dwb"/>
                         </connections>
                     </tableView>
@@ -203,6 +207,7 @@
                     <navigationItem key="navigationItem" title="My Groups" id="lsO-ZO-gQr">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bnY-gM-GBA">
                             <connections>
+                                <action selector="addGroupWithSegue:" destination="Buq-12-c9x" id="wHm-mU-sTZ"/>
                                 <segue destination="SUm-H8-CXE" kind="show" id="LSE-rs-9aF"/>
                             </connections>
                         </barButtonItem>
@@ -211,6 +216,7 @@
                     <connections>
                         <outlet property="GroupsTable" destination="W7t-dt-6ra" id="sk7-AG-X0N"/>
                         <outlet property="groupsTable" destination="W7t-dt-6ra" id="d15-Db-0Po"/>
+                        <outlet property="searchBar" destination="R8l-mm-BU7" id="0s4-DB-t60"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbR-Ko-Nez" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -285,6 +291,7 @@
                     <tabBarItem key="tabBarItem" title="Friends" id="Wvx-Ij-dW2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zV1-yu-beH">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -495,6 +502,7 @@
                     <tabBarItem key="tabBarItem" title="Groups" id="Lzm-S7-kU2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eiC-n8-Rz7">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
