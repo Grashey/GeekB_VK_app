@@ -227,13 +227,18 @@
         <scene sceneID="Nuf-YD-3jO">
             <objects>
                 <tableViewController id="SUm-H8-CXE" customClass="AllGroupsController" customModule="VK_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="htc-pT-ydx">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="htc-pT-ydx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" translucent="NO" id="2OF-FK-Klz">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="144" id="oJ5-kH-WU8" customClass="GroupCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="144"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="144"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oJ5-kH-WU8" id="bkl-hi-G1g">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="143.66666666666666"/>
@@ -277,6 +282,7 @@
                     </tableView>
                     <connections>
                         <outlet property="allGroupsTable" destination="htc-pT-ydx" id="DUg-W9-clg"/>
+                        <outlet property="searchBar" destination="2OF-FK-Klz" id="X5f-26-u9j"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yC7-mC-icT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -307,13 +313,18 @@
         <scene sceneID="vfx-nK-O3Z">
             <objects>
                 <tableViewController id="IIe-23-SjV" customClass="FriendController" customModule="VK_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PJd-pG-A57">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PJd-pG-A57">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" translucent="NO" id="ged-xw-2hT">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="204" id="4kJ-vW-SSW" customClass="FriendCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="204"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="204"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4kJ-vW-SSW" id="fjb-Bf-rEU">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="203.66666666666666"/>
@@ -381,6 +392,7 @@
                     <navigationItem key="navigationItem" title="My Friends" id="kmQ-M6-flE"/>
                     <connections>
                         <outlet property="friendsTable" destination="PJd-pG-A57" id="dR4-5L-vGg"/>
+                        <outlet property="searchBar" destination="ged-xw-2hT" id="wTe-Nv-0K5"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5h-gH-TZa" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -80,8 +80,10 @@ class FriendController: UITableViewController {
     var firstCharacter = [Character]()
     var sortedFriends: [Character: [Friend]] = [:]
     
-    
     @IBOutlet var friendsTable: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

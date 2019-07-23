@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllGroupsController: UITableViewController {
+class AllGroupsController: UITableViewController, UISearchBarDelegate {
     
     var allGroups = [
         Group(name: "Mortal Combat", avatar: UIImage(named: "GroupMortalCombat")),
@@ -27,10 +27,18 @@ class AllGroupsController: UITableViewController {
         Group(name: "Engineering", avatar: UIImage(named: "GroupLabirint")),]
     
     @IBOutlet var allGroupsTable: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var searchActive: Bool = false
+    var filteredGroups:[Group] = []
     
     //MARK: - TableViewDataSource methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchBar.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,16 +47,50 @@ class AllGroupsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allGroups.count
+        if(searchActive) {
+            return filteredGroups.count
+        } else {
+            return allGroups.count
+        }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
-        
-        groupCell.groupNameLabel.text = allGroups[indexPath.row].name
-        groupCell.groupAvatarView.image = allGroups[indexPath.row].avatar
+        if(searchActive){
+            groupCell.groupNameLabel.text = filteredGroups[indexPath.row].name
+            groupCell.groupAvatarView.image = filteredGroups[indexPath.row].avatar
+        } else {
+            groupCell.groupNameLabel.text = allGroups[indexPath.row].name
+            groupCell.groupAvatarView.image = allGroups[indexPath.row].avatar
+        }
     
         return groupCell
         
     }
+    
+    //MARK: - UISearchBar methods
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filteredGroups = allGroups.filter ({ (group) -> Bool in
+            let tmp: NSString = group.name as NSString
+            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            return range.location != NSNotFound
+        })
+        if searchText == "" {
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        self.tableView.reloadData()
+    }
+    
 }

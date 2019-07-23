@@ -57,8 +57,9 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchActive) {
             return filteredGroups.count
+        } else {
+            return groups.count
         }
-        return groups.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
