@@ -152,7 +152,8 @@ class FriendController: UITableViewController {
             guard let character = friend.surname.first else { return }
             if var thisCharFriends = sortedFriends[character] {
                 thisCharFriends.append(friend)
-                sortedFriends[character] = thisCharFriends
+                let sortedCharFriends = thisCharFriends.sorted(by: {$0.surname < $1.surname})
+                sortedFriends[character] = sortedCharFriends
             } else {
                 sortedFriends[character] = [friend]
                 characters.append(character)
