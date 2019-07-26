@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B60C84AF22EA25CA00007A8E /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C84AE22EA25CA00007A8E /* NewsViewCell.swift */; };
 		B60C84B122EA25E600007A8E /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C84B022EA25E600007A8E /* NewsViewController.swift */; };
+		B60C84B522EB44F400007A8E /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60C84B422EB44F400007A8E /* News.swift */; };
 		B618FDC622D370B5004467E2 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC522D370B5004467E2 /* FriendController.swift */; };
 		B618FDCA22D389AD004467E2 /* FriendPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC922D389AD004467E2 /* FriendPhotoController.swift */; };
 		B618FDCC22D38A8C004467E2 /* FriendPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDCB22D38A8C004467E2 /* FriendPhotoCell.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		B60C84AE22EA25CA00007A8E /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
 		B60C84B022EA25E600007A8E /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		B60C84B422EB44F400007A8E /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		B618FDC522D370B5004467E2 /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		B618FDC922D389AD004467E2 /* FriendPhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoController.swift; sourceTree = "<group>"; };
 		B618FDCB22D38A8C004467E2 /* FriendPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCell.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				B62B20EC22D22CA2007F9161 /* Friend.swift */,
+				B60C84B422EB44F400007A8E /* News.swift */,
 				B62B20EE22D22EAC007F9161 /* Group.swift */,
 			);
 			path = Model;
@@ -237,6 +240,7 @@
 				B6A1B84322E5B8E8009FC00E /* GradientView.swift in Sources */,
 				B62B20E722D0F3BB007F9161 /* FriendCell.swift in Sources */,
 				B618FDCC22D38A8C004467E2 /* FriendPhotoCell.swift in Sources */,
+				B60C84B522EB44F400007A8E /* News.swift in Sources */,
 				B62B20ED22D22CA2007F9161 /* Friend.swift in Sources */,
 				B62B20F122D22EF0007F9161 /* GroupController.swift in Sources */,
 				B618FDCA22D389AD004467E2 /* FriendPhotoController.swift in Sources */,
