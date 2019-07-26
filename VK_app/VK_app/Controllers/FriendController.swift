@@ -126,12 +126,12 @@ class FriendController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let header = GradientView()
-        header.startColor = .lightGray
+        header.startColor = UIColor(white: 1, alpha: 0.5)
         header.endColor = .clear
         header.startPoint = .zero
         header.endPoint = CGPoint(x: 1, y: 0.1)
         header.startLocation = 0
-        header.endLocation = 0.3
+        header.endLocation = 0.2
         
         let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 18))
         label.font = UIFont.systemFont(ofSize: 14)

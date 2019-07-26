@@ -50,10 +50,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchActive) {
             return filteredGroups.count
@@ -84,15 +80,19 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         }
     }
     
+    override func  tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+    
     //MARK: - UISearchBar methods
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true;
+        searchActive = true
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
+        searchActive = false
     }
-
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -109,4 +109,15 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         self.tableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GroupNewsSegue",
+            let indexPath = tableView.indexPathForSelectedRow,
+            let photoVC = segue.destination as? NewsViewController
+        {
+            photoVC.groupAvatar = groups[indexPath.row].avatar! as UIImage
+            photoVC.groupName = groups[indexPath.row].name
+            }
+        }
+    
 }
+

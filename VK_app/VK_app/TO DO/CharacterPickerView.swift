@@ -9,17 +9,15 @@
 import UIKit
 
 enum Characters: Int {
-    case a
-    case b
-    case c
+    case a, b, c
     
     static let firstCharacter: [Characters] = [a, b, c]
     
     var title: String {
         switch self {
-        case .a: return "Aa"
-        case .b: return "Bb"
-        case .c: return "Cc"
+        case .a: return "A"
+        case .b: return "B"
+        case .c: return "C"
         
         }
     }
