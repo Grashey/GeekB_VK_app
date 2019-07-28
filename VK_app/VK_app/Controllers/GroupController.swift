@@ -80,8 +80,16 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            groups.remove(at: indexPath.row)
+            if(searchActive){
+                groups.removeAll { (group) -> Bool in
+                    group.name == filteredGroups[indexPath.row].name
+                }
+                filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                groups.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
     }
     
@@ -98,10 +106,10 @@ class GroupController: UITableViewController, UISearchBarDelegate {
             let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return range.location != NSNotFound
         })
-        if searchText == "" {
-            searchActive = false;
+        if searchText.isEmpty {
+            searchActive = false
         } else {
-            searchActive = true;
+            searchActive = true
         }
         tableView.reloadData()
     }

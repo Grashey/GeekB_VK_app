@@ -39,11 +39,6 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
         searchBar.delegate = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchActive) {
             return filteredGroups.count
@@ -67,15 +62,6 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
     }
     
     //MARK: - UISearchBar methods
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true;
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         filteredGroups = allGroups.filter ({ (group) -> Bool in
@@ -83,10 +69,10 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
             let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return range.location != NSNotFound
         })
-        if searchText == "" {
-            searchActive = false;
+        if searchText.isEmpty {
+            searchActive = false
         } else {
-            searchActive = true;
+            searchActive = true
         }
         self.tableView.reloadData()
     }
