@@ -201,6 +201,7 @@
                         </prototypes>
                         <sections/>
                         <connections>
+                            <outlet property="dataSource" destination="Buq-12-c9x" id="8Qw-s9-oU3"/>
                             <outlet property="delegate" destination="Buq-12-c9x" id="XWd-3q-Dwb"/>
                         </connections>
                     </tableView>
@@ -208,7 +209,6 @@
                     <navigationItem key="navigationItem" title="My Groups" id="lsO-ZO-gQr">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bnY-gM-GBA">
                             <connections>
-                                <action selector="addGroupWithSegue:" destination="Buq-12-c9x" id="wHm-mU-sTZ"/>
                                 <segue destination="SUm-H8-CXE" kind="show" id="LSE-rs-9aF"/>
                             </connections>
                         </barButtonItem>
@@ -268,7 +268,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="128" id="Ui0-5R-0hm"/>
                                             </constraints>
-                                            <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
@@ -457,6 +457,7 @@
                                 <connections>
                                     <outlet property="groupAvatarView" destination="LLQ-B7-mqL" id="FKW-Wc-SXe"/>
                                     <outlet property="groupNameLabel" destination="dwQ-cd-n6c" id="TWK-0Q-hgw"/>
+                                    <segue destination="T1j-Ww-PdT" kind="unwind" unwindAction="addGroupWithSegue:" id="4Uh-LO-KNP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -472,6 +473,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yC7-mC-icT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="T1j-Ww-PdT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5687" y="21"/>
         </scene>

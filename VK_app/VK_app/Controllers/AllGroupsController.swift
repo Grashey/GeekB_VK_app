@@ -36,8 +36,6 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
         searchBar.delegate = self
     }
     

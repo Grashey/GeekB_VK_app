@@ -26,12 +26,19 @@ class GroupController: UITableViewController, UISearchBarDelegate {
             let indexPath = allGroupsVC.tableView.indexPathForSelectedRow
         else { return }
         
-        let newGroup = allGroupsVC.allGroups[indexPath.row]
+        var newGroup: Group
         
+        if allGroupsVC.searchActive{
+            newGroup = allGroupsVC.filteredGroups[indexPath.row]
+        } else {
+            newGroup = allGroupsVC.allGroups[indexPath.row]
+        }
+
         guard !groups.contains(where: {group -> Bool in
             group.name == newGroup.name
             
         }) else { return }
+        
         groups.append(newGroup)
         tableView.reloadData()
         
@@ -44,8 +51,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
         searchBar.delegate = self
         
     }
@@ -86,14 +91,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     }
     
     //MARK: - UISearchBar methods
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         filteredGroups = groups.filter ({ (group) -> Bool in
@@ -106,7 +103,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         } else {
             searchActive = true;
         }
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
