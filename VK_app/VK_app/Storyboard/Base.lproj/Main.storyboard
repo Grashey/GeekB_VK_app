@@ -209,6 +209,7 @@
                     <navigationItem key="navigationItem" title="My Groups" id="lsO-ZO-gQr">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bnY-gM-GBA">
                             <connections>
+                                <action selector="addGroupWithSegue:" destination="Buq-12-c9x" id="uup-3g-dUE"/>
                                 <segue destination="SUm-H8-CXE" kind="show" id="LSE-rs-9aF"/>
                             </connections>
                         </barButtonItem>
