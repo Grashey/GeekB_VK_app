@@ -37,7 +37,8 @@ class PhotoViewController: UIViewController {
             flipCountDown(String(likeCount))
         }
     }
-
+    
+    //MARK: - Animation
     private func flipCountUp(_ text: String) {
         UIView.transition(with: likeCountView, duration: 0.4, options: .transitionFlipFromRight, animations: {
         self.likeCountView.text = text

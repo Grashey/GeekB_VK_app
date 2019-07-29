@@ -84,7 +84,6 @@ class FriendController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,6 +104,7 @@ class FriendController: UITableViewController {
         
         let character = firstCharacter[section]
         let friendsCount = sortedFriends[character]?.count
+        
         return friendsCount ?? 0
     }
     
@@ -116,11 +116,10 @@ class FriendController: UITableViewController {
         if let friends = sortedFriends[character] {
             friendCell.friendNameLabel.text = friends[indexPath.row].name + " " + friends[indexPath.row].surname
             friendCell.friendAvatarView.image = friends[indexPath.row].avatar
+            
             return friendCell
         }
-        
         return UITableViewCell()
-        
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -179,4 +178,5 @@ class FriendController: UITableViewController {
             }
         }
     }
+    
 }

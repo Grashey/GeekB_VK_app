@@ -17,8 +17,6 @@ class LoginController: UIViewController {
     @IBOutlet weak var passwordTitleView: UILabel!
     @IBOutlet weak var logInButton: UIButton!
     
-    
-    
     @IBOutlet var scrollView: UIScrollView!
     
     @IBOutlet weak var dotFirst: LoadingDotView!
@@ -111,7 +109,7 @@ class LoginController: UIViewController {
             self.passwordTextField.text = ""
         }
     }
-    
+    // MARK: - Animations
     private func loadingDots() {
         UIView.animate(withDuration: 0.7, delay: 0, options: .autoreverse, animations: {
             self.dotFirst.alpha = 0
@@ -125,36 +123,23 @@ class LoginController: UIViewController {
         UIView.setAnimationRepeatCount(5) // как прикрутить эту настройку?
     }
     
-   
-    
     private func animateTitlesAppearing() {
         let offset = view.bounds.width
         loginTitleView.transform = CGAffineTransform(translationX: -offset, y: 0)
         passwordTitleView.transform = CGAffineTransform(translationX: -offset, y: 0)
         
-        UIView.animate(withDuration: 1,
-                       delay: 1,
-                       options: .curveEaseOut,
-                       animations: {
-                        self.loginTitleView.transform = .identity
-                        self.passwordTitleView.transform = .identity
-        },
-                       completion: nil)
+        UIView.animate(withDuration: 1, delay: 1, options: .curveEaseOut, animations: {
+            self.loginTitleView.transform = .identity
+            self.passwordTitleView.transform = .identity
+        }, completion: nil)
     }
     
     private func animateTitleAppearing() {
-        self.titleView.transform = CGAffineTransform(translationX: 0,
-                                                     y: -self.view.bounds.height/2)
+        self.titleView.transform = CGAffineTransform(translationX: 0, y: -self.view.bounds.height/2)
         
-        UIView.animate(withDuration: 1,
-                       delay: 1,
-                       usingSpringWithDamping: 0.5,
-                       initialSpringVelocity: 0,
-                       options: .curveEaseOut,
-                       animations: {
-                        self.titleView.transform = .identity
-        },
-                       completion: nil)
+        UIView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+            self.titleView.transform = .identity
+        }, completion: nil)
     }
     
     private func animateFieldsAppearing() {

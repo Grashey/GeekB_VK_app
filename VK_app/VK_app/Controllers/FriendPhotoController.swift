@@ -16,7 +16,6 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     var photos = [UIImage]()
 
     //MARK: - CollectionViewDataSource methods
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
             return photos.count
