@@ -12,6 +12,13 @@ class LoginController: UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var titleView: UILabel!
+    @IBOutlet weak var loginTitleView: UILabel!
+    @IBOutlet weak var passwordTitleView: UILabel!
+    @IBOutlet weak var logInButton: UIButton!
+    
+    
+    
     @IBOutlet var scrollView: UIScrollView!
     
     @IBOutlet weak var dotFirst: LoadingDotView!
@@ -22,11 +29,8 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         
         dotFirst.backgroundColor = .clear
-        dotFirst.alpha = 0
         dotSecond.backgroundColor = .clear
-        dotSecond.alpha = 0
         dotThird.backgroundColor = .clear
-        dotThird.alpha = 0
         
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGR.numberOfTapsRequired = 1
@@ -36,6 +40,11 @@ class LoginController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.animateTitlesAppearing()
+        self.animateTitleAppearing()
+        self.animateFieldsAppearing()
+        self.animateAuthButton()
+        
         self.loadingDots()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -43,6 +52,7 @@ class LoginController: UIViewController {
         
         navigationController?.navigationBar.isHidden = true
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -103,15 +113,74 @@ class LoginController: UIViewController {
     }
     
     private func loadingDots() {
-        UIView.animate(withDuration: 0.7, delay: 0, options: [.autoreverse, .repeat], animations: {
-            self.dotFirst.alpha = 1
+        UIView.animate(withDuration: 0.7, delay: 0, options: .autoreverse, animations: {
+            self.dotFirst.alpha = 0
         }, completion: nil)
-        UIView.animate(withDuration: 0.7, delay: 0.2, options: [.autoreverse, .repeat], animations: {
-            self.dotSecond.alpha = 1
+        UIView.animate(withDuration: 0.7, delay: 0.2, options: .autoreverse, animations: {
+            self.dotSecond.alpha = 0
         }, completion: nil)
-        UIView.animate(withDuration: 0.7, delay: 0.5, options: [.autoreverse, .repeat], animations: {
-            self.dotThird.alpha = 1
+        UIView.animate(withDuration: 0.7, delay: 0.5, options: .autoreverse, animations: {
+            self.dotThird.alpha = 0
         }, completion: nil)
+        UIView.setAnimationRepeatCount(5) // как прикрутить эту настройку?
+    }
+    
+   
+    
+    private func animateTitlesAppearing() {
+        let offset = view.bounds.width
+        loginTitleView.transform = CGAffineTransform(translationX: -offset, y: 0)
+        passwordTitleView.transform = CGAffineTransform(translationX: -offset, y: 0)
+        
+        UIView.animate(withDuration: 1,
+                       delay: 1,
+                       options: .curveEaseOut,
+                       animations: {
+                        self.loginTitleView.transform = .identity
+                        self.passwordTitleView.transform = .identity
+        },
+                       completion: nil)
+    }
+    
+    private func animateTitleAppearing() {
+        self.titleView.transform = CGAffineTransform(translationX: 0,
+                                                     y: -self.view.bounds.height/2)
+        
+        UIView.animate(withDuration: 1,
+                       delay: 1,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseOut,
+                       animations: {
+                        self.titleView.transform = .identity
+        },
+                       completion: nil)
+    }
+    
+    private func animateFieldsAppearing() {
+        let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeInAnimation.fromValue = 0
+        fadeInAnimation.toValue = 1
+        fadeInAnimation.duration = 1
+        fadeInAnimation.beginTime = CACurrentMediaTime() + 1
+        fadeInAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        fadeInAnimation.fillMode = CAMediaTimingFillMode.backwards
+        
+        self.usernameTextField.layer.add(fadeInAnimation, forKey: nil)
+        self.passwordTextField.layer.add(fadeInAnimation, forKey: nil)
+    }
+    
+    private func animateAuthButton() {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.stiffness = 200
+        animation.mass = 2
+        animation.duration = 2
+        animation.beginTime = CACurrentMediaTime() + 1
+        animation.fillMode = CAMediaTimingFillMode.backwards
+        
+        self.logInButton.layer.add(animation, forKey: nil)
     }
     
 }

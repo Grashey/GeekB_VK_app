@@ -33,7 +33,7 @@
                                         <color key="textColor" red="0.071860352180000003" green="0.1350347794" blue="0.3082546766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VK Social Lab" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M00-tp-aN5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VK Social Lab" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M00-tp-aN5" userLabel="Title View">
                                         <rect key="frame" x="90" y="80" width="234" height="36"/>
                                         <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                                         <constraints>
@@ -162,8 +162,12 @@
                         <outlet property="dotFirst" destination="Q1V-pX-rGh" id="Wrm-Kp-PDH"/>
                         <outlet property="dotSecond" destination="q2g-cu-gmu" id="Aaa-VQ-gt0"/>
                         <outlet property="dotThird" destination="1xp-g7-2Bh" id="LJy-gj-Snc"/>
+                        <outlet property="logInButton" destination="Jq8-WK-b7E" id="kML-Zr-xAz"/>
+                        <outlet property="loginTitleView" destination="toF-hI-2XK" id="dOQ-Mt-6rp"/>
                         <outlet property="passwordTextField" destination="OxI-kL-mIP" id="dPc-DC-WUK"/>
+                        <outlet property="passwordTitleView" destination="MQq-Ev-98A" id="rPx-tL-HbG"/>
                         <outlet property="scrollView" destination="SYb-Tm-Udn" id="JXo-6s-fl1"/>
+                        <outlet property="titleView" destination="M00-tp-aN5" id="nfq-7D-hrw"/>
                         <outlet property="usernameTextField" destination="hfh-Xe-j9s" id="Cv8-jR-6eF"/>
                     </connections>
                 </viewController>

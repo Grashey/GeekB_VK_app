@@ -32,11 +32,21 @@ class PhotoViewController: UIViewController {
     @objc private func heartStateChanged(){
         likeImageView.isHeartFilled.toggle()
         if likeCountView.text == String(likeCount){
-            likeCountView.text = String(likeCount + 1)
+            flipCountUp(String(likeCount + 1))
         } else {
-            likeCountView.text = String(likeCount)
+            flipCountDown(String(likeCount))
         }
     }
 
+    private func flipCountUp(_ text: String) {
+        UIView.transition(with: likeCountView, duration: 0.4, options: .transitionFlipFromRight, animations: {
+        self.likeCountView.text = text
+        })
+    }
     
+    private func flipCountDown(_ text: String) {
+        UIView.transition(with: likeCountView, duration: 0.4, options: .transitionFlipFromLeft, animations: {
+            self.likeCountView.text = text
+        })
+    }
 }
