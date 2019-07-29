@@ -81,15 +81,51 @@
                                             <segue destination="BEL-Mi-JyE" kind="show" identifier="LoginSegue" id="l9r-XH-jmd"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2g-cu-gmu" customClass="LoadingDotView" customModule="VK_app" customModuleProvider="target">
+                                        <rect key="frame" x="182" y="506" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="2NR-9j-uwj"/>
+                                            <constraint firstAttribute="width" secondItem="q2g-cu-gmu" secondAttribute="height" multiplier="1:1" id="3Ba-Ef-kax"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1V-pX-rGh" customClass="LoadingDotView" customModule="VK_app" customModuleProvider="target">
+                                        <rect key="frame" x="122" y="506" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="G0t-xh-QQb"/>
+                                            <constraint firstAttribute="width" secondItem="Q1V-pX-rGh" secondAttribute="height" multiplier="1:1" id="HaW-uQ-M2J"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xp-g7-2Bh" customClass="LoadingDotView" customModule="VK_app" customModuleProvider="target">
+                                        <rect key="frame" x="242" y="506" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="6zF-GH-hKf"/>
+                                            <constraint firstAttribute="width" secondItem="1xp-g7-2Bh" secondAttribute="height" multiplier="1:1" id="oqC-4S-FJG"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="1xp-g7-2Bh" firstAttribute="centerY" secondItem="q2g-cu-gmu" secondAttribute="centerY" id="3e1-Br-kid"/>
+                                    <constraint firstItem="q2g-cu-gmu" firstAttribute="leading" secondItem="Q1V-pX-rGh" secondAttribute="trailing" constant="10" id="4Qg-wd-MP5"/>
                                     <constraint firstItem="MQq-Ev-98A" firstAttribute="bottom" secondItem="OxI-kL-mIP" secondAttribute="bottom" id="52L-Gb-IOC"/>
+                                    <constraint firstItem="1xp-g7-2Bh" firstAttribute="leading" secondItem="q2g-cu-gmu" secondAttribute="trailing" constant="10" id="8FJ-aw-jZO"/>
                                     <constraint firstItem="toF-hI-2XK" firstAttribute="width" secondItem="MQq-Ev-98A" secondAttribute="width" id="8Vn-In-aOa"/>
                                     <constraint firstItem="hfh-Xe-j9s" firstAttribute="width" secondItem="OxI-kL-mIP" secondAttribute="width" id="8kU-Qh-7iC"/>
+                                    <constraint firstItem="1xp-g7-2Bh" firstAttribute="width" secondItem="1xp-g7-2Bh" secondAttribute="height" multiplier="1:1" id="Fwy-GF-aKR"/>
+                                    <constraint firstItem="Q1V-pX-rGh" firstAttribute="width" secondItem="Q1V-pX-rGh" secondAttribute="height" multiplier="1:1" id="IhB-ni-UIV"/>
+                                    <constraint firstItem="q2g-cu-gmu" firstAttribute="top" secondItem="Jq8-WK-b7E" secondAttribute="bottom" constant="100" id="JCH-eC-FKb"/>
+                                    <constraint firstItem="1xp-g7-2Bh" firstAttribute="width" secondItem="1xp-g7-2Bh" secondAttribute="height" multiplier="1:1" id="JX0-Z2-3c2"/>
                                     <constraint firstItem="Jq8-WK-b7E" firstAttribute="centerX" secondItem="M00-tp-aN5" secondAttribute="centerX" id="Jfe-pF-MqE"/>
+                                    <constraint firstItem="Q1V-pX-rGh" firstAttribute="centerY" secondItem="q2g-cu-gmu" secondAttribute="centerY" id="MlE-Gc-n41"/>
                                     <constraint firstItem="M00-tp-aN5" firstAttribute="centerX" secondItem="SYb-Tm-Udn" secondAttribute="centerX" id="NC7-AF-vZn"/>
+                                    <constraint firstItem="Q1V-pX-rGh" firstAttribute="width" secondItem="Q1V-pX-rGh" secondAttribute="height" multiplier="1:1" id="SKT-lV-sxK"/>
+                                    <constraint firstItem="Q1V-pX-rGh" firstAttribute="width" secondItem="Q1V-pX-rGh" secondAttribute="height" multiplier="1:1" id="SeH-v4-TFq"/>
                                     <constraint firstItem="MQq-Ev-98A" firstAttribute="top" secondItem="toF-hI-2XK" secondAttribute="bottom" constant="40" id="Svw-bG-7Q5"/>
+                                    <constraint firstItem="q2g-cu-gmu" firstAttribute="width" secondItem="q2g-cu-gmu" secondAttribute="height" multiplier="1:1" id="TjB-R8-5kn"/>
                                     <constraint firstItem="toF-hI-2XK" firstAttribute="height" secondItem="MQq-Ev-98A" secondAttribute="height" id="YuZ-LL-yjC"/>
+                                    <constraint firstItem="q2g-cu-gmu" firstAttribute="width" secondItem="q2g-cu-gmu" secondAttribute="height" multiplier="1:1" id="Z24-bp-pEz"/>
                                     <constraint firstItem="OxI-kL-mIP" firstAttribute="leading" secondItem="M00-tp-aN5" secondAttribute="centerX" constant="-10" id="aAC-OW-X2Y"/>
                                     <constraint firstItem="toF-hI-2XK" firstAttribute="bottom" secondItem="hfh-Xe-j9s" secondAttribute="bottom" id="cUL-Bn-5vH"/>
                                     <constraint firstItem="hfh-Xe-j9s" firstAttribute="leading" secondItem="OxI-kL-mIP" secondAttribute="leading" id="fK6-p3-zLK"/>
@@ -97,10 +133,13 @@
                                     <constraint firstAttribute="trailing" secondItem="M00-tp-aN5" secondAttribute="trailing" constant="52" id="fnT-GF-noB"/>
                                     <constraint firstItem="toF-hI-2XK" firstAttribute="trailing" secondItem="MQq-Ev-98A" secondAttribute="trailing" id="hGc-tF-DyZ"/>
                                     <constraint firstItem="OxI-kL-mIP" firstAttribute="trailing" secondItem="hfh-Xe-j9s" secondAttribute="trailing" id="hcO-Wf-U46"/>
+                                    <constraint firstItem="q2g-cu-gmu" firstAttribute="width" secondItem="q2g-cu-gmu" secondAttribute="height" multiplier="1:1" id="hnU-TU-0WR"/>
                                     <constraint firstItem="toF-hI-2XK" firstAttribute="top" secondItem="M00-tp-aN5" secondAttribute="bottom" constant="100" id="l8B-3R-ZCY"/>
                                     <constraint firstItem="MQq-Ev-98A" firstAttribute="trailing" secondItem="M00-tp-aN5" secondAttribute="centerX" constant="-30" id="m5b-5v-qaI"/>
+                                    <constraint firstItem="q2g-cu-gmu" firstAttribute="centerX" secondItem="SYb-Tm-Udn" secondAttribute="centerX" id="opc-rZ-IyR"/>
                                     <constraint firstAttribute="bottom" secondItem="Jq8-WK-b7E" secondAttribute="bottom" constant="30" id="pdd-Xr-uUR"/>
                                     <constraint firstItem="toF-hI-2XK" firstAttribute="leading" secondItem="MQq-Ev-98A" secondAttribute="leading" id="qcb-MC-q8R"/>
+                                    <constraint firstItem="1xp-g7-2Bh" firstAttribute="width" secondItem="1xp-g7-2Bh" secondAttribute="height" multiplier="1:1" id="w5L-cM-9fm"/>
                                     <constraint firstItem="Jq8-WK-b7E" firstAttribute="top" secondItem="M00-tp-aN5" secondAttribute="bottom" constant="250" id="yrM-Pt-YeE"/>
                                 </constraints>
                             </scrollView>
@@ -120,6 +159,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="9dI-Yn-Orw"/>
                     <connections>
+                        <outlet property="dotFirst" destination="Q1V-pX-rGh" id="Wrm-Kp-PDH"/>
+                        <outlet property="dotSecond" destination="q2g-cu-gmu" id="Aaa-VQ-gt0"/>
+                        <outlet property="dotThird" destination="1xp-g7-2Bh" id="LJy-gj-Snc"/>
                         <outlet property="passwordTextField" destination="OxI-kL-mIP" id="dPc-DC-WUK"/>
                         <outlet property="scrollView" destination="SYb-Tm-Udn" id="JXo-6s-fl1"/>
                         <outlet property="usernameTextField" destination="hfh-Xe-j9s" id="Cv8-jR-6eF"/>
