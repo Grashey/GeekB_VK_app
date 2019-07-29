@@ -11,19 +11,12 @@ import UIKit
 class NewsViewController: UITableViewController {
     
     @IBOutlet var newsTable: UITableView!
-
+    
     var groupAvatar = UIImage()
     var groupName = String()
-    var likeCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //likeCountView.text = String(likeCount)
-        
-        //let likeGR = UITapGestureRecognizer(target: self, action: #selector(heartStateChanged))
-        //likeGR.numberOfTapsRequired = 2
-        //likeImageView.addGestureRecognizer(likeGR)
 
     }
 
@@ -49,14 +42,5 @@ class NewsViewController: UITableViewController {
 
         return cell
     }
-    
-   /* @objc private func heartStateChanged(){
-        likeImageView.isHeartFilled.toggle()
-        if likeCountView.text == String(likeCount){
-            likeCountView.text = String(likeCount + 1)
-        } else {
-            likeCountView.text = String(likeCount)
-        }
-    }*/
 
 }
