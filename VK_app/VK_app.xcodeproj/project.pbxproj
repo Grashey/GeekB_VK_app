@@ -74,6 +74,7 @@
 		B60C84AD22E7633200007A8E /* TO DO */ = {
 			isa = PBXGroup;
 			children = (
+				B60C84B422EB44F400007A8E /* News.swift */,
 				B6A1B84622E6383E009FC00E /* CharacterPickerView.swift */,
 			);
 			path = "TO DO";
@@ -139,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				B62B20EC22D22CA2007F9161 /* Friend.swift */,
-				B60C84B422EB44F400007A8E /* News.swift */,
 				B62B20EE22D22EAC007F9161 /* Group.swift */,
 			);
 			path = Model;
