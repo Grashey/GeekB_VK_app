@@ -36,7 +36,23 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        cell.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
+        cell.layer.opacity = 0
+        
+        UIView.animate(withDuration: 3, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+            cell.transform = CGAffineTransform.identity
+        }, completion: nil)
+        
+        UIView.animateKeyframes(withDuration: 3, delay: 0, animations: {
+            cell.layer.opacity = 1
+        }, completion: nil)
+        
+    }
+    
     override func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let photoVC = storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
         let photo = collectionView.cellForItem(at: indexPath) as! FriendPhotoCell
         photoVC.photoFullScreen = photo.photoView.image!

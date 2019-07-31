@@ -120,7 +120,6 @@ class LoginController: UIViewController {
         UIView.animate(withDuration: 0.7, delay: 0.5, options: .autoreverse, animations: {
             self.dotThird.alpha = 0
         }, completion: nil)
-        UIView.setAnimationRepeatCount(5) // как прикрутить эту настройку?
     }
     
     private func animateTitlesAppearing() {
