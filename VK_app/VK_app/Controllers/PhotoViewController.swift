@@ -15,19 +15,53 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var photoFullScreenView: UIImageView!
     @IBOutlet weak var likeCountView: UILabel!
     @IBOutlet var likeImageView: LikeImageView!
+    @IBOutlet weak var photoCountView: UILabel!
     
     var photoFullScreen = UIImage()
     var likeCount = 0
+    var index = Int()
+    var photos = [UIImage]()
     
     override func viewDidLoad() {
+        
         photoFullScreenView.image = photoFullScreen
         likeCountView.text = String(likeCount)
+        photoCountView.text = String("\(index + 1) / \(photos.count)")
         
         let likeGR = UITapGestureRecognizer(target: self, action: #selector(heartStateChanged))
         likeGR.numberOfTapsRequired = 2
         photoFullScreenView.addGestureRecognizer(likeGR)
         
+        let flipLeftGR = UISwipeGestureRecognizer(target: self, action: #selector(flipLeftPhotos))
+        flipLeftGR.direction = .left
+        photoFullScreenView.addGestureRecognizer(flipLeftGR)
+        
+        let flipRightGR = UISwipeGestureRecognizer(target: self, action: #selector(flipRightPhotos))
+        flipRightGR.direction = .right
+        photoFullScreenView.addGestureRecognizer(flipRightGR)
+        
     }
+    
+    @objc func flipRightPhotos(){
+        guard index != 0
+            else { return }
+        index -= 1
+        photoFullScreenView.image = photos[index]
+        photoCountView.text = String("\(index + 1) / \(photos.count)")
+        reloadInputViews()
+        
+    }
+    
+    @objc func flipLeftPhotos(){
+        guard index != (photos.count - 1)
+            else { return }
+        index += 1
+        photoFullScreenView.image = photos[index]
+        photoCountView.text = String("\(index + 1) / \(photos.count)")
+        reloadInputViews()
+    }
+    
+    
     
     @objc private func heartStateChanged(){
         likeImageView.isHeartFilled.toggle()
@@ -50,4 +84,6 @@ class PhotoViewController: UIViewController {
             self.likeCountView.text = text
         })
     }
+    
+    
 }
