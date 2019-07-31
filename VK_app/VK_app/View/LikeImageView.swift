@@ -28,13 +28,15 @@ class LikeImageView: UIControl {
         super.draw(rect)
         
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        context.setStrokeColor(heartColor.cgColor)
-        context.setFillColor(heartColor.cgColor)
+        context.setStrokeColor(UIColor.black.cgColor)
+        context.setFillColor(UIColor.red.cgColor)
         context.saveGState()
         
         heart.stroke()
         
         if isHeartFilled {
+            context.setStrokeColor(UIColor.red.cgColor)
+            heart.stroke()
             heart.fill()
         }
         
