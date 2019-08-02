@@ -41,22 +41,6 @@ class PhotoViewController: UIViewController {
         
     }
     
-    @objc func flipRightPhotos(){
-        compressionRight()
-        decompressionRight()
-        reloadInputViews()
-        
-        
-    }
-    
-    @objc func flipLeftPhotos(){
-        compressionLeft()
-        decompressionLeft()
-        reloadInputViews()
-    }
-    
-    
-    
     @objc private func heartStateChanged(){
         likeImageView.isHeartFilled.toggle()
         if likeCountView.text == String(likeCount){
@@ -67,6 +51,97 @@ class PhotoViewController: UIViewController {
     }
     
     //MARK: - Animation
+    @objc func flipRightPhotos(){
+        if index > 0 {
+            UIView.animateKeyframes(withDuration: 3,
+                                    delay: 0,
+                                    options: [],
+                                    animations: {
+                                        UIView.addKeyframe(withRelativeStartTime: 0,
+                                                           relativeDuration: 0.25,
+                                                           animations: {
+                                                            self.photoFullScreenView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+                                        })
+                                        UIView.addKeyframe(withRelativeStartTime: 0.25,
+                                                           relativeDuration: 0.5,
+                                                           animations: {
+                                                            self.photoFullScreenView.frame = self.photoFullScreenView.frame.offsetBy(dx: self.view.frame.width, dy: 0)
+                                        })
+                                        UIView.addKeyframe(withRelativeStartTime: 0.2,
+                                                           relativeDuration: 0,
+                                                           animations: {
+                                                            let nextIndex = self.index - 1
+                                                            self.nextPhotoView.image = self.photos[nextIndex]
+                                                            self.nextPhotoView.layer.opacity = 1
+                                                            self.nextPhotoView.frame = self.nextPhotoView.frame.offsetBy(dx: -(self.view.frame.width), dy: 0)
+                                                            self.nextPhotoView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+                                        })
+                                        UIView.addKeyframe(withRelativeStartTime: 0.25,
+                                                           relativeDuration: 0.5,
+                                                           animations: {
+                                                            self.nextPhotoView.frame = self.nextPhotoView.frame.offsetBy(dx: self.view.frame.width, dy: 0)
+                                        })
+                                        UIView.addKeyframe(withRelativeStartTime: 0.75,
+                                                           relativeDuration: 0.25,
+                                                           animations: {
+                                                            self.nextPhotoView.transform = CGAffineTransform.identity
+                                        })
+                                        
+                                        }, completion: { _ in
+                                            self.index -= 1
+                                            self.photoFullScreenView.image = self.photos[self.index]
+                                            self.photoFullScreenView.transform = CGAffineTransform.identity
+                                            self.nextPhotoView.layer.opacity = 0
+                                            self.view.setNeedsDisplay()
+            })
+        } else { return }
+    }
+    
+    @objc func flipLeftPhotos(){
+        if index < (photos.count - 1) {
+            UIView.animateKeyframes(withDuration: 3,
+                                    delay: 0,
+                                    options: [],
+                                    animations: {
+                                        UIView.addKeyframe(withRelativeStartTime: 0,
+                                                           relativeDuration: 0.25,
+                                                           animations: {
+                                                            self.photoFullScreenView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+                                        })
+                                        UIView.addKeyframe(withRelativeStartTime: 0.25,
+                                                           relativeDuration: 0.5,
+                                                           animations: {
+                                                            self.photoFullScreenView.frame = self.photoFullScreenView.frame.offsetBy(dx: -(self.view.frame.width), dy: 0)
+                                        })
+                                        UIView.addKeyframe(withRelativeStartTime: 0,
+                                                           relativeDuration: 0,
+                                                           animations: {
+                                                            let nextIndex = self.index + 1
+                                                            self.nextPhotoView.image = self.photos[nextIndex]
+                                                            self.nextPhotoView.layer.opacity = 1
+                                                            self.nextPhotoView.frame = self.nextPhotoView.frame.offsetBy(dx: self.view.frame.width, dy: 0)
+                                                            self.nextPhotoView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+                                        })
+                                        UIView.addKeyframe(withRelativeStartTime: 0.25,
+                                                           relativeDuration: 0.5,
+                                                           animations: {
+                                                            self.nextPhotoView.frame = self.nextPhotoView.frame.offsetBy(dx: -(self.view.frame.width), dy: 0)
+                                        })
+                                        UIView.addKeyframe(withRelativeStartTime: 0.75,
+                                                           relativeDuration: 0.25,
+                                                           animations: {
+                                                            self.nextPhotoView.transform = CGAffineTransform.identity
+                                        })
+                                        }, completion: { _ in
+                                            self.index += 1
+                                            self.photoFullScreenView.image = self.photos[self.index]
+                                            self.photoFullScreenView.transform = CGAffineTransform.identity
+                                            self.nextPhotoView.layer.opacity = 0
+                                            self.photoFullScreenView.setNeedsDisplay()
+            })
+        } else { return }
+    }
+    
     private func likeCountUp(_ text: String) {
         UIView.transition(with: likeCountView, duration: 0.4, options: .transitionFlipFromRight, animations: {
         self.likeCountView.text = text
@@ -78,67 +153,4 @@ class PhotoViewController: UIViewController {
             self.likeCountView.text = text
         })
     }
-    
-    private func compressionRight() {
-        guard index != 0
-            else { return }
-        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-            self.photoFullScreenView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                self.photoFullScreenView.frame = self.photoFullScreenView.frame.offsetBy(dx: self.view.frame.width, dy: 0)
-            }, completion: nil ) })}
-    
-    private func decompressionRight() {
-        guard index != 0
-            else { return }
-        index -= 1
-        nextPhotoView.image = photos[index]
-        nextPhotoView.layer.opacity = 1
-        nextPhotoView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-        nextPhotoView.frame = nextPhotoView.frame.offsetBy(dx: -(self.view.frame.width), dy: 0)
-            UIView.animate(withDuration: 0.5, delay: 0.5, options: UIView.AnimationOptions.curveLinear, animations: {
-                self.nextPhotoView.frame = self.photoFullScreenView.frame.offsetBy(dx: 0, dy: 0)
-            }, completion: { _ in
-                UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                    self.nextPhotoView.transform = CGAffineTransform.identity
-                }, completion: { _ in
-                    self.photoFullScreenView.image = self.photos[self.index]
-                    self.photoFullScreenView.transform = CGAffineTransform.identity
-                    self.nextPhotoView.layer.opacity = 0
-                    
-                }) })
-    }
-    
-    private func compressionLeft() {
-        guard index != (photos.count - 1)
-            else { return }
-        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-            self.photoFullScreenView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                self.photoFullScreenView.frame = self.photoFullScreenView.frame.offsetBy(dx: -(self.view.frame.width), dy: 0)
-            }, completion: nil ) })}
-    
-    private func decompressionLeft() {
-        guard index != (photos.count - 1)
-            else { return }
-        index += 1
-        nextPhotoView.image = photos[index]
-        nextPhotoView.layer.opacity = 1
-        nextPhotoView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-        nextPhotoView.frame = nextPhotoView.frame.offsetBy(dx: self.view.frame.width, dy: 0)
-        UIView.animate(withDuration: 0.5, delay: 0.5, options: UIView.AnimationOptions.curveLinear, animations: {
-            self.nextPhotoView.frame = self.photoFullScreenView.frame.offsetBy(dx: 0, dy: 0)
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                self.nextPhotoView.transform = CGAffineTransform.identity
-            }, completion: { _ in
-                self.photoFullScreenView.image = self.photos[self.index]
-                self.photoFullScreenView.transform = CGAffineTransform.identity
-                self.nextPhotoView.layer.opacity = 0
-                
-            }) })
-    }
-    
 }
