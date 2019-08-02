@@ -42,20 +42,17 @@ class PhotoViewController: UIViewController {
     }
     
     @objc func flipRightPhotos(){
-        compression()
-        decompression()
+        compressionRight()
+        decompressionRight()
         reloadInputViews()
         
         
     }
     
     @objc func flipLeftPhotos(){
-        guard index != (photos.count - 1)
-            else { return }
-        index += 1
-        photoFullScreenView.image = photos[index]
-        compression()
-        decompression()
+        compressionLeft()
+        decompressionLeft()
+        reloadInputViews()
     }
     
     
@@ -82,7 +79,9 @@ class PhotoViewController: UIViewController {
         })
     }
     
-    @objc func compression() {
+    private func compressionRight() {
+        guard index != 0
+            else { return }
         UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
             self.photoFullScreenView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
         }, completion: { _ in
@@ -90,7 +89,7 @@ class PhotoViewController: UIViewController {
                 self.photoFullScreenView.frame = self.photoFullScreenView.frame.offsetBy(dx: self.view.frame.width, dy: 0)
             }, completion: nil ) })}
     
-    private func decompression() {
+    private func decompressionRight() {
         guard index != 0
             else { return }
         index -= 1
@@ -105,11 +104,41 @@ class PhotoViewController: UIViewController {
                     self.nextPhotoView.transform = CGAffineTransform.identity
                 }, completion: { _ in
                     self.photoFullScreenView.image = self.photos[self.index]
-                    print(self.index)
                     self.photoFullScreenView.transform = CGAffineTransform.identity
                     self.nextPhotoView.layer.opacity = 0
                     
                 }) })
+    }
+    
+    private func compressionLeft() {
+        guard index != (photos.count - 1)
+            else { return }
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+            self.photoFullScreenView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+                self.photoFullScreenView.frame = self.photoFullScreenView.frame.offsetBy(dx: -(self.view.frame.width), dy: 0)
+            }, completion: nil ) })}
+    
+    private func decompressionLeft() {
+        guard index != (photos.count - 1)
+            else { return }
+        index += 1
+        nextPhotoView.image = photos[index]
+        nextPhotoView.layer.opacity = 1
+        nextPhotoView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+        nextPhotoView.frame = nextPhotoView.frame.offsetBy(dx: self.view.frame.width, dy: 0)
+        UIView.animate(withDuration: 0.5, delay: 0.5, options: UIView.AnimationOptions.curveLinear, animations: {
+            self.nextPhotoView.frame = self.photoFullScreenView.frame.offsetBy(dx: 0, dy: 0)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+                self.nextPhotoView.transform = CGAffineTransform.identity
+            }, completion: { _ in
+                self.photoFullScreenView.image = self.photos[self.index]
+                self.photoFullScreenView.transform = CGAffineTransform.identity
+                self.nextPhotoView.layer.opacity = 0
+                
+            }) })
     }
     
 }
