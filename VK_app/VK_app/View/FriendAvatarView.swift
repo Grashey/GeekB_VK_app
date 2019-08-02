@@ -49,7 +49,7 @@ class FriendAvatarView: UIView {
             self.avatarImageView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
             self.shadowView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
         }, completion: { _ in
-            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 100, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: UIView.AnimationOptions.curveEaseInOut, animations: {
                 self.avatarImageView.transform = CGAffineTransform.identity
                 self.shadowView.transform = CGAffineTransform.identity
             }, completion: nil)

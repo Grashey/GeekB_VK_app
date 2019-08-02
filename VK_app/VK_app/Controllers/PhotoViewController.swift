@@ -15,24 +15,23 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var photoFullScreenView: UIImageView!
     @IBOutlet weak var likeCountView: UILabel!
     @IBOutlet var likeImageView: LikeImageView!
-    @IBOutlet weak var photoCountView: UILabel!
+    @IBOutlet weak var nextPhotoView: UIImageView!
     
-    var photoFullScreen = UIImage()
     var likeCount = 0
     var index = Int()
     var photos = [UIImage]()
     
     override func viewDidLoad() {
         
-        photoFullScreenView.image = photoFullScreen
+        photoFullScreenView.image = photos[index]
         likeCountView.text = String(likeCount)
-        photoCountView.text = String("\(index + 1) / \(photos.count)")
+        nextPhotoView.layer.opacity = 0
         
         let likeGR = UITapGestureRecognizer(target: self, action: #selector(heartStateChanged))
         likeGR.numberOfTapsRequired = 2
         photoFullScreenView.addGestureRecognizer(likeGR)
         
-        let flipLeftGR = UISwipeGestureRecognizer(target: self, action: #selector(flipLeftPhotos))
+        let flipLeftGR = UISwipeGestureRecognizer(target: self, action: #selector (flipLeftPhotos))
         flipLeftGR.direction = .left
         photoFullScreenView.addGestureRecognizer(flipLeftGR)
         
@@ -43,12 +42,10 @@ class PhotoViewController: UIViewController {
     }
     
     @objc func flipRightPhotos(){
-        guard index != 0
-            else { return }
-        index -= 1
-        photoFullScreenView.image = photos[index]
-        photoCountView.text = String("\(index + 1) / \(photos.count)")
+        compression()
+        decompression()
         reloadInputViews()
+        
         
     }
     
@@ -57,8 +54,8 @@ class PhotoViewController: UIViewController {
             else { return }
         index += 1
         photoFullScreenView.image = photos[index]
-        photoCountView.text = String("\(index + 1) / \(photos.count)")
-        reloadInputViews()
+        compression()
+        decompression()
     }
     
     
@@ -66,24 +63,53 @@ class PhotoViewController: UIViewController {
     @objc private func heartStateChanged(){
         likeImageView.isHeartFilled.toggle()
         if likeCountView.text == String(likeCount){
-            flipCountUp(String(likeCount + 1))
+            likeCountUp(String(likeCount + 1))
         } else {
-            flipCountDown(String(likeCount))
+            likeCountDown(String(likeCount))
         }
     }
     
     //MARK: - Animation
-    private func flipCountUp(_ text: String) {
+    private func likeCountUp(_ text: String) {
         UIView.transition(with: likeCountView, duration: 0.4, options: .transitionFlipFromRight, animations: {
         self.likeCountView.text = text
         })
     }
     
-    private func flipCountDown(_ text: String) {
+    private func likeCountDown(_ text: String) {
         UIView.transition(with: likeCountView, duration: 0.4, options: .transitionFlipFromLeft, animations: {
             self.likeCountView.text = text
         })
     }
     
+    @objc func compression() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+            self.photoFullScreenView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+                self.photoFullScreenView.frame = self.photoFullScreenView.frame.offsetBy(dx: self.view.frame.width, dy: 0)
+            }, completion: nil ) })}
+    
+    private func decompression() {
+        guard index != 0
+            else { return }
+        index -= 1
+        nextPhotoView.image = photos[index]
+        nextPhotoView.layer.opacity = 1
+        nextPhotoView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+        nextPhotoView.frame = nextPhotoView.frame.offsetBy(dx: -(self.view.frame.width), dy: 0)
+            UIView.animate(withDuration: 0.5, delay: 0.5, options: UIView.AnimationOptions.curveLinear, animations: {
+                self.nextPhotoView.frame = self.photoFullScreenView.frame.offsetBy(dx: 0, dy: 0)
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+                    self.nextPhotoView.transform = CGAffineTransform.identity
+                }, completion: { _ in
+                    self.photoFullScreenView.image = self.photos[self.index]
+                    print(self.index)
+                    self.photoFullScreenView.transform = CGAffineTransform.identity
+                    self.nextPhotoView.layer.opacity = 0
+                    
+                }) })
+    }
     
 }

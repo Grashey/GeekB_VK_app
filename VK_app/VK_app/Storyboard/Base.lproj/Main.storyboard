@@ -697,9 +697,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="TCu-tC-1v4">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="odG-de-iSh">
                                 <rect key="frame" x="0.0" y="335.66666666666669" width="414" height="225.00000000000006"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="TCu-tC-1v4">
+                                <rect key="frame" x="0.0" y="66" width="414" height="764"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ag-cv-6b7">
                                 <rect key="frame" x="0.0" y="830" width="414" height="32"/>
@@ -735,41 +739,34 @@
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ndQ-XO-Uik" secondAttribute="trailing" constant="329" id="wgX-Un-XI9"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzP-L9-eR9">
-                                <rect key="frame" x="182" y="69" width="50" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="dWw-2v-5gJ"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="hAh-4v-nLP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="uzP-L9-eR9" firstAttribute="top" secondItem="Qc9-SH-501" secondAttribute="top" constant="25" id="A1J-dv-kby"/>
+                            <constraint firstItem="Qc9-SH-501" firstAttribute="trailing" secondItem="odG-de-iSh" secondAttribute="trailing" id="A7h-Ut-5CJ"/>
+                            <constraint firstItem="odG-de-iSh" firstAttribute="centerX" secondItem="Sem-KO-wzZ" secondAttribute="centerX" id="BQz-1O-3Wr"/>
                             <constraint firstItem="TCu-tC-1v4" firstAttribute="trailing" secondItem="Qc9-SH-501" secondAttribute="trailing" id="FaP-uu-8D0"/>
-                            <constraint firstItem="uzP-L9-eR9" firstAttribute="centerX" secondItem="TCu-tC-1v4" secondAttribute="centerX" id="L0m-4P-UQj"/>
+                            <constraint firstItem="1ag-cv-6b7" firstAttribute="top" secondItem="TCu-tC-1v4" secondAttribute="bottom" id="NtB-VX-5Fz"/>
                             <constraint firstItem="TCu-tC-1v4" firstAttribute="centerY" secondItem="Sem-KO-wzZ" secondAttribute="centerY" id="P4I-Jb-Vra"/>
+                            <constraint firstItem="odG-de-iSh" firstAttribute="centerY" secondItem="Sem-KO-wzZ" secondAttribute="centerY" id="P8h-LJ-XZP"/>
                             <constraint firstItem="Qc9-SH-501" firstAttribute="trailing" secondItem="1ag-cv-6b7" secondAttribute="trailing" id="Qlk-NY-rll"/>
                             <constraint firstItem="TCu-tC-1v4" firstAttribute="centerX" secondItem="Sem-KO-wzZ" secondAttribute="centerX" id="VvN-8k-O4c"/>
                             <constraint firstItem="1ag-cv-6b7" firstAttribute="leading" secondItem="Qc9-SH-501" secondAttribute="leading" id="goa-Nk-nsO"/>
                             <constraint firstItem="Qc9-SH-501" firstAttribute="bottom" secondItem="1ag-cv-6b7" secondAttribute="bottom" id="s0V-lK-W1S"/>
                             <constraint firstItem="TCu-tC-1v4" firstAttribute="leading" secondItem="Qc9-SH-501" secondAttribute="leading" id="v7V-Rp-7Ok"/>
+                            <constraint firstItem="odG-de-iSh" firstAttribute="leading" secondItem="Qc9-SH-501" secondAttribute="leading" id="ybz-NF-wun"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qc9-SH-501"/>
                     </view>
                     <connections>
                         <outlet property="likeCountView" destination="ndQ-XO-Uik" id="3H7-Fz-Y9t"/>
                         <outlet property="likeImageView" destination="hB4-Gs-mGc" id="nSL-45-wQw"/>
-                        <outlet property="photoCountView" destination="uzP-L9-eR9" id="Kj1-Un-dtr"/>
+                        <outlet property="nextPhotoView" destination="odG-de-iSh" id="Cz0-2w-T2e"/>
                         <outlet property="photoFullScreenView" destination="TCu-tC-1v4" id="g0g-PX-kHy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTP-Kw-LQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6459" y="-662"/>
+            <point key="canvasLocation" x="6457.971014492754" y="-662.27678571428567"/>
         </scene>
         <!--Groups-->
         <scene sceneID="pSt-9l-BL1">

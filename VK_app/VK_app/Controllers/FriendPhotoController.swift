@@ -41,11 +41,11 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         cell.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
         cell.layer.opacity = 0
         
-        UIView.animate(withDuration: 2, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+        UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
             cell.transform = CGAffineTransform.identity
         }, completion: nil)
         
-        UIView.animateKeyframes(withDuration: 2, delay: 0, animations: {
+        UIView.animateKeyframes(withDuration: 1, delay: 0, animations: {
             cell.layer.opacity = 1
         }, completion: nil)
         
@@ -54,8 +54,6 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     override func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let photoVC = storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
-        let photo = collectionView.cellForItem(at: indexPath) as! FriendPhotoCell
-        photoVC.photoFullScreen = photo.photoView.image!
         photoVC.index = indexPath.item
         photoVC.photos = photos
         self.navigationController?.pushViewController(photoVC, animated: true)
