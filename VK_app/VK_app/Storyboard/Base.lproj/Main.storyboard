@@ -698,7 +698,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="odG-de-iSh">
-                                <rect key="frame" x="0.0" y="335.66666666666669" width="414" height="225.00000000000006"/>
+                                <rect key="frame" x="0.0" y="66" width="414" height="764"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="TCu-tC-1v4">
@@ -753,6 +753,7 @@
                             <constraint firstItem="1ag-cv-6b7" firstAttribute="leading" secondItem="Qc9-SH-501" secondAttribute="leading" id="goa-Nk-nsO"/>
                             <constraint firstItem="Qc9-SH-501" firstAttribute="bottom" secondItem="1ag-cv-6b7" secondAttribute="bottom" id="s0V-lK-W1S"/>
                             <constraint firstItem="TCu-tC-1v4" firstAttribute="leading" secondItem="Qc9-SH-501" secondAttribute="leading" id="v7V-Rp-7Ok"/>
+                            <constraint firstItem="odG-de-iSh" firstAttribute="height" secondItem="TCu-tC-1v4" secondAttribute="height" id="vx6-rH-QgR"/>
                             <constraint firstItem="odG-de-iSh" firstAttribute="leading" secondItem="Qc9-SH-501" secondAttribute="leading" id="ybz-NF-wun"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qc9-SH-501"/>
