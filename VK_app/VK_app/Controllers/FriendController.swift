@@ -166,7 +166,7 @@ class FriendController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FriendsFotoSegue",
+        if segue.identifier == "FriendPhotoSegue",
             let indexPath = tableView.indexPathForSelectedRow,
             let photoVC = segue.destination as? FriendPhotoController
         {
@@ -178,5 +178,4 @@ class FriendController: UITableViewController {
             }
         }
     }
-    
 }

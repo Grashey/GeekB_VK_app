@@ -71,6 +71,7 @@ class LoginController: UIViewController {
         
         print("username: \(usernameTextField.text ?? "")")
         print("password: \(passwordTextField.text ?? "")")
+        
     }
     
     @objc private func keyboardWasShown(notification: Notification){
@@ -109,6 +110,7 @@ class LoginController: UIViewController {
             self.passwordTextField.text = ""
         }
     }
+    
     // MARK: - Animations
     private func loadingDots() {
         UIView.animate(withDuration: 0.7, delay: 0, options: .autoreverse, animations: {
@@ -166,5 +168,7 @@ class LoginController: UIViewController {
         
         self.logInButton.layer.add(animation, forKey: nil)
     }
-    
 }
+
+
+
