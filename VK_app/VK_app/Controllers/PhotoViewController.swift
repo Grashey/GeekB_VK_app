@@ -52,90 +52,77 @@ class PhotoViewController: UIViewController {
     
     //MARK: - Animation
     @objc func flipRightPhotos(){
-        if index > 0 {
-            UIView.animateKeyframes(withDuration: 1,
-                                    delay: 0,
-                                    options: [],
-                                    animations: {
-                                        UIView.addKeyframe(withRelativeStartTime: 0,
-                                                           relativeDuration: 0.25,
-                                                           animations: {
-                                                            self.photoFullScreenView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-                                        })
-                                        UIView.addKeyframe(withRelativeStartTime: 0.25,
-                                                           relativeDuration: 0.5,
-                                                           animations: {
-                                                            self.photoFullScreenView.transform =  CGAffineTransform.identity.translatedBy(x: self.view.frame.width, y: 0)
-                                        })
-                                        UIView.addKeyframe(withRelativeStartTime: 0,
-                                                           relativeDuration: 0,
-                                                           animations: {
-                                                            let nextIndex = self.index - 1
-                                                            self.nextPhotoView.image = self.photos[nextIndex]
-                                                            self.nextPhotoView.isHidden = false
-                                                            self.nextPhotoView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8).concatenating( CGAffineTransform.init(translationX: -(self.view.frame.width), y: 0))
-                                        })
-                                        UIView.addKeyframe(withRelativeStartTime: 0.25,
-                                                           relativeDuration: 0.5,
-                                                           animations: {
-                                                            self.nextPhotoView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8).concatenating( CGAffineTransform.identity.translatedBy(x: 0, y: 0))
-                                        })
-                                        UIView.addKeyframe(withRelativeStartTime: 0.75,
-                                                           relativeDuration: 0.25,
-                                                           animations: {
-                                                            self.nextPhotoView.transform = CGAffineTransform.identity
-                                        })
-                                        
-                                        }, completion: { _ in
-                                            self.nextPhotoView.isHidden = true
-                                            self.index -= 1
-                                            self.photoFullScreenView.image = self.photos[self.index]
-                                            self.photoFullScreenView.transform = .identity
+        guard index > 0 else { return }
+        
+        let scaleTransform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+        let goLeftTransform = CGAffineTransform.init(translationX: -view.bounds.width, y: 0)
+        let goRightTransform = CGAffineTransform.init(translationX: view.bounds.width, y: 0)
+        
+        let nextIndex = self.index - 1
+        self.nextPhotoView.image = self.photos[nextIndex]
+        self.nextPhotoView.isHidden = false
+        self.nextPhotoView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8).concatenating(goLeftTransform)
+        
+        UIView.animateKeyframes(withDuration: 1, delay: 0, options: [], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0,
+                               relativeDuration: 0.25,
+                               animations: {
+                                self.photoFullScreenView.transform = scaleTransform
             })
-        } else { return }
+            UIView.addKeyframe(withRelativeStartTime: 0.25,
+                               relativeDuration: 0.5,
+                               animations: {
+                                self.photoFullScreenView.transform = scaleTransform.concatenating(goRightTransform)
+                                self.nextPhotoView.transform = scaleTransform
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.75,
+                               relativeDuration: 0.25,
+                               animations: {
+                                self.nextPhotoView.transform = .identity
+            })
+        }, completion: { _ in
+            self.nextPhotoView.isHidden = true
+            self.index -= 1
+            self.photoFullScreenView.image = self.photos[self.index]
+            self.photoFullScreenView.transform = .identity
+        })
     }
     
     @objc func flipLeftPhotos(){
-        if index < (photos.count - 1) {
-            UIView.animateKeyframes(withDuration: 1,
-                                    delay: 0,
-                                    options: [],
-                                    animations: {
-                                        UIView.addKeyframe(withRelativeStartTime: 0,
-                                                           relativeDuration: 0.25,
-                                                           animations: {
-                                                            self.photoFullScreenView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+        guard index < (photos.count - 1) else { return }
+        
+        let scaleTransform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+        let goLeftTransform = CGAffineTransform.init(translationX: -view.bounds.width, y: 0)
+        let goRightTransform = CGAffineTransform.init(translationX: view.bounds.width, y: 0)
+        
+        let nextIndex = self.index + 1
+        self.nextPhotoView.image = self.photos[nextIndex]
+        self.nextPhotoView.isHidden = false
+        self.nextPhotoView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8).concatenating(goRightTransform)
+        
+        UIView.animateKeyframes(withDuration: 1, delay: 0, options: [], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0,
+                               relativeDuration: 0.25,
+                               animations: {
+                                self.photoFullScreenView.transform = scaleTransform
                                         })
-                                        UIView.addKeyframe(withRelativeStartTime: 0.25,
-                                                           relativeDuration: 0.5,
-                                                           animations: {
-                                                            self.photoFullScreenView.frame = self.photoFullScreenView.frame.offsetBy(dx: -(self.view.frame.width), dy: 0)
+            UIView.addKeyframe(withRelativeStartTime: 0.25,
+                               relativeDuration: 0.5,
+                               animations: {
+                                self.photoFullScreenView.transform = scaleTransform.concatenating(goLeftTransform)
+                                self.nextPhotoView.transform = scaleTransform
                                         })
-                                        UIView.addKeyframe(withRelativeStartTime: 0,
-                                                           relativeDuration: 0,
-                                                           animations: {
-                                                            let nextIndex = self.index + 1
-                                                            self.nextPhotoView.image = self.photos[nextIndex]
-                                                            self.nextPhotoView.isHidden = false
-                                                            self.nextPhotoView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8).concatenating( CGAffineTransform.init(translationX: self.view.frame.width, y: 0))
+            UIView.addKeyframe(withRelativeStartTime: 0.75,
+                               relativeDuration: 0.25,
+                               animations: {
+                                self.nextPhotoView.transform = .identity
                                         })
-                                        UIView.addKeyframe(withRelativeStartTime: 0.25,
-                                                           relativeDuration: 0.5,
-                                                           animations: {
-                                                            self.nextPhotoView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8).concatenating( CGAffineTransform.identity.translatedBy(x: 0, y: 0))
-                                        })
-                                        UIView.addKeyframe(withRelativeStartTime: 0.75,
-                                                           relativeDuration: 0.25,
-                                                           animations: {
-                                                            self.nextPhotoView.transform = .identity
-                                        })
-                                        }, completion: { _ in
-                                            self.nextPhotoView.isHidden = true
-                                            self.index += 1
-                                            self.photoFullScreenView.image = self.photos[self.index]
-                                            self.photoFullScreenView.transform = .identity
+        }, completion: { _ in
+            self.nextPhotoView.isHidden = true
+            self.index += 1
+            self.photoFullScreenView.image = self.photos[self.index]
+            self.photoFullScreenView.transform = .identity
             })
-        } else { return }
     }
     
     private func likeCountUp(_ text: String) {
