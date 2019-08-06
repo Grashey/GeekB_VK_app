@@ -23,8 +23,6 @@ class PushAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
         source.view.frame = transitionContext.containerView.frame
         destination.view.frame = transitionContext.containerView.frame
         
-        source.view.layer.anchorPoint = CGPoint(x: 0, y: 0)
-        source.view.layer.position = CGPoint(x: 0, y: 0)
         destination.view.layer.anchorPoint = CGPoint(x: 1, y: 0)
         destination.view.layer.position = CGPoint(x: source.view.bounds.width, y: 0)
         

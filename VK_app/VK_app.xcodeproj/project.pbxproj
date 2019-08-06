@@ -29,6 +29,7 @@
 		B6A16EBD22E10DD3001E10D0 /* LikeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A16EBC22E10DD3001E10D0 /* LikeImageView.swift */; };
 		B6A1B84322E5B8E8009FC00E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A1B84222E5B8E8009FC00E /* GradientView.swift */; };
 		B6A1B84722E6383E009FC00E /* CharacterPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A1B84622E6383E009FC00E /* CharacterPickerView.swift */; };
+		B6A5729922F9E7BC001D78DD /* AnimatedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A5729822F9E7BC001D78DD /* AnimatedNavigationController.swift */; };
 		B6E595E022F875E900580098 /* NavigationControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */; };
 		B6FF586322DE33E200B1604D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF586222DE33E200B1604D /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		B6A16EBC22E10DD3001E10D0 /* LikeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeImageView.swift; sourceTree = "<group>"; };
 		B6A1B84222E5B8E8009FC00E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B6A1B84622E6383E009FC00E /* CharacterPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPickerView.swift; sourceTree = "<group>"; };
+		B6A5729822F9E7BC001D78DD /* AnimatedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedNavigationController.swift; sourceTree = "<group>"; };
 		B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerAnimator.swift; sourceTree = "<group>"; };
 		B6FF586222DE33E200B1604D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 			children = (
 				B675DC9022C679C30074C418 /* LoginController.swift */,
 				B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */,
+				B6A5729822F9E7BC001D78DD /* AnimatedNavigationController.swift */,
 				B62B20F022D22EF0007F9161 /* GroupController.swift */,
 				B60C84B022EA25E600007A8E /* NewsViewController.swift */,
 				B618FDC522D370B5004467E2 /* FriendController.swift */,
@@ -240,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6A5729922F9E7BC001D78DD /* AnimatedNavigationController.swift in Sources */,
 				B675DC9122C679C30074C418 /* LoginController.swift in Sources */,
 				B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */,
 				B60C84AF22EA25CA00007A8E /* NewsViewCell.swift in Sources */,

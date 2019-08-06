@@ -95,17 +95,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     
     override func  tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let newsVC = storyboard?.instantiateViewController(withIdentifier: "NewsViewController") as! NewsViewController
-        
-        newsVC.groupAvatar = groups[indexPath.row].avatar! as UIImage
-        newsVC.groupName = groups[indexPath.row].name
-        
-        let navigationController = UINavigationController()
-        navigationController.setViewControllers([newsVC], animated: false)
-        navigationController.transitioningDelegate = self
-        present(navigationController, animated: true)
-        
     }
     
     //MARK: - UISearchBar methods
@@ -124,7 +113,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
     
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GroupNewsSegue",
             let indexPath = tableView.indexPathForSelectedRow,
             let photoVC = segue.destination as? NewsViewController
@@ -132,7 +121,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
             photoVC.groupAvatar = groups[indexPath.row].avatar! as UIImage
             photoVC.groupName = groups[indexPath.row].name
             }
-        }*/
+        }
     
 }
 
