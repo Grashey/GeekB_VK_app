@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Animator:  NSObject, UIViewControllerAnimatedTransitioning {
+class PushAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
     private let animationDuration: TimeInterval = 1
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -23,7 +23,13 @@ class Animator:  NSObject, UIViewControllerAnimatedTransitioning {
         source.view.frame = transitionContext.containerView.frame
         destination.view.frame = transitionContext.containerView.frame
         
-        destination.view.transform = CGAffineTransform(translationX: 0, y: -source.view.bounds.height)
+        source.view.layer.anchorPoint = CGPoint(x: 0, y: 0)
+        source.view.layer.position = CGPoint(x: 0, y: 0)
+        destination.view.layer.anchorPoint = CGPoint(x: 1, y: 0)
+        destination.view.layer.position = CGPoint(x: source.view.bounds.width, y: 0)
+        
+        destination.view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
+        
         
         UIView.animate(withDuration: animationDuration, animations: {
             destination.view.transform = .identity
@@ -31,6 +37,31 @@ class Animator:  NSObject, UIViewControllerAnimatedTransitioning {
             transitionContext.completeTransition(true)
         })
     }
+}
+
+class PopAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
+    private let animationDuration: TimeInterval = 1
     
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return animationDuration
+    }
     
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        guard let source  = transitionContext.viewController(forKey: .from),
+            let destination =  transitionContext.viewController(forKey: .to) else { return }
+        
+        transitionContext.containerView.addSubview(destination.view)
+        transitionContext.containerView.addSubview(source.view)
+        source.view.frame = transitionContext.containerView.frame
+        destination.view.frame = transitionContext.containerView.frame
+        
+        source.view.layer.anchorPoint = CGPoint(x: 1, y: 0)
+        
+        UIView.animate(withDuration: animationDuration, animations: {
+            source.view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2).concatenating( CGAffineTransform.init(translationX: source.view.bounds.width, y: 0))
+            
+        }, completion: { _ in
+            transitionContext.completeTransition(true)
+        })
+    }
 }

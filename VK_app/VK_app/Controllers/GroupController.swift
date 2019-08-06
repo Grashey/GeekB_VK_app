@@ -44,8 +44,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         
     }
     
-    private let animator = Animator()
-    
     var searchActive : Bool = false
     var filteredGroups:[Group] = []
     
@@ -108,7 +106,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         navigationController.transitioningDelegate = self
         present(navigationController, animated: true)
         
-        
     }
     
     //MARK: - UISearchBar methods
@@ -141,11 +138,10 @@ class GroupController: UITableViewController, UISearchBarDelegate {
 
 extension GroupController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return animator
+        return PopAnimator()
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return animator
+        return PushAnimator()
     }
 }
-
