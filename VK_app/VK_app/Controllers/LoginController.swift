@@ -26,6 +26,11 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let user = User.instance
+        user.token = "Aleksandr"
+        user.id = 10001
+
+        
         dotFirst.backgroundColor = .clear
         dotSecond.backgroundColor = .clear
         dotThird.backgroundColor = .clear
