@@ -52,7 +52,10 @@ class FriendAvatarView: UIView {
             UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: UIView.AnimationOptions.curveEaseInOut, animations: {
                 self.avatarImageView.transform = CGAffineTransform.identity
                 self.shadowView.transform = CGAffineTransform.identity
-            }, completion: nil)
+            }, completion: { _ in
+                weak var delegate: FriendController?
+                delegate?.performSegue(withIdentifier: "FriendPhotoSegue", sender: self)
+            })
         }) }
     
 

@@ -25,6 +25,7 @@
 		B675DC9422C679C30074C418 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9222C679C30074C418 /* Main.storyboard */; };
 		B675DC9622C679C40074C418 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9522C679C40074C418 /* Assets.xcassets */; };
 		B675DC9922C679C40074C418 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9722C679C40074C418 /* LaunchScreen.storyboard */; };
+		B678876E22FC6624009298A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B678876D22FC6624009298A7 /* User.swift */; };
 		B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */; };
 		B6A16EBD22E10DD3001E10D0 /* LikeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A16EBC22E10DD3001E10D0 /* LikeImageView.swift */; };
 		B6A1B84322E5B8E8009FC00E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A1B84222E5B8E8009FC00E /* GradientView.swift */; };
@@ -56,6 +57,7 @@
 		B675DC9522C679C40074C418 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B675DC9822C679C40074C418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B675DC9A22C679C40074C418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B678876D22FC6624009298A7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
 		B6A16EBC22E10DD3001E10D0 /* LikeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeImageView.swift; sourceTree = "<group>"; };
 		B6A1B84222E5B8E8009FC00E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				B62B20EC22D22CA2007F9161 /* Friend.swift */,
+				B678876D22FC6624009298A7 /* User.swift */,
 				B62B20EE22D22EAC007F9161 /* Group.swift */,
 			);
 			path = Model;
@@ -266,6 +269,7 @@
 				B62B20F322D22FA9007F9161 /* GroupCell.swift in Sources */,
 				B60C84BA22EEFC4900007A8E /* LoadingDotView.swift in Sources */,
 				B62992DC22DA288A00452C80 /* FriendAvatarView.swift in Sources */,
+				B678876E22FC6624009298A7 /* User.swift in Sources */,
 				B60C84B122EA25E600007A8E /* GroupNewsController.swift in Sources */,
 				B6FF586322DE33E200B1604D /* PhotoViewController.swift in Sources */,
 				B6A16EBD22E10DD3001E10D0 /* LikeImageView.swift in Sources */,
