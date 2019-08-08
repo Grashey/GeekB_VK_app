@@ -31,10 +31,12 @@ class AnimatedNavigationController: UINavigationController {
     
     //Что-то нужно делать с popViewController, закрывает контроллер даже если действие отменено.
     @objc func handlePanGesture(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        
         switch recognizer.state {
         case .began:
             interactiveTransition.hasStarted = true
             self.popViewController(animated: true)
+            
             
         case .changed:
             guard let width = recognizer.view?.bounds.width else {
@@ -56,7 +58,7 @@ class AnimatedNavigationController: UINavigationController {
         case .cancelled:
             interactiveTransition.hasStarted = false
             interactiveTransition.cancel()
-            
+
         default:
             break
         }
