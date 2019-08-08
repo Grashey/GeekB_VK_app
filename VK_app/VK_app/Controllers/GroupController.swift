@@ -10,7 +10,7 @@ import UIKit
 
 class GroupController: UITableViewController, UISearchBarDelegate {
     
-    fileprivate var groups = [
+    var groups = [
         Group(name: "MIB", avatar: UIImage(named: "GroupMIB")),
         Group(name: "Be Happy", avatar: UIImage(named: "GroupSmile")),
         Group(name: "Cinema", avatar: UIImage(named: "Group3D")),
@@ -116,7 +116,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GroupNewsSegue",
             let indexPath = tableView.indexPathForSelectedRow,
-            let photoVC = segue.destination as? NewsViewController
+            let photoVC = segue.destination as? GroupNewsController
         {
             photoVC.groupAvatar = groups[indexPath.row].avatar! as UIImage
             photoVC.groupName = groups[indexPath.row].name
