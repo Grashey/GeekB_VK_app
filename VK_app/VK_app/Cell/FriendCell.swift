@@ -14,9 +14,9 @@ protocol FriendCellDelegate {
 
 class FriendCell: UITableViewCell {
 
-    
     @IBOutlet weak var friendAvatarView: UIImageView!
     @IBOutlet weak var friendNameLabel: UILabel!
+    @IBOutlet var shadowView: UIView!
     
     var delegate: FriendCellDelegate?
     var indexPath = IndexPath()
@@ -31,11 +31,14 @@ class FriendCell: UITableViewCell {
     @objc func compression() {
         UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
             self.friendAvatarView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+            self.shadowView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
         }, completion: { _ in
-            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: UIView.AnimationOptions.curveEaseInOut, animations: {
                 self.friendAvatarView.transform = CGAffineTransform.identity
+                self.shadowView.transform = CGAffineTransform.identity
             }, completion: { _ in
                 self.delegate?.performSegueFromView(sender: self.indexPath)
             })
-        }) }
+        })
+    }
 }

@@ -30,7 +30,6 @@ class AnimatedNavigationController: UINavigationController {
     }
     
     //Что-то нужно делать с popViewController, закрывает контроллер даже если действие отменено.
-    //Очень похоже что контроллер-то остается, но аниматор меняет вьюху
     @objc func handlePanGesture(_ recognizer: UIScreenEdgePanGestureRecognizer) {
         //guard let activeController = self.viewControllers.last else { return }
         

@@ -27,10 +27,10 @@ class FriendAvatarView: UIView {
         shadowView.layer.shadowOpacity = shadowOpacity
         
         shadowView.backgroundColor = UIColor.white
-        avatarImageView.backgroundColor = UIColor.white
+        avatarImageView.backgroundColor = .clear
         
+        //shadowView.layer.masksToBounds = true
         avatarImageView.layer.masksToBounds = true
-   
     }
   
     override func layoutSubviews() {
@@ -38,7 +38,5 @@ class FriendAvatarView: UIView {
         
         shadowView.layer.cornerRadius = shadowView.frame.height/2
         avatarImageView.layer.cornerRadius = shadowView.layer.cornerRadius
-        
     }
-    
 }

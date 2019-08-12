@@ -36,6 +36,7 @@ class NewsViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        likeCountLabel.textColor = .lightGray
         likeCountLabel.text = String(likeCount)
         commentCountLabel.text = String(commentCount)
         repostCountLabel.text = String(repostCount)
@@ -58,8 +59,10 @@ class NewsViewCell: UITableViewCell {
         likeImageView.isHeartFilled.toggle()
         if likeCountLabel.text == String(likeCount){
             flipCountUp(likeCountLabel, String(likeCount + 1))
+            likeCountLabel.textColor = .red
         } else {
             flipCountDown(likeCountLabel, String(likeCount))
+            likeCountLabel.textColor = .lightGray
         }
     }
     

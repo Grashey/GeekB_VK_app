@@ -540,7 +540,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUm-2z-Beq">
                                                     <rect key="frame" x="40" y="10.666666666666629" width="30" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="commentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="12t-AR-Upc">
@@ -770,7 +770,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlO-Ei-yHy">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="ZlO-Ei-yHy" secondAttribute="height" multiplier="1:1" id="1Mf-3z-MZa"/>
                                                         <constraint firstAttribute="height" constant="80" id="ft7-mH-Hug"/>
@@ -778,9 +778,9 @@
                                                 </view>
                                                 <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="Rv1-Yv-Nk4">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="ZlO-Ei-yHy" secondAttribute="trailing" id="AMc-ki-GCF"/>
                                                 <constraint firstAttribute="bottom" secondItem="ZlO-Ei-yHy" secondAttribute="bottom" id="NKu-kU-zNz"/>
@@ -815,6 +815,7 @@
                                 <connections>
                                     <outlet property="friendAvatarView" destination="Rv1-Yv-Nk4" id="icb-Gc-Yok"/>
                                     <outlet property="friendNameLabel" destination="Gai-e0-TRD" id="Sgc-Rg-PMC"/>
+                                    <outlet property="shadowView" destination="ZlO-Ei-yHy" id="dMO-rm-Ndt"/>
                                     <segue destination="0uR-U0-8GW" kind="show" identifier="FriendPhotoSegue" id="UPf-pP-9ae"/>
                                 </connections>
                             </tableViewCell>

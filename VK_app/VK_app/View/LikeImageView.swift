@@ -28,7 +28,7 @@ class LikeImageView: UIControl {
         super.draw(rect)
         
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        context.setStrokeColor(UIColor.black.cgColor)
+        context.setStrokeColor(UIColor.lightGray.cgColor)
         context.setFillColor(UIColor.red.cgColor)
         context.saveGState()
         

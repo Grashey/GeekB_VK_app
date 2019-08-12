@@ -26,6 +26,7 @@
 		B675DC9622C679C40074C418 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9522C679C40074C418 /* Assets.xcassets */; };
 		B675DC9922C679C40074C418 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9722C679C40074C418 /* LaunchScreen.storyboard */; };
 		B678876E22FC6624009298A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B678876D22FC6624009298A7 /* User.swift */; };
+		B678879023018F0F009298A7 /* NewsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */; };
 		B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */; };
 		B6A16EBD22E10DD3001E10D0 /* LikeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A16EBC22E10DD3001E10D0 /* LikeImageView.swift */; };
 		B6A1B84322E5B8E8009FC00E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A1B84222E5B8E8009FC00E /* GradientView.swift */; };
@@ -58,6 +59,7 @@
 		B675DC9822C679C40074C418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B675DC9A22C679C40074C418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B678876D22FC6624009298A7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
 		B6A16EBC22E10DD3001E10D0 /* LikeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeImageView.swift; sourceTree = "<group>"; };
 		B6A1B84222E5B8E8009FC00E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		B60C84AD22E7633200007A8E /* TO DO */ = {
 			isa = PBXGroup;
 			children = (
+				B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */,
 				B60C84B422EB44F400007A8E /* News.swift */,
 				B6A1B84622E6383E009FC00E /* CharacterPickerView.swift */,
 			);
@@ -136,9 +139,9 @@
 			children = (
 				B675DC9022C679C30074C418 /* LoginController.swift */,
 				B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */,
-				B6A5729822F9E7BC001D78DD /* AnimatedNavigationController.swift */,
 				B62B20F022D22EF0007F9161 /* GroupController.swift */,
 				B60C84B022EA25E600007A8E /* GroupNewsController.swift */,
+				B6A5729822F9E7BC001D78DD /* AnimatedNavigationController.swift */,
 				B6A5729A22FAC94D001D78DD /* NewsViewController.swift */,
 				B618FDC522D370B5004467E2 /* FriendController.swift */,
 				B618FDC922D389AD004467E2 /* FriendPhotoController.swift */,
@@ -273,6 +276,7 @@
 				B60C84B122EA25E600007A8E /* GroupNewsController.swift in Sources */,
 				B6FF586322DE33E200B1604D /* PhotoViewController.swift in Sources */,
 				B6A16EBD22E10DD3001E10D0 /* LikeImageView.swift in Sources */,
+				B678879023018F0F009298A7 /* NewsCollectionViewLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
