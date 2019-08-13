@@ -39,7 +39,6 @@ class LikeImageView: UIControl {
             heart.stroke()
             heart.fill()
         }
-        
     }
     
     let heart: UIBezierPath = {
@@ -57,7 +56,6 @@ class LikeImageView: UIControl {
         
         return heart
     }()
-    
 }
 
 extension Int {

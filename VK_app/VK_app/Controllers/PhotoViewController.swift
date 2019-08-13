@@ -10,7 +10,6 @@ import UIKit
 @IBDesignable
 
 class PhotoViewController: UIViewController {
-
    
     @IBOutlet weak var photoFullScreenView: UIImageView!
     @IBOutlet weak var likeCountView: UILabel!
@@ -43,9 +42,9 @@ class PhotoViewController: UIViewController {
         let closeGR = UISwipeGestureRecognizer(target: self, action: #selector(closePhoto))
         closeGR.direction = .down
         photoFullScreenView.addGestureRecognizer(closeGR)
-        
     }
     
+    //MARK: - Animation
     @objc private func heartStateChanged(){
         likeImageView.isHeartFilled.toggle()
         if likeCountView.text == String(likeCount){
@@ -57,7 +56,6 @@ class PhotoViewController: UIViewController {
         }
     }
     
-    //MARK: - Animation
     @objc func flipRightPhotos(){
         guard index > 0 else { return }
         
@@ -152,6 +150,5 @@ class PhotoViewController: UIViewController {
                        completion: { _ in
                         self.navigationController?.popViewController(animated: false)
         })
-        
     }
 }

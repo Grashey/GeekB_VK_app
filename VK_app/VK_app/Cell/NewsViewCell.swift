@@ -15,7 +15,6 @@ class NewsViewCell: UITableViewCell {
     @IBOutlet weak var newsTextView: UITextView!
     @IBOutlet weak var newsImageView: UIImageView!
     
-    
     @IBOutlet weak var likeImageView: LikeImageView!
     @IBOutlet weak var likeCountLabel: UILabel!
     
@@ -94,6 +93,4 @@ class NewsViewCell: UITableViewCell {
             label.text = text
         })
     }
-    
-
 }

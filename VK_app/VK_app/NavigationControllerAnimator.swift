@@ -28,7 +28,6 @@ class PushAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
         
         destination.view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
         
-        
         UIView.animate(withDuration: animationDuration, animations: {
             destination.view.transform = .identity
         }, completion: { _ in

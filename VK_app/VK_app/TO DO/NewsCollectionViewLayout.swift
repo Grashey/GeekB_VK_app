@@ -15,7 +15,6 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
     var cellHeight: CGFloat = 128
     private var totalCellsHeight: CGFloat = 0
   
-    
     override func prepare() {
         super.prepare()
         
@@ -71,5 +70,4 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
         return CGSize(width: self.collectionView?.frame.width ?? 0,
                       height: self.totalCellsHeight)
     }
-
 }

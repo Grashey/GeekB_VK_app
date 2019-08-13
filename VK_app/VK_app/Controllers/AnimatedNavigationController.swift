@@ -17,7 +17,6 @@ class AnimatedNavigationController: UINavigationController {
     
     let interactiveTransition = CustomInteractiveTransition()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +36,6 @@ class AnimatedNavigationController: UINavigationController {
         case .began:
             interactiveTransition.hasStarted = true
             self.popViewController(animated: true)
-            
             
         case .changed:
             guard let width = recognizer.view?.bounds.width else {

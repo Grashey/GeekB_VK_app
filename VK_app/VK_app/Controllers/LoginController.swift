@@ -23,14 +23,22 @@ class LoginController: UIViewController {
     @IBOutlet weak var dotSecond: LoadingDotView!
     @IBOutlet weak var dotThird: LoadingDotView!
     
+    @IBOutlet weak var kittenHead: UIImageView!
+    @IBOutlet weak var kittenPaws: UIImageView!
+    @IBOutlet weak var wordBallon: WordBallonView!
+    @IBOutlet weak var meowLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        wordBallon.alpha = 0
+        meowLabel.alpha = 0
         
         let user = User.instance
         user.token = "Aleksandr"
         user.id = 10001
 
-        
         dotFirst.backgroundColor = .clear
         dotSecond.backgroundColor = .clear
         dotThird.backgroundColor = .clear
@@ -38,11 +46,12 @@ class LoginController: UIViewController {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGR.numberOfTapsRequired = 1
         scrollView.addGestureRecognizer(tapGR)
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.kittenMeowing()
         self.animateTitlesAppearing()
         self.animateTitleAppearing()
         self.animateFieldsAppearing()
@@ -173,6 +182,26 @@ class LoginController: UIViewController {
         
         self.logInButton.layer.add(animation, forKey: nil)
     }
+    
+    private func kittenMeowing(){
+        self.kittenHead.transform = CGAffineTransform.init(translationX: 0, y: kittenHead.frame.height)
+        self.kittenPaws.transform = CGAffineTransform.init(translationX: 0, y: kittenPaws.frame.height)
+        UIView.animate(withDuration: 1,
+                       animations: { self.kittenPaws.transform = CGAffineTransform.identity.translatedBy(x: 0, y: -self.kittenPaws.frame.height)
+        },  completion: {_ in
+        UIView.animate(withDuration: 2,
+                       animations: { self.kittenHead.transform = CGAffineTransform.init(translationX: 0, y: -self.kittenPaws.frame.height)
+        },  completion: {_ in
+        UIView.animate(withDuration: 1,
+                       animations: { self.wordBallon.alpha = 1
+        },  completion: {_ in
+        UIView.animate(withDuration: 1,
+                        animations: { self.meowLabel.alpha = 1
+        },  completion: nil )
+        }) }) })
+        
+    }
+    
 }
 
 

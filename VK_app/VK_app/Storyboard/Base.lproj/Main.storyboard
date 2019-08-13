@@ -105,6 +105,33 @@
                                             <constraint firstAttribute="width" secondItem="1xp-g7-2Bh" secondAttribute="height" multiplier="1:1" id="oqC-4S-FJG"/>
                                         </constraints>
                                     </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kittenHead" translatesAutoresizingMaskIntoConstraints="NO" id="X7r-fu-vyK">
+                                        <rect key="frame" x="261" y="690" width="124" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                        </accessibility>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kittenPaws" translatesAutoresizingMaskIntoConstraints="NO" id="FP4-v0-A0G">
+                                        <rect key="frame" x="266" y="786" width="114" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rYz-4h-eoY" customClass="WordBallonView" customModule="VK_app" customModuleProvider="target">
+                                        <rect key="frame" x="141" y="613" width="151" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MEOW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhH-D2-kKe">
+                                                <rect key="frame" x="56" y="41" width="39" height="15"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="1xp-g7-2Bh" firstAttribute="centerY" secondItem="q2g-cu-gmu" secondAttribute="centerY" id="3e1-Br-kid"/>
@@ -162,18 +189,22 @@
                         <outlet property="dotFirst" destination="Q1V-pX-rGh" id="Wrm-Kp-PDH"/>
                         <outlet property="dotSecond" destination="q2g-cu-gmu" id="Aaa-VQ-gt0"/>
                         <outlet property="dotThird" destination="1xp-g7-2Bh" id="LJy-gj-Snc"/>
+                        <outlet property="kittenHead" destination="X7r-fu-vyK" id="n4e-oU-2Da"/>
+                        <outlet property="kittenPaws" destination="FP4-v0-A0G" id="xcU-ae-1ZY"/>
                         <outlet property="logInButton" destination="Jq8-WK-b7E" id="kML-Zr-xAz"/>
                         <outlet property="loginTitleView" destination="toF-hI-2XK" id="dOQ-Mt-6rp"/>
+                        <outlet property="meowLabel" destination="QhH-D2-kKe" id="zIX-cf-sya"/>
                         <outlet property="passwordTextField" destination="OxI-kL-mIP" id="dPc-DC-WUK"/>
                         <outlet property="passwordTitleView" destination="MQq-Ev-98A" id="rPx-tL-HbG"/>
                         <outlet property="scrollView" destination="SYb-Tm-Udn" id="JXo-6s-fl1"/>
                         <outlet property="titleView" destination="M00-tp-aN5" id="nfq-7D-hrw"/>
                         <outlet property="usernameTextField" destination="hfh-Xe-j9s" id="Cv8-jR-6eF"/>
+                        <outlet property="wordBallon" destination="rYz-4h-eoY" id="4wR-iR-eIe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2610" y="21"/>
+            <point key="canvasLocation" x="2608.6956521739135" y="20.758928571428569"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="xVo-C5-C9y">
@@ -994,6 +1025,8 @@
         <image name="defaultAva" width="225" height="225"/>
         <image name="defaultGroup" width="225" height="225"/>
         <image name="defaultNews" width="750" height="467"/>
+        <image name="kittenHead" width="301" height="320"/>
+        <image name="kittenPaws" width="538" height="172"/>
         <image name="repostIcon" width="225" height="225"/>
         <image name="viewCountIcon" width="225" height="225"/>
     </resources>

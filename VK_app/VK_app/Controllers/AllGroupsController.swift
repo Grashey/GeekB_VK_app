@@ -46,6 +46,7 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
             return allGroups.count
         }
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
@@ -56,9 +57,7 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
             groupCell.groupNameLabel.text = allGroups[indexPath.row].name
             groupCell.groupAvatarView.image = allGroups[indexPath.row].avatar
         }
-    
         return groupCell
-        
     }
     
     //MARK: - UISearchBar methods
@@ -76,5 +75,4 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
         }
         self.tableView.reloadData()
     }
-    
 }

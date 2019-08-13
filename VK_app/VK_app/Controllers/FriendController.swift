@@ -83,12 +83,10 @@ class FriendController: UITableViewController, FriendCellDelegate {
     @IBOutlet var friendsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         (firstCharacter, sortedFriends) = sort(friends)
-        
     }
     
     //MARK: - UITableViewDataSource methods
@@ -121,7 +119,6 @@ class FriendController: UITableViewController, FriendCellDelegate {
           
             return friendCell
         }
-        
         return UITableViewCell()
     }
     
@@ -183,6 +180,5 @@ class FriendController: UITableViewController, FriendCellDelegate {
     }
     func performSegueFromView(sender: IndexPath) {
         self.performSegue(withIdentifier: "FriendPhotoSegue", sender: sender)
-        
     }
 }

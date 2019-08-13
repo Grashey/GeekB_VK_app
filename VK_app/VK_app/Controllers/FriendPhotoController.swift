@@ -10,15 +10,13 @@ import UIKit
 
 class FriendPhotoController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    
     @IBOutlet var photoView: UICollectionView!
     
     var photos = [UIImage]()
 
     //MARK: - CollectionViewDataSource methods
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-            return photos.count
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -31,7 +29,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendFotoCell", for: indexPath) as! FriendPhotoCell
         
-           cell.photoView.image = photos[indexPath.item]
+        cell.photoView.image = photos[indexPath.item]
         
         return cell
     }
@@ -48,7 +46,6 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         UIView.animateKeyframes(withDuration: 1, delay: 0, animations: {
             cell.layer.opacity = 1
         }, completion: nil)
-        
     }
     
     override func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -58,7 +55,6 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         photoVC.photos = photos
         self.navigationController?.pushViewController(photoVC, animated: true)
     }
-    
 }
 
 

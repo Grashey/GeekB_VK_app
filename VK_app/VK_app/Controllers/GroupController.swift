@@ -41,7 +41,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         
         groups.append(newGroup)
         tableView.reloadData()
-        
     }
     
     var searchActive : Bool = false
@@ -52,7 +51,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         searchBar.delegate = self
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,9 +71,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
             groupCell.groupNameLabel.text = groups[indexPath.row].name
             groupCell.groupAvatarView.image = groups[indexPath.row].avatar
         }
-        
         return groupCell
-        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -122,7 +118,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
             photoVC.groupName = groups[indexPath.row].name
             }
         }
-    
 }
 
 extension GroupController: UIViewControllerTransitioningDelegate {
