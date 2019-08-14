@@ -25,14 +25,14 @@ class LoginController: UIViewController {
     
     @IBOutlet weak var kittenHead: UIImageView!
     @IBOutlet weak var kittenPaws: UIImageView!
-    @IBOutlet weak var wordBallon: WordBallonView!
+    @IBOutlet weak var wordsBallon: UIView!
     @IBOutlet weak var meowLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        wordBallon.alpha = 0
+        //wordBallon.alpha = 0
         meowLabel.alpha = 0
         
         let user = User.instance
@@ -51,6 +51,7 @@ class LoginController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //self.animateWordBallon()
         self.kittenMeowing()
         self.animateTitlesAppearing()
         self.animateTitleAppearing()
@@ -192,14 +193,60 @@ class LoginController: UIViewController {
         UIView.animate(withDuration: 2,
                        animations: { self.kittenHead.transform = CGAffineTransform.init(translationX: 0, y: -self.kittenPaws.frame.height)
         },  completion: {_ in
-        UIView.animate(withDuration: 1,
-                       animations: { self.wordBallon.alpha = 1
-        },  completion: {_ in
-        UIView.animate(withDuration: 1,
+            self.animateWordBallon()
+        UIView.animate(withDuration: 2,
                         animations: { self.meowLabel.alpha = 1
         },  completion: nil )
-        }) }) })
+        }) })
         
+    }
+    let ballonrightpart: UIBezierPath = {
+        let ballonrightpart = UIBezierPath()
+        
+        ballonrightpart.move(to: CGPoint(x: 100, y: 100))
+        ballonrightpart.addQuadCurve(to: CGPoint(x: 90, y: 80), controlPoint: CGPoint(x: 90, y: 100))
+        ballonrightpart.addCurve(to: CGPoint(x: 90, y: 20), controlPoint1: CGPoint(x: 140, y: 60), controlPoint2: CGPoint(x: 140, y: 40))
+        ballonrightpart.addQuadCurve(to: CGPoint(x: 50, y: 20), controlPoint: CGPoint(x: 70, y: 10))
+        
+        return ballonrightpart
+    }()
+    
+    let ballonleftpart: UIBezierPath = {
+        let ballonleftpart = UIBezierPath()
+
+        ballonleftpart.move(to: CGPoint(x: 100, y: 100))
+        ballonleftpart.addQuadCurve(to: CGPoint(x: 75, y: 80), controlPoint: CGPoint(x: 90, y: 100))
+        ballonleftpart.addCurve(to: CGPoint(x: 50, y: 20), controlPoint1: CGPoint(x: 10, y: 70), controlPoint2: CGPoint(x: 0, y: 40))
+        
+        return ballonleftpart
+    }()
+    
+    private func animateWordBallon(){
+        let pointRightLayer = CAShapeLayer()
+        pointRightLayer.path = ballonrightpart.cgPath
+        pointRightLayer.lineWidth = 2
+        pointRightLayer.strokeColor = UIColor.black.cgColor
+        pointRightLayer.fillColor = UIColor.clear.cgColor
+        pointRightLayer.strokeEnd = 1
+        wordsBallon.layer.addSublayer(pointRightLayer)
+        
+        let pointLeftLayer = CAShapeLayer()
+        pointLeftLayer.path = ballonleftpart.cgPath
+        pointLeftLayer.lineWidth = 2
+        pointLeftLayer.strokeColor = UIColor.black.cgColor
+        pointLeftLayer.fillColor = UIColor.clear.cgColor
+        pointLeftLayer.strokeEnd = 1
+        wordsBallon.layer.addSublayer(pointLeftLayer)
+        
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.duration = 1
+        animation.fromValue = 0
+        animation.toValue = 1
+        
+        //let animation1 = CABasicAnimation(keyPath: "<#T##String?#>")
+        
+        pointRightLayer.add(animation, forKey: nil)
+        pointLeftLayer.add(animation, forKey: nil)
     }
     
 }
