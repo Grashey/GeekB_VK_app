@@ -25,14 +25,13 @@ class LoginController: UIViewController {
     
     @IBOutlet weak var kittenHead: UIImageView!
     @IBOutlet weak var kittenPaws: UIImageView!
-    @IBOutlet weak var wordsBallon: UIView!
+    @IBOutlet weak var wordBallon: UIView!
     @IBOutlet weak var meowLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //wordBallon.alpha = 0
         meowLabel.alpha = 0
         
         let user = User.instance
@@ -51,7 +50,6 @@ class LoginController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //self.animateWordBallon()
         self.kittenMeowing()
         self.animateTitlesAppearing()
         self.animateTitleAppearing()
@@ -193,13 +191,13 @@ class LoginController: UIViewController {
         UIView.animate(withDuration: 2,
                        animations: { self.kittenHead.transform = CGAffineTransform.init(translationX: 0, y: -self.kittenPaws.frame.height)
         },  completion: {_ in
-            self.animateWordBallon()
+            self.wordBallonAppear()
         UIView.animate(withDuration: 2,
-                        animations: { self.meowLabel.alpha = 1
+                       animations: { self.meowLabel.alpha = 1
         },  completion: nil )
         }) })
-        
     }
+    
     let ballonrightpart: UIBezierPath = {
         let ballonrightpart = UIBezierPath()
         
@@ -221,14 +219,14 @@ class LoginController: UIViewController {
         return ballonleftpart
     }()
     
-    private func animateWordBallon(){
+    private func wordBallonAppear(){
         let pointRightLayer = CAShapeLayer()
         pointRightLayer.path = ballonrightpart.cgPath
         pointRightLayer.lineWidth = 2
         pointRightLayer.strokeColor = UIColor.black.cgColor
         pointRightLayer.fillColor = UIColor.clear.cgColor
         pointRightLayer.strokeEnd = 1
-        wordsBallon.layer.addSublayer(pointRightLayer)
+        wordBallon.layer.addSublayer(pointRightLayer)
         
         let pointLeftLayer = CAShapeLayer()
         pointLeftLayer.path = ballonleftpart.cgPath
@@ -236,19 +234,16 @@ class LoginController: UIViewController {
         pointLeftLayer.strokeColor = UIColor.black.cgColor
         pointLeftLayer.fillColor = UIColor.clear.cgColor
         pointLeftLayer.strokeEnd = 1
-        wordsBallon.layer.addSublayer(pointLeftLayer)
+        wordBallon.layer.addSublayer(pointLeftLayer)
         
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.duration = 1
-        animation.fromValue = 0
-        animation.toValue = 1
+        let appearAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        appearAnimation.duration = 2
+        appearAnimation.fromValue = 0
+        appearAnimation.toValue = 1
         
-        //let animation1 = CABasicAnimation(keyPath: "<#T##String?#>")
-        
-        pointRightLayer.add(animation, forKey: nil)
-        pointLeftLayer.add(animation, forKey: nil)
+        pointRightLayer.add(appearAnimation, forKey: nil)
+        pointLeftLayer.add(appearAnimation, forKey: nil)
     }
-    
 }
 
 

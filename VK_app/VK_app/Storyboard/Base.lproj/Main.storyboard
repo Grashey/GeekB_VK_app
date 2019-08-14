@@ -220,7 +220,7 @@
                         <outlet property="scrollView" destination="SYb-Tm-Udn" id="JXo-6s-fl1"/>
                         <outlet property="titleView" destination="M00-tp-aN5" id="nfq-7D-hrw"/>
                         <outlet property="usernameTextField" destination="hfh-Xe-j9s" id="Cv8-jR-6eF"/>
-                        <outlet property="wordsBallon" destination="muU-nd-fX5" id="AfF-Wb-Ob3"/>
+                        <outlet property="wordBallon" destination="muU-nd-fX5" id="AfF-Wb-Ob3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
