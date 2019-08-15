@@ -26,8 +26,6 @@ class NewsViewCell: UITableViewCell {
     
     @IBOutlet weak var viewCountImageView: UIImageView!
     @IBOutlet weak var viewCountLabel: UILabel!
-
-    @IBOutlet weak var newsPhotoCollection: NewsPhotoCollectionView!
     
     var likeCount = 0
     var commentCount = 0
