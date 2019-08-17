@@ -34,7 +34,7 @@ class LoginController: UIViewController {
         
         meowLabel.alpha = 0
         
-        let user = User.instance
+        let user = Session.instance
         user.token = "Aleksandr"
         user.id = 10001
 
