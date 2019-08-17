@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Session.swift
 //  VK_app
 //
 //  Created by Aleksandr Fetisov on 08/08/2019.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class User {
+class Session {
     
-    static let instance = User()
+    static let instance = Session()
     private init(){}
     
     var token = String()
