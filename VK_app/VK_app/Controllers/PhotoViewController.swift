@@ -10,7 +10,6 @@ import UIKit
 @IBDesignable
 
 class PhotoViewController: UIViewController {
-
    
     @IBOutlet weak var photoFullScreenView: UIImageView!
     @IBOutlet weak var likeCountView: UILabel!
@@ -23,6 +22,7 @@ class PhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        likeCountView.textColor = .lightGray
         photoFullScreenView.image = photos[index]
         likeCountView.text = String(likeCount)
         nextPhotoView.isHidden = true
@@ -39,18 +39,23 @@ class PhotoViewController: UIViewController {
         flipRightGR.direction = .right
         photoFullScreenView.addGestureRecognizer(flipRightGR)
         
+        let closeGR = UISwipeGestureRecognizer(target: self, action: #selector(closePhoto))
+        closeGR.direction = .down
+        photoFullScreenView.addGestureRecognizer(closeGR)
     }
     
+    //MARK: - Animation
     @objc private func heartStateChanged(){
         likeImageView.isHeartFilled.toggle()
         if likeCountView.text == String(likeCount){
             likeCountUp(String(likeCount + 1))
+            likeCountView.textColor = .red
         } else {
             likeCountDown(String(likeCount))
+            likeCountView.textColor = .lightGray
         }
     }
     
-    //MARK: - Animation
     @objc func flipRightPhotos(){
         guard index > 0 else { return }
         
@@ -134,6 +139,16 @@ class PhotoViewController: UIViewController {
     private func likeCountDown(_ text: String) {
         UIView.transition(with: likeCountView, duration: 0.4, options: .transitionFlipFromLeft, animations: {
             self.likeCountView.text = text
+        })
+    }
+    
+    @objc func closePhoto(){
+        UIView.animate(withDuration: 0.5,
+                       animations: {
+                      self.photoFullScreenView.transform = CGAffineTransform.init(translationX: 0, y: self.view.bounds.height)
+        },
+                       completion: { _ in
+                        self.navigationController?.popViewController(animated: false)
         })
     }
 }

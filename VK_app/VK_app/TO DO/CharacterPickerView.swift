@@ -41,7 +41,6 @@ class CharacterPickerView: UIControl {
             button.setTitle(character.title, for: .normal)
             button.addTarget(self, action: #selector(selectChar(_:)), for: .touchUpInside)
             self.buttons.append(button)
-            
         }
         
         stackView = UIStackView(arrangedSubviews: self.buttons)
@@ -51,7 +50,6 @@ class CharacterPickerView: UIControl {
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .fillEqually
-    
     }
     
     private func updateSelectedChar() {
@@ -81,5 +79,4 @@ class CharacterPickerView: UIControl {
         guard let character = Characters(rawValue: index) else { return }
         self.selectedChar = character
     }
-
 }

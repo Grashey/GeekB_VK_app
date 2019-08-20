@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendController: UITableViewController {
+class FriendController: UITableViewController, FriendCellDelegate {
     
     let friends = [
         Friend(name: "Bart", surname: "Simpson", avatar: UIImage(named: "Bart"), photos: [UIImage(named: "BartFoto1"),
@@ -83,12 +83,16 @@ class FriendController: UITableViewController {
     @IBOutlet var friendsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (firstCharacter, sortedFriends) = sort(friends)
+        let networkService = NetworkService()
+        networkService.alamofireSendRequest(object: "friends")
+        //networkService.sendRequest(object: "friends")
+        networkService.sendRequestUserProfile(userId: "587580")
+        networkService.sendRequestUserPhotos(userId: "587580")
         
+        (firstCharacter, sortedFriends) = sort(friends)
     }
     
     //MARK: - UITableViewDataSource methods
@@ -116,7 +120,9 @@ class FriendController: UITableViewController {
         if let friends = sortedFriends[character] {
             friendCell.friendNameLabel.text = friends[indexPath.row].name + " " + friends[indexPath.row].surname
             friendCell.friendAvatarView.image = friends[indexPath.row].avatar
-            
+            friendCell.indexPath = indexPath
+            friendCell.delegate = self
+          
             return friendCell
         }
         return UITableViewCell()
@@ -167,8 +173,8 @@ class FriendController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FriendPhotoSegue",
-            let indexPath = tableView.indexPathForSelectedRow,
-            let photoVC = segue.destination as? FriendPhotoController
+            let photoVC = segue.destination as? FriendPhotoController,
+            let indexPath = tableView.indexPathForSelectedRow ?? sender as! IndexPath?
         {
             let character = firstCharacter[indexPath.section]
             if let friends = sortedFriends[character] {
@@ -177,5 +183,8 @@ class FriendController: UITableViewController {
                 photoVC.photos = photos as! [UIImage]
             }
         }
+    }
+    func performSegueFromView(sender: IndexPath) {
+        self.performSegue(withIdentifier: "FriendPhotoSegue", sender: sender)
     }
 }

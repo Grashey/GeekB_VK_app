@@ -28,7 +28,6 @@ class PushAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
         
         destination.view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
         
-        
         UIView.animate(withDuration: animationDuration, animations: {
             destination.view.transform = .identity
         }, completion: { _ in
@@ -49,17 +48,22 @@ class PopAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
             let destination =  transitionContext.viewController(forKey: .to) else { return }
         
         transitionContext.containerView.addSubview(destination.view)
-        transitionContext.containerView.addSubview(source.view)
+        transitionContext.containerView.bringSubviewToFront(source.view)
+        
         source.view.frame = transitionContext.containerView.frame
         destination.view.frame = transitionContext.containerView.frame
         
+        let originalPosition = source.view.layer.position
         source.view.layer.anchorPoint = CGPoint(x: 1, y: 0)
+        source.view.layer.position = CGPoint(x: source.view.bounds.width, y: 0)
         
         UIView.animate(withDuration: animationDuration, animations: {
-            source.view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2).concatenating( CGAffineTransform.init(translationX: source.view.bounds.width, y: 0))
-            
-        }, completion: { _ in
-            transitionContext.completeTransition(true)
-        })
+            source.view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
+        }) {completed in
+            transitionContext.completeTransition(completed && !transitionContext.transitionWasCancelled)
+            source.view.transform = .identity
+            source.view.layer.anchorPoint = CGPoint(x: 1, y: 0)
+            source.view.layer.position = originalPosition
+        }
     }
 }

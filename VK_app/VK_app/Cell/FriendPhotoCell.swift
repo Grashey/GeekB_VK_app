@@ -15,6 +15,5 @@ class FriendPhotoCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
 }
 

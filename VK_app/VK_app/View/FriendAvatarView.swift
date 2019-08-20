@@ -27,33 +27,16 @@ class FriendAvatarView: UIView {
         shadowView.layer.shadowOpacity = shadowOpacity
         
         shadowView.backgroundColor = UIColor.white
-        avatarImageView.backgroundColor = UIColor.white
+        avatarImageView.backgroundColor = .clear
         
+        //shadowView.layer.masksToBounds = true
         avatarImageView.layer.masksToBounds = true
-        
-        let springGR = UITapGestureRecognizer(target: self, action: #selector(compression))
-        avatarImageView.addGestureRecognizer(springGR)
-   
     }
-    
+  
     override func layoutSubviews() {
         super.layoutSubviews()
         
         shadowView.layer.cornerRadius = shadowView.frame.height/2
         avatarImageView.layer.cornerRadius = shadowView.layer.cornerRadius
-        
     }
-    
-    @objc func compression() {
-        UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-            self.avatarImageView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-            self.shadowView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-                self.avatarImageView.transform = CGAffineTransform.identity
-                self.shadowView.transform = CGAffineTransform.identity
-            }, completion: nil)
-        }) }
-    
-
 }

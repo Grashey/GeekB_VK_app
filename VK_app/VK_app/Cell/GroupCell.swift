@@ -13,7 +13,6 @@ class GroupCell: UITableViewCell {
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var groupAvatarView: UIImageView!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -28,6 +27,6 @@ class GroupCell: UITableViewCell {
             UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 100, options: UIView.AnimationOptions.curveEaseInOut, animations: {
                 self.groupAvatarView.transform = CGAffineTransform.identity
             }, completion: nil)
-        }) }
-    
+        })
+    }
 }

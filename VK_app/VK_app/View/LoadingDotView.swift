@@ -19,8 +19,5 @@ class LoadingDotView: UIView {
         path.lineWidth = 5
         path.stroke()
         path.fill()
-        
-        
     }
-    
 }

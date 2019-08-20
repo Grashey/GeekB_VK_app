@@ -15,7 +15,6 @@ class NewsViewCell: UITableViewCell {
     @IBOutlet weak var newsTextView: UITextView!
     @IBOutlet weak var newsImageView: UIImageView!
     
-    
     @IBOutlet weak var likeImageView: LikeImageView!
     @IBOutlet weak var likeCountLabel: UILabel!
     
@@ -27,7 +26,7 @@ class NewsViewCell: UITableViewCell {
     
     @IBOutlet weak var viewCountImageView: UIImageView!
     @IBOutlet weak var viewCountLabel: UILabel!
-
+    
     var likeCount = 0
     var commentCount = 0
     var repostCount = 0
@@ -36,6 +35,7 @@ class NewsViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        likeCountLabel.textColor = .lightGray
         likeCountLabel.text = String(likeCount)
         commentCountLabel.text = String(commentCount)
         repostCountLabel.text = String(repostCount)
@@ -58,8 +58,10 @@ class NewsViewCell: UITableViewCell {
         likeImageView.isHeartFilled.toggle()
         if likeCountLabel.text == String(likeCount){
             flipCountUp(likeCountLabel, String(likeCount + 1))
+            likeCountLabel.textColor = .red
         } else {
             flipCountDown(likeCountLabel, String(likeCount))
+            likeCountLabel.textColor = .lightGray
         }
     }
     
@@ -91,6 +93,4 @@ class NewsViewCell: UITableViewCell {
             label.text = text
         })
     }
-    
-
 }

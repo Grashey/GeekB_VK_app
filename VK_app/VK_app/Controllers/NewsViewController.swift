@@ -20,7 +20,6 @@ class NewsViewController: UITableViewController {
     var newGroupAvatars = [UIImage]()
     var newGroupNames = [String]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,21 +36,18 @@ class NewsViewController: UITableViewController {
             newGroupAvatars.append(groupAvatars[randomIndex])
             newGroupNames.append(groupNames[randomIndex])
         }
-        
-        
     }
     
     // MARK: - Tableview methods
     override func  tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return numberOfRows
     }
     
@@ -74,6 +70,4 @@ class NewsViewController: UITableViewController {
             photoVC.groupName = groupNames[index]
         }
     }
-    
-    
 }
