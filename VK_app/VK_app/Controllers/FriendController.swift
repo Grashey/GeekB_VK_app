@@ -87,10 +87,8 @@ class FriendController: UITableViewController, FriendCellDelegate {
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.alamofireSendRequest(object: "friends")
-        //networkService.sendRequest(object: "friends")
-        networkService.sendRequestUserProfile(userId: "587580")
-        networkService.sendRequestUserPhotos(userId: "587580")
+        networkService.getFriends()
+        //networkService.sendRequestUserPhotos(userId: "587580")
         
         (firstCharacter, sortedFriends) = sort(friends)
     }

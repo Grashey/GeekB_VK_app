@@ -50,10 +50,10 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkService = NetworkService()
-        networkService.sendRequest(object: "groups")
-        networkService.sendRequestGroupProfile(groupId: "35850939")
-        networkService.groupSearch(searchtext: "geekbrains")
+        //let networkService = NetworkService()
+        //networkService.sendRequest(object: "groups")
+        //networkService.sendRequestGroupProfile(groupId: "35850939")
+        //networkService.groupSearch(searchtext: "geekbrains")
         
         searchBar.delegate = self
     }
