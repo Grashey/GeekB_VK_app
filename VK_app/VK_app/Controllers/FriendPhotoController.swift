@@ -12,6 +12,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     
     @IBOutlet var photoView: UICollectionView!
     
+    var friend = Int()
     var photos = [UIImage]()
 
     //MARK: - CollectionViewDataSource methods

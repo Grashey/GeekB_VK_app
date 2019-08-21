@@ -57,7 +57,7 @@ class NetworkService {
         task.resume()
     }
     
-    func getFriends(completion: @escaping ([Friends]) -> Void){
+    func getFriends(completion: @escaping ([myFriend]) -> Void){
         
         let parameters: Parameters = [
             "v" : "5.96",
@@ -71,7 +71,7 @@ class NetworkService {
             case .success(let data):
                 let json = JSON(data)
                 let friendJSONs = json["response"]["items"].arrayValue
-                let friends = friendJSONs.map { Friends($0) }
+                let friends = friendJSONs.map { myFriend($0) }
                 friends.forEach { print($0.name)}
                 completion(friends)
             case .failure(let error):
