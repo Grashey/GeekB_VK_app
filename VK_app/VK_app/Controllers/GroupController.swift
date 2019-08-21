@@ -10,6 +10,8 @@ import UIKit
 
 class GroupController: UITableViewController, UISearchBarDelegate {
     
+    var myGroups = [Groups]()
+    
     var groups = [
         Group(name: "MIB", avatar: UIImage(named: "GroupMIB")),
         Group(name: "Be Happy", avatar: UIImage(named: "GroupSmile")),
@@ -46,18 +48,21 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     var searchActive : Bool = false
     var filteredGroups:[Group] = []
     
-    //MARK: - TableViewDataSource methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //let networkService = NetworkService()
-        //networkService.sendRequest(object: "groups")
+        let networkService = NetworkService()
+        networkService.getGroups() { group in
+            self.myGroups = group
+            print(self.myGroups)
+        }
         //networkService.sendRequestGroupProfile(groupId: "35850939")
         //networkService.groupSearch(searchtext: "geekbrains")
         
         searchBar.delegate = self
     }
     
+    //MARK: - TableViewDataSource methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchActive) {
             return filteredGroups.count

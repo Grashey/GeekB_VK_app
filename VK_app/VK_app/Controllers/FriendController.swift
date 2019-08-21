@@ -10,6 +10,8 @@ import UIKit
 
 class FriendController: UITableViewController, FriendCellDelegate {
     
+    var myFriends = [Friends]()
+    
     let friends = [
         Friend(name: "Bart", surname: "Simpson", avatar: UIImage(named: "Bart"), photos: [UIImage(named: "BartFoto1"),
                                                                               UIImage(named: "BartFoto2")]),
@@ -87,7 +89,10 @@ class FriendController: UITableViewController, FriendCellDelegate {
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.getFriends()
+        networkService.getFriends { friend in
+            self.myFriends = friend
+            print(self.myFriends[0].name)
+        }
         //networkService.sendRequestUserPhotos(userId: "587580")
         
         (firstCharacter, sortedFriends) = sort(friends)

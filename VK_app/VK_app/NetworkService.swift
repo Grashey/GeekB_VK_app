@@ -57,30 +57,7 @@ class NetworkService {
         task.resume()
     }
     
-    func sendRequestGroupProfile(groupId: String){
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "api.vk.com"
-        urlComponents.path = "/method/groups.getById"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "group_id", value: "\(groupId)"),
-            URLQueryItem(name: "access_token", value: Session.instance.token),
-            URLQueryItem(name: "v", value: "5.96")
-        ]
-        guard let url = urlComponents.url else { fatalError("Request url is not valid")}
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            guard let data = data else { return }
-            let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            
-            print("Group Profile")
-            print(json!)
-        }
-        task.resume()
-    }
-    
-    func getFriends(){
+    func getFriends(completion: @escaping ([Friends]) -> Void){
         
         let parameters: Parameters = [
             "v" : "5.96",
@@ -96,8 +73,33 @@ class NetworkService {
                 let friendJSONs = json["response"]["items"].arrayValue
                 let friends = friendJSONs.map { Friends($0) }
                 friends.forEach { print($0.name)}
+                completion(friends)
             case .failure(let error):
                 print(error)
+                completion([])
+            }
+        }
+    }
+    
+    func getGroups(completion: @escaping ([Groups]) -> Void){
+        let parameters: Parameters = [
+            "v" : "5.96",
+            "access_token" : Session.instance.token,
+            "extended" : 1
+        ]
+        
+        AF.request("https://api.vk.com/method/groups.get", method: .get, parameters: parameters).responseJSON {
+            responce in
+            switch responce.result {
+            case .success(let data):
+                let json = JSON(data)
+                let groupJSONs = json["response"]["items"].arrayValue
+                let groups = groupJSONs.map { Groups($0) }
+                groups.forEach { print($0.name)}
+                completion(groups)
+            case .failure(let error):
+                print(error)
+                completion([])
             }
         }
     }
