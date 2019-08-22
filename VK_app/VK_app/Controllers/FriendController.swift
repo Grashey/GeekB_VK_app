@@ -11,10 +11,10 @@ import Kingfisher
 
 class FriendController: UITableViewController, FriendCellDelegate {
     
-    var myFriends = [myFriend]()
+    var myFriends = [MyFriend]()
     
     var firstCharacter = [Character]()
-    var sortedFriends: [Character: [myFriend]] = [:]
+    var sortedFriends: [Character: [MyFriend]] = [:]
     
     @IBOutlet var friendsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -24,9 +24,10 @@ class FriendController: UITableViewController, FriendCellDelegate {
         
         let networkService = NetworkService()
         networkService.getFriends() { [weak self] friend in
-            self?.myFriends = friend
-            (self!.firstCharacter, self!.sortedFriends) = self!.sort(self!.myFriends)// force - плохо, но не знаю как иначе
-            self?.friendsTable.reloadData()
+            guard let self = self else { return }
+            self.myFriends = friend
+            (self.firstCharacter, self.sortedFriends) = self.sort(self.myFriends)
+            self.friendsTable.reloadData()
         }
     }
     
@@ -88,10 +89,10 @@ class FriendController: UITableViewController, FriendCellDelegate {
     ///
     /// - Parameter friends: input friends
     /// - Returns: tuple with characters & friends
-    private func sort(_: [myFriend]) -> (characters: [Character], sortedFriends: [Character: [myFriend]]){
+    private func sort(_: [MyFriend]) -> (characters: [Character], sortedFriends: [Character: [MyFriend]]){
         
         var characters = [Character]()
-        var sortedFriends = [Character: [myFriend]]()
+        var sortedFriends = [Character: [MyFriend]]()
         
         myFriends.forEach { friend in
             guard let character = friend.surname.first else { return }

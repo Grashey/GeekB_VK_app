@@ -775,7 +775,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="dwQ-cd-n6c" firstAttribute="centerY" secondItem="bkl-hi-G1g" secondAttribute="centerY" id="3ij-K7-RRw"/>
-                                        <constraint firstItem="LLQ-B7-mqL" firstAttribute="leading" relation="lessThanOrEqual" secondItem="dwQ-cd-n6c" secondAttribute="trailing" constant="40" id="XCU-T5-dxV"/>
+                                        <constraint firstItem="LLQ-B7-mqL" firstAttribute="leading" secondItem="dwQ-cd-n6c" secondAttribute="trailing" constant="40" id="XCU-T5-dxV"/>
                                         <constraint firstItem="dwQ-cd-n6c" firstAttribute="leading" secondItem="bkl-hi-G1g" secondAttribute="leading" constant="20" id="XS7-bs-7bD"/>
                                         <constraint firstAttribute="trailing" secondItem="LLQ-B7-mqL" secondAttribute="trailing" constant="10" id="ZUH-0r-s4S"/>
                                         <constraint firstItem="LLQ-B7-mqL" firstAttribute="top" secondItem="bkl-hi-G1g" secondAttribute="top" constant="10" id="axt-nm-2AL"/>
@@ -930,7 +930,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FriendFotoCell" id="kSf-Bo-k8F" customClass="FriendPhotoCell" customModule="VK_app" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FriendPhotoCell" id="kSf-Bo-k8F" customClass="FriendPhotoCell" customModule="VK_app" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1080,6 +1080,6 @@
         <image name="viewCountIcon" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pvx-mk-5uI"/>
+        <segue reference="qBS-C3-X1S"/>
     </inferredMetricsTieBreakers>
 </document>

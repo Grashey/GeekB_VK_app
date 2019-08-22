@@ -23,19 +23,19 @@ class NewsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //симулирую рандомный показ новостей от моих групп (в дальнейшем заменить на timeStamp)
-        let groupVC = storyboard?.instantiateViewController(withIdentifier: "GroupController") as! GroupController
-        indexMax = groupVC.self.groups.count - 1
-        for i in 0...indexMax {
-            groupAvatars.append(groupVC.self.groups[i].avatar!)
-            groupNames.append(groupVC.self.groups[i].name)
-        }
-        for _ in 1...numberOfRows {
-            let randomIndex = Int.random(in: 0...indexMax)
-            groupIndexes.append(randomIndex)
-            newGroupAvatars.append(groupAvatars[randomIndex])
-            newGroupNames.append(groupNames[randomIndex])
-        }
+//        //симулирую рандомный показ новостей от моих групп (в дальнейшем заменить на timeStamp)
+//        let groupVC = storyboard?.instantiateViewController(withIdentifier: "GroupController") as! GroupController
+//        indexMax = groupVC.self.groups.count - 1
+//        for i in 0...indexMax {
+//            groupAvatars.append(groupVC.self.groups[i].avatar!)
+//            groupNames.append(groupVC.self.groups[i].name)
+//        }
+//        for _ in 1...numberOfRows {
+//            let randomIndex = Int.random(in: 0...indexMax)
+//            groupIndexes.append(randomIndex)
+//            newGroupAvatars.append(groupAvatars[randomIndex])
+//            newGroupNames.append(groupNames[randomIndex])
+//        }
     }
     
     // MARK: - Tableview methods

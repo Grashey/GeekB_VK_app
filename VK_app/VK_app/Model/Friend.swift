@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class myFriend: Codable {
+class MyFriend {
     let id: Int
     let name: String
     let surname: String
@@ -20,6 +20,14 @@ class myFriend: Codable {
         self.name = json["first_name"].stringValue
         self.surname = json["last_name"].stringValue
         self.avatar = json["photo_100"].stringValue
+    }
+}
+
+class FriendsPhoto {
+    let photo: String
+    
+    init (_ json: JSON) {
+        self.photo = json["url"].stringValue
     }
 }
 
