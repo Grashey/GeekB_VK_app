@@ -21,8 +21,5 @@ class FriendsPhoto {
         let sizesArray = json["sizes"].arrayValue
         let maxIndex = sizesArray.count - 1
         self.photoMaxUrl = json["sizes"][maxIndex]["url"].stringValue
-        
-        
-        
     }
 }
