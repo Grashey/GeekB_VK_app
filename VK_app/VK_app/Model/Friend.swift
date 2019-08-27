@@ -24,10 +24,12 @@ class MyFriend {
 }
 
 class FriendsPhoto {
+    let id: Int
     let photo: String
     
     init (_ json: JSON) {
-        self.photo = json["url"].stringValue
+        self.id = json["id"].intValue
+        self.photo = json["sizes"][0]["url"].stringValue
     }
 }
 
