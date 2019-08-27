@@ -27,6 +27,7 @@ class NetworkService {
                 let json = JSON(data)
                 let friendJSONs = json["response"]["items"].arrayValue
                 let friends = friendJSONs.map { MyFriend($0) }
+                //friends.forEach { print($0.id, $0.name, $0.surname)}
                 completion(friends)
             case .failure(let error):
                 print(error)
@@ -36,11 +37,10 @@ class NetworkService {
     }
     
     func getFriendsPhotos(userId: String, completion: @escaping ([FriendsPhoto]) -> Void){
-        
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
-            "owner_id" : userId
+            "owner_id" : userId,
         ]
         
         AF.request("https://api.vk.com/method/photos.getAll", method: .get, parameters: parameters).responseJSON {
@@ -48,19 +48,14 @@ class NetworkService {
             switch responce.result {
             case .success(let data):
                 let json = JSON(data)
-                let albumsCount = json["response"]["count"].intValue// TODO: разбивку хедерами по альбомам
-                var photos = [FriendsPhoto]()
-                for i in 0...(albumsCount-1) {
-                    let photoJSONs = json["response"]["items"][i]["sizes"].arrayValue
-                    photos += photoJSONs.map { FriendsPhoto($0) }
-                }
+                let photoJSON = json["response"]["items"].arrayValue
+                let photos = photoJSON.map {FriendsPhoto($0)}
                 completion(photos)
             case .failure(let error):
                 print(error)
                 completion([])
             }
         }
-        
     }
     
     func getGroups(completion: @escaping ([Group]) -> Void){
@@ -119,5 +114,4 @@ class NetworkService {
             }
         }
     }
-    
 }
