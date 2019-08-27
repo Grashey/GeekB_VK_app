@@ -23,16 +23,6 @@ class MyFriend {
     }
 }
 
-class FriendsPhoto {
-    let id: Int
-    let photo: String
-    
-    init (_ json: JSON) {
-        self.id = json["id"].intValue
-        self.photo = json["sizes"][0]["url"].stringValue
-    }
-}
-
 //MARK: - Archive
 //struct Friend {
 //    let name: String

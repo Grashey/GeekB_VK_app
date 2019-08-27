@@ -41,7 +41,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! FriendPhotoCell
-        let imageUrl = URL(string: photos[indexPath.item].photo)
+        let imageUrl = URL(string: photos[indexPath.item].photoUrl)
         cell.photoView.kf.setImage(with: imageUrl)
         
         return cell
@@ -66,7 +66,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         
         let photoVC = storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
         photoVC.index = indexPath.item
-        //photoVC.photos = photos
+        photoVC.photos = photos
         self.navigationController?.pushViewController(photoVC, animated: true)
     }
 }

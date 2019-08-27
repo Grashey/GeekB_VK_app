@@ -41,6 +41,8 @@ class NetworkService {
             "v" : "5.96",
             "access_token" : Session.instance.token,
             "owner_id" : userId,
+            "count" : 200,
+            "offset" : 30
         ]
         
         AF.request("https://api.vk.com/method/photos.getAll", method: .get, parameters: parameters).responseJSON {

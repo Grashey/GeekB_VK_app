@@ -18,12 +18,13 @@ class PhotoViewController: UIViewController {
     
     var likeCount = 0
     var index = Int()
-    var photos = [UIImage]()
+    var photos = [FriendsPhoto]()
     
     override func viewDidLoad() {
         
         likeCountView.textColor = .lightGray
-        photoFullScreenView.image = photos[index]
+        let imageUrl = URL(string: photos[index].photoMaxUrl)
+        photoFullScreenView.kf.setImage(with: imageUrl)
         likeCountView.text = String(likeCount)
         nextPhotoView.isHidden = true
         
@@ -64,7 +65,8 @@ class PhotoViewController: UIViewController {
         let goRightTransform = CGAffineTransform.init(translationX: view.bounds.width, y: 0)
         
         let nextIndex = self.index - 1
-        self.nextPhotoView.image = self.photos[nextIndex]
+        let nextImageUrl = URL(string: photos[nextIndex].photoMaxUrl)
+        self.nextPhotoView.kf.setImage(with: nextImageUrl)
         self.nextPhotoView.isHidden = false
         self.nextPhotoView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8).concatenating(goLeftTransform)
         
@@ -88,7 +90,8 @@ class PhotoViewController: UIViewController {
         }, completion: { _ in
             self.nextPhotoView.isHidden = true
             self.index -= 1
-            self.photoFullScreenView.image = self.photos[self.index]
+            let imageUrl = URL(string: self.photos[self.index].photoMaxUrl)
+            self.photoFullScreenView.kf.setImage(with: imageUrl)
             self.photoFullScreenView.transform = .identity
         })
     }
@@ -101,7 +104,8 @@ class PhotoViewController: UIViewController {
         let goRightTransform = CGAffineTransform.init(translationX: view.bounds.width, y: 0)
         
         let nextIndex = self.index + 1
-        self.nextPhotoView.image = self.photos[nextIndex]
+        let nextImageUrl = URL(string: photos[nextIndex].photoMaxUrl)
+        self.nextPhotoView.kf.setImage(with: nextImageUrl)
         self.nextPhotoView.isHidden = false
         self.nextPhotoView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8).concatenating(goRightTransform)
         
@@ -125,7 +129,8 @@ class PhotoViewController: UIViewController {
         }, completion: { _ in
             self.nextPhotoView.isHidden = true
             self.index += 1
-            self.photoFullScreenView.image = self.photos[self.index]
+            let imageUrl = URL(string: self.photos[self.index].photoMaxUrl)
+            self.photoFullScreenView.kf.setImage(with: imageUrl)
             self.photoFullScreenView.transform = .identity
             })
     }
