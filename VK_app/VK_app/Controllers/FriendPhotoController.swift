@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendPhotoController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var photoView: UICollectionView!
     
-    var photos = [UIImage]()
+    var friend = Int()
+    var photos = [FriendsPhoto]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let networkService = NetworkService()
+        networkService.getFriendsPhotos(userId: "\(friend)") { [weak self] photos in
+            guard let self = self else { return }
+            self.photos = photos
+            self.photoView.reloadData()
+        }
+    }
 
     //MARK: - CollectionViewDataSource methods
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -27,11 +40,12 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendFotoCell", for: indexPath) as! FriendPhotoCell
-        
-        cell.photoView.image = photos[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! FriendPhotoCell
+        let imageUrl = URL(string: photos[indexPath.item].photo)
+        cell.photoView.kf.setImage(with: imageUrl)
         
         return cell
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -52,7 +66,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         
         let photoVC = storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
         photoVC.index = indexPath.item
-        photoVC.photos = photos
+        //photoVC.photos = photos
         self.navigationController?.pushViewController(photoVC, animated: true)
     }
 }
