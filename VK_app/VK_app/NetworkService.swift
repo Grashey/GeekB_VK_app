@@ -49,7 +49,6 @@ class NetworkService {
                 let json = JSON(data)
                 let photoJSON = json["response"]["items"].arrayValue
                 let albums = photoJSON.map {PhotoAlbum($0)}
-                albums.forEach { print($0.id, $0.albumTitle)}
                 completion(albums)
             case .failure(let error):
                 print(error)
@@ -63,7 +62,9 @@ class NetworkService {
             "v" : "5.96",
             "access_token" : Session.instance.token,
             "owner_id" : userId,
-            "album_id" : albumId
+            "album_id" : albumId,
+            "count" : 1000,
+            "rev" : 1
         ]
         
         AF.request("https://api.vk.com/method/photos.get", method: .get, parameters: parameters).responseJSON {
