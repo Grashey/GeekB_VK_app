@@ -20,10 +20,26 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.getFriendsPhotos(userId: "\(friend)") { [weak self] photos in
+//        networkService.getFriendsPhotos(userId: "\(friend)") { [weak self] photos in
+//            guard let self = self else { return }
+//            self.photos = photos
+//            self.photoView.reloadData()
+//        }
+        
+        networkService.getPhotoAlbums(userId: "\(friend)") { [weak self] albums in
             guard let self = self else { return }
-            self.photos = photos
-            self.photoView.reloadData()
+            albums.forEach {
+                print($0.id, $0.albumTitle)
+            let albumId = Int($0.id)
+            //let albumTitle = $0.albumTitle
+                sleep(1) // средство против ограничения кол-ва запросов в секунду - временно
+                networkService.getPhotos(userId: "\(self.friend)", albumId: albumId!) { [weak self] photos in
+                    guard let self = self else { return }
+                    self.photos += photos
+                    self.photoView.reloadData()
+                    print(self.photos.count)
+                }
+            }
         }
     }
 

@@ -35,6 +35,51 @@ class NetworkService {
             }
         }
     }
+    func getPhotoAlbums(userId: String, completion: @escaping ([PhotoAlbum]) -> Void){
+        let parameters: Parameters = [
+            "v" : "5.96",
+            "access_token" : Session.instance.token,
+            "uid" : userId
+        ]
+        
+        AF.request("https://api.vk.com/method/photos.getAlbums", method: .get, parameters: parameters).responseJSON {
+            responce in
+            switch responce.result {
+            case .success(let data):
+                let json = JSON(data)
+                let photoJSON = json["response"]["items"].arrayValue
+                let albums = photoJSON.map {PhotoAlbum($0)}
+                albums.forEach { print($0.id, $0.albumTitle)}
+                completion(albums)
+            case .failure(let error):
+                print(error)
+                completion([])
+            }
+        }
+    }
+    
+    func getPhotos(userId: String, albumId: Int, completion: @escaping ([FriendsPhoto]) -> Void){
+        let parameters: Parameters = [
+            "v" : "5.96",
+            "access_token" : Session.instance.token,
+            "owner_id" : userId,
+            "album_id" : albumId
+        ]
+        
+        AF.request("https://api.vk.com/method/photos.get", method: .get, parameters: parameters).responseJSON {
+            responce in
+            switch responce.result {
+            case .success(let data):
+                let json = JSON(data)
+                let photoJSON = json["response"]["items"].arrayValue
+                let photos = photoJSON.map {FriendsPhoto($0)}
+                completion(photos)
+            case .failure(let error):
+                print(error)
+                completion([])
+            }
+        }
+    }
     
     func getFriendsPhotos(userId: String, completion: @escaping ([FriendsPhoto]) -> Void){
         let parameters: Parameters = [
@@ -42,7 +87,7 @@ class NetworkService {
             "access_token" : Session.instance.token,
             "owner_id" : userId,
             "count" : 200,
-            "offset" : 30
+            "offset" : 0
         ]
         
         AF.request("https://api.vk.com/method/photos.getAll", method: .get, parameters: parameters).responseJSON {

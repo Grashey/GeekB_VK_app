@@ -8,12 +8,13 @@
 
 import UIKit
 import SwiftyJSON
+import RealmSwift
 
 
-class Group: Codable {
-    let id: Int
-    let name: String
-    let avatar: String
+class Group {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var avatar: String = ""
     
     init (_ json: JSON) {
         self.id = json["id"].intValue
