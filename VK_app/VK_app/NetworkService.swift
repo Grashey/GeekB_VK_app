@@ -58,7 +58,7 @@ class NetworkService {
         }
     }
     
-    func getPhotos(userId: String, albumId: Int, completion: @escaping ([FriendsPhoto]) -> Void){
+    func getPhotos(userId: String, albumId: Any, completion: @escaping ([FriendsPhoto]) -> Void){
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,

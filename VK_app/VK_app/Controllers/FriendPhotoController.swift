@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import SwiftyJSON
 
 class FriendPhotoController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -25,15 +26,26 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
 //            self.photos = photos
 //            self.photoView.reloadData()
 //        }
+        let special = ["wall", "profile", "saved"]
+        special.forEach {
+            let id = String($0.self)
+            print(id)
+        networkService.getPhotos(userId: "\(self.friend)", albumId: id) { [weak self] photos in
+            guard let self = self else { return }
+            self.photos += photos
+            self.photoView.reloadData()
+            print(self.photos.count)
+            }}
         
         networkService.getPhotoAlbums(userId: "\(friend)") { [weak self] albums in
             guard let self = self else { return }
+
             albums.forEach {
                 print($0.id, $0.albumTitle)
-            let albumId = Int($0.id)
+            let albumId = $0.id
             //let albumTitle = $0.albumTitle
-                sleep(1) // средство против ограничения кол-ва запросов в секунду - временно
-                networkService.getPhotos(userId: "\(self.friend)", albumId: albumId!) { [weak self] photos in
+                sleep(1) // средство против ограничения кол-ва запросов в секунду - пока не найду решение
+                networkService.getPhotos(userId: "\(self.friend)", albumId: albumId) { [weak self] photos in
                     guard let self = self else { return }
                     self.photos += photos
                     self.photoView.reloadData()
