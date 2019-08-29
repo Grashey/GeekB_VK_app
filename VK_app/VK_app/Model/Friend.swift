@@ -8,8 +8,9 @@
 
 import UIKit
 import SwiftyJSON
+import RealmSwift
 
-class MyFriend {
+class MyFriend: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var surname: String = ""
