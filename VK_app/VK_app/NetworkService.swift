@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class NetworkService {
     
-    func getFriends(completion: @escaping ([MyFriend]) -> Void){
+    func getFriends(completion: @escaping ([Friend]) -> Void){
         
         let parameters: Parameters = [
             "v" : "5.96",
@@ -26,7 +26,7 @@ class NetworkService {
             case .success(let data):
                 let json = JSON(data)
                 let friendJSONs = json["response"]["items"].arrayValue
-                let friends = friendJSONs.map { MyFriend($0) }
+                let friends = friendJSONs.map { Friend($0) }
                 //friends.forEach { print($0.id, $0.name, $0.surname)}
                 completion(friends)
             case .failure(let error):
@@ -42,7 +42,7 @@ class NetworkService {
             "access_token" : Session.instance.token,
             "owner_id" : userId,
             "count" : 200,
-            "offset" : 30
+            "offset" : 0
         ]
         
         AF.request("https://api.vk.com/method/photos.getAll", method: .get, parameters: parameters).responseJSON {

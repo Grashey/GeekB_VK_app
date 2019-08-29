@@ -8,13 +8,14 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class FriendController: UITableViewController, FriendCellDelegate {
     
-    var myFriends = [MyFriend]()
+    var myFriends = [Friend]()
     
     var firstCharacter = [Character]()
-    var sortedFriends: [Character: [MyFriend]] = [:]
+    var sortedFriends: [Character: [Friend]] = [:]
     
     @IBOutlet var friendsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -28,6 +29,14 @@ class FriendController: UITableViewController, FriendCellDelegate {
             self.myFriends = friend
             (self.firstCharacter, self.sortedFriends) = self.sort(self.myFriends)
             self.friendsTable.reloadData()
+            
+            let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: false, objectTypes: [Friend.self])
+            print(configuration.fileURL ?? Error.self)
+            
+            let realm = try? Realm(configuration: configuration)
+            try? realm?.write {
+                realm?.add(friend)
+            }
         }
     }
     
@@ -89,10 +98,10 @@ class FriendController: UITableViewController, FriendCellDelegate {
     ///
     /// - Parameter friends: input friends
     /// - Returns: tuple with characters & friends
-    private func sort(_: [MyFriend]) -> (characters: [Character], sortedFriends: [Character: [MyFriend]]){
+    private func sort(_: [Friend]) -> (characters: [Character], sortedFriends: [Character: [Friend]]){
         
         var characters = [Character]()
-        var sortedFriends = [Character: [MyFriend]]()
+        var sortedFriends = [Character: [Friend]]()
         
         myFriends.forEach { friend in
             guard let character = friend.surname.first else { return }
