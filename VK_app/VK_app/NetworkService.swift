@@ -27,7 +27,6 @@ class NetworkService {
                 let json = JSON(data)
                 let friendJSONs = json["response"]["items"].arrayValue
                 let friends = friendJSONs.map { Friend($0) }
-                //friends.forEach { print($0.id, $0.name, $0.surname)}
                 completion(friends)
             case .failure(let error):
                 print(error)

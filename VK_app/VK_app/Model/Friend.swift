@@ -24,6 +24,10 @@ class Friend: Object {
         self.surname = json["last_name"].stringValue
         self.avatar = json["photo_100"].stringValue
     }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 //MARK: - Archive

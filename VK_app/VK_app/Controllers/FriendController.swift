@@ -12,8 +12,6 @@ import RealmSwift
 
 class FriendController: UITableViewController, FriendCellDelegate {
     
-    var myFriends = [Friend]()
-    
     var firstCharacter = [Character]()
     var sortedFriends: [Character: [Friend]] = [:]
     
@@ -26,16 +24,25 @@ class FriendController: UITableViewController, FriendCellDelegate {
         let networkService = NetworkService()
         networkService.getFriends() { [weak self] friend in
             guard let self = self else { return }
-            self.myFriends = friend
-            (self.firstCharacter, self.sortedFriends) = self.sort(self.myFriends)
-            self.friendsTable.reloadData()
             
-            let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: false, objectTypes: [Friend.self])
+            let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true, objectTypes: [Friend.self])
             print(configuration.fileURL ?? Error.self)
             
-            let realm = try? Realm(configuration: configuration)
-            try? realm?.write {
-                realm?.add(friend)
+            do {
+                let realm = try Realm(configuration: configuration)
+                try realm.write {
+                    realm.add(friend, update: .all)
+                }
+            } catch {
+                print(Error.self)
+            }
+            do {
+                let realm = try Realm()
+                let friends = realm.objects(Friend.self)
+                (self.firstCharacter, self.sortedFriends) = self.sort(friends.self)
+                self.friendsTable.reloadData()
+            } catch {
+                print(Error.self)
             }
         }
     }
@@ -98,12 +105,14 @@ class FriendController: UITableViewController, FriendCellDelegate {
     ///
     /// - Parameter friends: input friends
     /// - Returns: tuple with characters & friends
-    private func sort(_: [Friend]) -> (characters: [Character], sortedFriends: [Character: [Friend]]){
+    private func sort(_: Results<Friend>) -> (characters: [Character], sortedFriends: [Character: [Friend]]){
         
         var characters = [Character]()
         var sortedFriends = [Character: [Friend]]()
+        let realm = try? Realm()
+        let friends = realm?.objects(Friend.self)
         
-        myFriends.forEach { friend in
+        friends?.forEach { friend in
             guard let character = friend.surname.first else { return }
             if var thisCharFriends = sortedFriends[character] {
                 thisCharFriends.append(friend)
@@ -127,7 +136,7 @@ class FriendController: UITableViewController, FriendCellDelegate {
             let character = firstCharacter[indexPath.section]
             if let friends = sortedFriends[character] {
                 let friend = friends[indexPath.row]
-                photoVC.friend = friend.id
+                photoVC.friendId = friend.id
             }
         }
     }
