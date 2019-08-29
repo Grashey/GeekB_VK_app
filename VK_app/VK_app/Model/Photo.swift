@@ -8,13 +8,16 @@
 
 import UIKit
 import SwiftyJSON
+import RealmSwift
 
-class FriendsPhoto {
-    let id: Int
-    let photoUrl: String
-    let photoMaxUrl: String
+class FriendsPhoto: Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var photoUrl: String = ""
+    @objc dynamic var photoMaxUrl: String = ""
     
-    init (_ json: JSON) {
+    convenience init (_ json: JSON) {
+        self.init()
+        
         self.id = json["id"].intValue
         self.photoUrl = json["sizes"][0]["url"].stringValue
         

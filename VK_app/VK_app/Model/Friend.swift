@@ -10,12 +10,14 @@ import UIKit
 import SwiftyJSON
 
 class MyFriend {
-    let id: Int
-    let name: String
-    let surname: String
-    let avatar: String
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var surname: String = ""
+    @objc dynamic var avatar: String = ""
     
-    init (_ json: JSON) {
+    convenience init (_ json: JSON) {
+        self.init()
+        
         self.id = json["id"].intValue
         self.name = json["first_name"].stringValue
         self.surname = json["last_name"].stringValue

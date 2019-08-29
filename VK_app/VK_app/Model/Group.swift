@@ -11,11 +11,13 @@ import SwiftyJSON
 
 
 class Group: Codable {
-    let id: Int
-    let name: String
-    let avatar: String
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var avatar: String = ""
     
-    init (_ json: JSON) {
+    convenience init (_ json: JSON) {
+        self.init()
+        
         self.id = json["id"].intValue
         self.name = json["name"].stringValue
         self.avatar = json["photo_100"].stringValue
