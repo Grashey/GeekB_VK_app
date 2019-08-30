@@ -1,5 +1,5 @@
 //
-//  NewsViewController.swift
+//  NewsfeedViewController.swift
 //  VK_app
 //
 //  Created by Aleksandr Fetisov on 25/07/2019.

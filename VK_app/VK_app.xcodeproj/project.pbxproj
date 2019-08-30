@@ -38,7 +38,7 @@
 		B6A1B84322E5B8E8009FC00E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A1B84222E5B8E8009FC00E /* GradientView.swift */; };
 		B6A1B84722E6383E009FC00E /* CharacterPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A1B84622E6383E009FC00E /* CharacterPickerView.swift */; };
 		B6A5729922F9E7BC001D78DD /* AnimatedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A5729822F9E7BC001D78DD /* AnimatedNavigationController.swift */; };
-		B6A5729B22FAC94D001D78DD /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A5729A22FAC94D001D78DD /* NewsViewController.swift */; };
+		B6A5729B22FAC94D001D78DD /* NewsfeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A5729A22FAC94D001D78DD /* NewsfeedViewController.swift */; };
 		B6E595E022F875E900580098 /* NavigationControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */; };
 		B6FF586322DE33E200B1604D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF586222DE33E200B1604D /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
@@ -78,7 +78,7 @@
 		B6A1B84222E5B8E8009FC00E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B6A1B84622E6383E009FC00E /* CharacterPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPickerView.swift; sourceTree = "<group>"; };
 		B6A5729822F9E7BC001D78DD /* AnimatedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedNavigationController.swift; sourceTree = "<group>"; };
-		B6A5729A22FAC94D001D78DD /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		B6A5729A22FAC94D001D78DD /* NewsfeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedViewController.swift; sourceTree = "<group>"; };
 		B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerAnimator.swift; sourceTree = "<group>"; };
 		B6FF586222DE33E200B1604D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		EB8EB2F842D62FA1BAC82924 /* Pods-VK_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK_app/Pods-VK_app.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 				B62B20F022D22EF0007F9161 /* GroupController.swift */,
 				B60C84B022EA25E600007A8E /* GroupNewsController.swift */,
 				B6A5729822F9E7BC001D78DD /* AnimatedNavigationController.swift */,
-				B6A5729A22FAC94D001D78DD /* NewsViewController.swift */,
+				B6A5729A22FAC94D001D78DD /* NewsfeedViewController.swift */,
 				B618FDC522D370B5004467E2 /* FriendController.swift */,
 				B618FDC922D389AD004467E2 /* FriendPhotoController.swift */,
 				B6FF586222DE33E200B1604D /* PhotoViewController.swift */,
@@ -346,7 +346,7 @@
 				B64C7B94231581CE00FCF264 /* Photo.swift in Sources */,
 				B6A5729922F9E7BC001D78DD /* AnimatedNavigationController.swift in Sources */,
 				B675DC9122C679C30074C418 /* LoginController.swift in Sources */,
-				B6A5729B22FAC94D001D78DD /* NewsViewController.swift in Sources */,
+				B6A5729B22FAC94D001D78DD /* NewsfeedViewController.swift in Sources */,
 				B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */,
 				B60C84AF22EA25CA00007A8E /* NewsViewCell.swift in Sources */,
 				B6A1B84322E5B8E8009FC00E /* GradientView.swift in Sources */,
