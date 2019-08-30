@@ -24,26 +24,10 @@ class FriendController: UITableViewController, FriendCellDelegate {
         let networkService = NetworkService()
         networkService.getFriends() { [weak self] friend in
             guard let self = self else { return }
-            
-            let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true, objectTypes: [Friend.self])
-            print(configuration.fileURL ?? Error.self)
-            
-            do {
-                let realm = try Realm(configuration: configuration)
-                try realm.write {
-                    realm.add(friend, update: .all)
-                }
-            } catch {
-                print(Error.self)
-            }
-            do {
-                let realm = try Realm()
-                let friends = realm.objects(Friend.self)
-                (self.firstCharacter, self.sortedFriends) = self.sort(friends.self)
-                self.friendsTable.reloadData()
-            } catch {
-                print(Error.self)
-            }
+            try? RealmService.saveData(objects: friend)
+            let friends = try? RealmService.getData(type: Friend.self)
+            (self.firstCharacter, self.sortedFriends) = self.sort((friends.self)!)
+            self.friendsTable.reloadData()
         }
     }
     
@@ -109,8 +93,7 @@ class FriendController: UITableViewController, FriendCellDelegate {
         
         var characters = [Character]()
         var sortedFriends = [Character: [Friend]]()
-        let realm = try? Realm()
-        let friends = realm?.objects(Friend.self)
+        let friends = try? RealmService.getData(type: Friend.self)
         
         friends?.forEach { friend in
             guard let character = friend.surname.first else { return }

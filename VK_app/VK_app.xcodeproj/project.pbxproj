@@ -22,6 +22,7 @@
 		B62B20F122D22EF0007F9161 /* GroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20F022D22EF0007F9161 /* GroupController.swift */; };
 		B62B20F322D22FA9007F9161 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20F222D22FA9007F9161 /* GroupCell.swift */; };
 		B64C7B94231581CE00FCF264 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64C7B93231581CE00FCF264 /* Photo.swift */; };
+		B66A63CA2318A254004AF737 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A63C92318A254004AF737 /* RealmService.swift */; };
 		B675DC8F22C679C30074C418 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DC8E22C679C30074C418 /* AppDelegate.swift */; };
 		B675DC9122C679C30074C418 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DC9022C679C30074C418 /* LoginController.swift */; };
 		B675DC9422C679C30074C418 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9222C679C30074C418 /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		B62B20F022D22EF0007F9161 /* GroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupController.swift; sourceTree = "<group>"; };
 		B62B20F222D22FA9007F9161 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		B64C7B93231581CE00FCF264 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		B66A63C92318A254004AF737 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		B675DC8B22C679C30074C418 /* VK_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B675DC8E22C679C30074C418 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B675DC9022C679C30074C418 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				B675DC8E22C679C30074C418 /* AppDelegate.swift */,
 				B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */,
 				B69D0E0823071C39003C9109 /* NetworkService.swift */,
+				B66A63C92318A254004AF737 /* RealmService.swift */,
 				B68F97C322D24E0B00E0ACB4 /* Storyboard */,
 				B68F97C122D24DE400E0ACB4 /* Controllers */,
 				B68F97C022D24DCD00E0ACB4 /* Cell */,
@@ -363,6 +366,7 @@
 				B62B20F322D22FA9007F9161 /* GroupCell.swift in Sources */,
 				B60C84BA22EEFC4900007A8E /* LoadingDotView.swift in Sources */,
 				B62992DC22DA288A00452C80 /* FriendAvatarView.swift in Sources */,
+				B66A63CA2318A254004AF737 /* RealmService.swift in Sources */,
 				B678876E22FC6624009298A7 /* Session.swift in Sources */,
 				B60C84B122EA25E600007A8E /* GroupNewsController.swift in Sources */,
 				B6FF586322DE33E200B1604D /* PhotoViewController.swift in Sources */,
