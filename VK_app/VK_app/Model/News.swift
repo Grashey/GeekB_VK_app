@@ -7,8 +7,29 @@
 //
 
 import UIKit
+import SwiftyJSON
+import RealmSwift
 
-struct News {
-    let text: String
-    let image: UIImage
+class News: Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var avatar: String = ""
+    @objc dynamic var text: String = ""
+    @objc dynamic var date: Int = 0
+    @objc dynamic var photo: String = ""
+    
+    
+    convenience init (_ json: JSON) {
+        self.init()
+        
+        let sizesArray = json["attachments"]["photo"]["sizes"].arrayValue
+        let maxIndex = sizesArray.count - 1
+        
+        self.id = json["source_id"].intValue
+        self.name = json["name"].stringValue // check
+        self.avatar = json["photo_100"].stringValue // check
+        self.text = json["text"].stringValue
+        self.date = json["date"].intValue
+        self.photo = json["attachments"]["photo"]["sizes"][maxIndex]["url"].stringValue
+    }
 }

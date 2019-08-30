@@ -23,6 +23,12 @@ class NewsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let networkService = NetworkService()
+        networkService.getNewsfeed(completion: { [weak self] news in
+            guard let self = self else { return }
+            self.newsTable.reloadData()
+        })
+        
 //        //симулирую рандомный показ новостей от моих групп (в дальнейшем заменить на timeStamp)
 //        let groupVC = storyboard?.instantiateViewController(withIdentifier: "GroupController") as! GroupController
 //        indexMax = groupVC.self.groups.count - 1
@@ -54,8 +60,8 @@ class NewsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsViewCell", for: indexPath) as! NewsViewCell
  
-        cell.groupAvatar.image = newGroupAvatars[indexPath.row]
-        cell.groupLabel.text = newGroupNames[indexPath.row]
+        //cell.groupAvatar.image = newGroupAvatars[indexPath.row]
+        //cell.groupLabel.text = newGroupNames[indexPath.row]
         
         return cell
     }

@@ -115,4 +115,28 @@ class NetworkService {
             }
         }
     }
+    
+    func getNewsfeed(completion: @escaping ([News]) -> Void) {
+        let parameters: Parameters = [
+            "v" : "5.96",
+            "access_token" : Session.instance.token,
+            "source_ids" : "groups",
+            "filter" : "post"
+        ]
+        
+        AF.request("https://api.vk.com/method/newsfeed.get", method: .get, parameters: parameters).responseJSON {
+            responce in
+            switch responce.result {
+            case .success(let data):
+                let json = JSON(data)
+                let newsJSONs = json["response"]["items"].arrayValue
+                let news = newsJSONs.map { News($0) }
+                news.forEach{ print($0.id, $0.text)}
+                completion(news)
+            case .failure(let error):
+                print(error)
+                completion([])
+            }
+        }
+    }
 }
