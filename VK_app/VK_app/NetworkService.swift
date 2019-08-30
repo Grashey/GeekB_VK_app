@@ -131,8 +131,9 @@ class NetworkService {
                 let json = JSON(data)
                 let newsJSONs = json["response"]["items"].arrayValue
                 let news = newsJSONs.map { News($0) }
-                news.forEach{ print($0.id, $0.text)}
-                completion(news)
+                let postNews = news.filter { $0.type == "post" }
+                postNews.forEach{ print($0.groupId)}
+                completion(postNews)
             case .failure(let error):
                 print(error)
                 completion([])

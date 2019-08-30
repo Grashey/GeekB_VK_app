@@ -11,25 +11,27 @@ import SwiftyJSON
 import RealmSwift
 
 class News: Object {
-    @objc dynamic var id: Int = 0
+    @objc dynamic var groupId: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var avatar: String = ""
     @objc dynamic var text: String = ""
     @objc dynamic var date: Int = 0
     @objc dynamic var photo: String = ""
+    @objc dynamic var type: String = ""
     
     
     convenience init (_ json: JSON) {
         self.init()
         
-        let sizesArray = json["attachments"]["photo"]["sizes"].arrayValue
+        let sizesArray = json["attachments"][0]["photo"]["sizes"].arrayValue
         let maxIndex = sizesArray.count - 1
         
-        self.id = json["source_id"].intValue
+        self.groupId = -json["source_id"].intValue
         self.name = json["name"].stringValue // check
         self.avatar = json["photo_100"].stringValue // check
+        self.type = json["type"].stringValue
         self.text = json["text"].stringValue
         self.date = json["date"].intValue
-        self.photo = json["attachments"]["photo"]["sizes"][maxIndex]["url"].stringValue
+        self.photo = json["attachments"][0]["photo"]["sizes"][maxIndex]["url"].stringValue
     }
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+import RealmSwift
 
 class NewsfeedViewController: UITableViewController {
     
@@ -20,12 +22,16 @@ class NewsfeedViewController: UITableViewController {
     var newGroupAvatars = [UIImage]()
     var newGroupNames = [String]()
     
+    var news = [News]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let networkService = NetworkService()
         networkService.getNewsfeed(completion: { [weak self] news in
             guard let self = self else { return }
+            self.news = news
+            self.news.forEach{ print($0.photo)}
             self.newsTable.reloadData()
         })
         
@@ -54,7 +60,7 @@ class NewsfeedViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRows
+        return news.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,6 +68,10 @@ class NewsfeedViewController: UITableViewController {
  
         //cell.groupAvatar.image = newGroupAvatars[indexPath.row]
         //cell.groupLabel.text = newGroupNames[indexPath.row]
+        cell.newsTextView.text = news[indexPath.row].text // TO DO: setup view height
+        
+        let imageUrl = URL(string: news[indexPath.row].photo)
+        cell.newsImageView.kf.setImage(with: imageUrl)
         
         return cell
     }
