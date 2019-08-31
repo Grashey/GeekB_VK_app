@@ -31,7 +31,6 @@ class NewsfeedViewController: UITableViewController {
         networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
             guard let self = self else { return }
             self.news = news
-            self.news.forEach{ print($0.photo)}
             self.newsTable.reloadData()
         })
         
@@ -68,6 +67,7 @@ class NewsfeedViewController: UITableViewController {
  
         //cell.groupAvatar.image = newGroupAvatars[indexPath.row]
         //cell.groupLabel.text = newGroupNames[indexPath.row]
+        print(indexPath.row)
         cell.newsTextView.text = news[indexPath.row].text // TO DO: setup view height
         
         let imageUrl = URL(string: news[indexPath.row].photo)
