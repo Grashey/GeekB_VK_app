@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+import RealmSwift
 
 class GroupNewsController: UITableViewController {
     
@@ -14,9 +16,19 @@ class GroupNewsController: UITableViewController {
     
     var groupAvatar = UIImage()
     var groupName = String()
+    var groupId = Int()
+    var news = [News]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let networkService = NetworkService()
+        networkService.getNewsfeed(groupId: -groupId, completion: { [weak self] news in
+            guard let self = self else { return }
+            self.news = news
+            news.forEach{ print($0.photo)}
+            self.newsTable.reloadData()
+        })
     }
 
     // MARK: - Tableview methods
@@ -29,14 +41,19 @@ class GroupNewsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return news.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsViewCell", for: indexPath) as! NewsViewCell
         
-        cell.groupAvatar.image = groupAvatar
-        cell.groupLabel.text = groupName
+        //cell.groupAvatar.image = groupAvatar
+        //cell.groupLabel.text = groupName
+        
+        cell.newsTextView.text = news[indexPath.row].text // TO DO: setup view height
+        
+        let imageUrl = URL(string: news[indexPath.row].photo)
+        cell.newsImageView.kf.setImage(with: imageUrl)
 
         return cell
     }

@@ -28,7 +28,7 @@ class NewsfeedViewController: UITableViewController {
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.getNewsfeed(completion: { [weak self] news in
+        networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
             guard let self = self else { return }
             self.news = news
             self.news.forEach{ print($0.photo)}

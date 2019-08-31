@@ -22,6 +22,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         let networkService = NetworkService()
         networkService.getFriendsPhotos(userId: "\(friendId)") { [weak self] photos in
             guard let self = self else { return }
+            try? RealmService.saveData(objects: photos)
             self.photos = photos
             self.photoView.reloadData()
         }

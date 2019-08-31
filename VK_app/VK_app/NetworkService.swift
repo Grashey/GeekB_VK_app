@@ -116,11 +116,11 @@ class NetworkService {
         }
     }
     
-    func getNewsfeed(completion: @escaping ([News]) -> Void) {
+    func getNewsfeed(groupId: Any, completion: @escaping ([News]) -> Void) {
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
-            "source_ids" : "groups",
+            "source_ids" : groupId,
             "filter" : "post"
         ]
         
