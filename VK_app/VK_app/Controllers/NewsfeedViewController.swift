@@ -64,10 +64,18 @@ class NewsfeedViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsViewCell", for: indexPath) as! NewsViewCell
- 
-        //cell.groupAvatar.image = newGroupAvatars[indexPath.row]
-        //cell.groupLabel.text = newGroupNames[indexPath.row]
-        print(indexPath.row)
+        
+        let groupId = news[indexPath.row].groupId
+        
+        let groups = try? RealmService.getData(type: Group.self)
+        let group = groups?.filter("id == %@", groupId)
+        group?.forEach {
+            cell.groupLabel.text = $0.name
+            
+            let imageUrl = URL(string: $0.avatar)
+            cell.groupAvatar.kf.setImage(with: imageUrl)
+        }
+        
         cell.newsTextView.text = news[indexPath.row].text // TO DO: setup view height
         
         let imageUrl = URL(string: news[indexPath.row].photo)
