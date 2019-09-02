@@ -45,10 +45,13 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         let networkService = NetworkService()
         networkService.getGroups() { [weak self] group in
             guard let self = self else { return }
-            try? RealmService.saveData(objects: group)
             self.myGroups = group
             self.groupsTable.reloadData()
         }
+        
+        //networkService.sendRequestGroupProfile(groupId: "35850939")
+        //networkService.groupSearch(searchtext: "geekbrains")
+        
         searchBar.delegate = self
     }
     
@@ -116,10 +119,10 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GroupNewsSegue",
             let indexPath = tableView.indexPathForSelectedRow,
-            let photoVC = segue.destination as? GroupNewsController,
-            let groups = try? RealmService.getData(type: Group.self)
+            let photoVC = segue.destination as? GroupNewsController
         {
-            photoVC.groupId = groups[indexPath.row].id
+            //photoVC.groupAvatar = groups[indexPath.row].avatar! as UIImage
+            //photoVC.groupName = groups[indexPath.row].name
             }
         }
 }
