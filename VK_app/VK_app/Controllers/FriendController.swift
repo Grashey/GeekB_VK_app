@@ -8,13 +8,12 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class FriendController: UITableViewController, FriendCellDelegate {
     
-    var myFriends = [MyFriend]()
-    
     var firstCharacter = [Character]()
-    var sortedFriends: [Character: [MyFriend]] = [:]
+    var sortedFriends: [Character: [Friend]] = [:]
     
     @IBOutlet var friendsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -25,8 +24,9 @@ class FriendController: UITableViewController, FriendCellDelegate {
         let networkService = NetworkService()
         networkService.getFriends() { [weak self] friend in
             guard let self = self else { return }
-            self.myFriends = friend
-            (self.firstCharacter, self.sortedFriends) = self.sort(self.myFriends)
+            try? RealmService.saveData(objects: friend)
+            let friends = try? RealmService.getData(type: Friend.self)
+            (self.firstCharacter, self.sortedFriends) = self.sort((friends.self)!)
             self.friendsTable.reloadData()
         }
     }
@@ -89,12 +89,13 @@ class FriendController: UITableViewController, FriendCellDelegate {
     ///
     /// - Parameter friends: input friends
     /// - Returns: tuple with characters & friends
-    private func sort(_: [MyFriend]) -> (characters: [Character], sortedFriends: [Character: [MyFriend]]){
+    private func sort(_: Results<Friend>) -> (characters: [Character], sortedFriends: [Character: [Friend]]){
         
         var characters = [Character]()
-        var sortedFriends = [Character: [MyFriend]]()
+        var sortedFriends = [Character: [Friend]]()
+        let friends = try? RealmService.getData(type: Friend.self)
         
-        myFriends.forEach { friend in
+        friends?.forEach { friend in
             guard let character = friend.surname.first else { return }
             if var thisCharFriends = sortedFriends[character] {
                 thisCharFriends.append(friend)
@@ -118,7 +119,8 @@ class FriendController: UITableViewController, FriendCellDelegate {
             let character = firstCharacter[indexPath.section]
             if let friends = sortedFriends[character] {
                 let friend = friends[indexPath.row]
-                photoVC.friend = friend.id
+                photoVC.friendId = friend.id
+                print(friend.id)
             }
         }
     }

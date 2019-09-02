@@ -13,15 +13,16 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     
     @IBOutlet var photoView: UICollectionView!
     
-    var friend = Int()
-    var photos = [FriendsPhoto]()
+    var friendId = Int()
+    var photos = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.getFriendsPhotos(userId: "\(friend)") { [weak self] photos in
+        networkService.getFriendsPhotos(userId: "\(friendId)") { [weak self] photos in
             guard let self = self else { return }
+            try? RealmService.saveData(objects: photos)
             self.photos = photos
             self.photoView.reloadData()
         }

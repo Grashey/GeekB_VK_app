@@ -2,7 +2,7 @@
 //  NewsfeedViewController.swift
 //  VK_app
 //
-//  Created by Aleksandr Fetisov on 25/07/2019.
+//  Created by Aleksandr Fetisov on 07/08/2019.
 //  Copyright © 2019 Aleksandr Fetisov. All rights reserved.
 //
 
@@ -10,24 +10,23 @@ import UIKit
 import Kingfisher
 import RealmSwift
 
-class GroupNewsController: UITableViewController {
+class NewsfeedViewController: UITableViewController {
     
-    @IBOutlet var newsTable: UITableView!
+    @IBOutlet var newsfeedTable: UITableView!
     
-    var groupId = Int()
     var news = [News]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.getNewsfeed(groupId: -groupId, completion: { [weak self] news in
+        networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
             guard let self = self else { return }
             self.news = news
-            self.newsTable.reloadData()
+            self.newsfeedTable.reloadData()
         })
     }
-
+    
     // MARK: - Tableview methods
     override func  tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -40,9 +39,11 @@ class GroupNewsController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return news.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsViewCell", for: indexPath) as! NewsViewCell
+        
+        let groupId = news[indexPath.row].groupId
         
         let groups = try? RealmService.getData(type: Group.self)
         let group = groups?.filter("id == %@", groupId)
@@ -59,5 +60,15 @@ class GroupNewsController: UITableViewController {
         cell.newsImageView.kf.setImage(with: imageUrl)
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "NewsSegue",
+            let indexPath = tableView.indexPathForSelectedRow,
+            let newsVC = segue.destination as? GroupNewsController
+        {
+            newsVC.groupId = news[indexPath.row].groupId
+          
+        }
     }
 }

@@ -18,7 +18,7 @@ class PhotoViewController: UIViewController {
     
     var likeCount = 0
     var index = Int()
-    var photos = [FriendsPhoto]()
+    var photos = [Photo]()
     
     override func viewDidLoad() {
         
