@@ -35,7 +35,7 @@ class NetworkService {
         }
     }
     
-    func getFriendsPhotos(userId: String, completion: @escaping ([Photo]) -> Void){
+    func getPhotos(userId: String, completion: @escaping ([Photo]) -> Void){
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
@@ -50,7 +50,7 @@ class NetworkService {
             case .success(let data):
                 let json = JSON(data)
                 let photoJSON = json["response"]["items"].arrayValue
-                let photos = photoJSON.map {Photo($0)}
+                let photos = photoJSON.map { Photo($0, ownerId: userId) }
                 completion(photos)
             case .failure(let error):
                 print(error)

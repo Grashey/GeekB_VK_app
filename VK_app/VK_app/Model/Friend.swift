@@ -15,7 +15,8 @@ class Friend: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var surname: String = ""
     @objc dynamic var avatar: String = ""
-    let photos = List<Photo>()
+    
+    let photos = LinkingObjects(fromType: Photo.self, property: "owner")
     
     convenience init (_ json: JSON) {
         self.init()
@@ -24,7 +25,6 @@ class Friend: Object {
         self.name = json["first_name"].stringValue
         self.surname = json["last_name"].stringValue
         self.avatar = json["photo_100"].stringValue
-        self.photos.append(Photo())
     }
     
     override static func primaryKey() -> String? {
