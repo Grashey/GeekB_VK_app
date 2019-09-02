@@ -120,7 +120,6 @@ class FriendController: UITableViewController, FriendCellDelegate {
             if let friends = sortedFriends[character] {
                 let friend = friends[indexPath.row]
                 photoVC.friendId = friend.id
-                print(friend.id)
             }
         }
     }

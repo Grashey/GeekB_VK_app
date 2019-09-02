@@ -14,23 +14,20 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     @IBOutlet var photoView: UICollectionView!
     
     var friendId = Int()
-    var photos = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.getFriendsPhotos(userId: "\(friendId)") { [weak self] photos in
-            guard let self = self else { return }
+        networkService.getPhotos(userId: "\(friendId)") { photos in
             try? RealmService.saveData(objects: photos)
-            self.photos = photos
-            self.photoView.reloadData()
         }
     }
 
     //MARK: - CollectionViewDataSource methods
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        let photos = try? RealmService.getData(type: Photo.self)
+        return photos?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -40,13 +37,13 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let photos = try? RealmService.getData(type: Photo.self)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! FriendPhotoCell
-        let imageUrl = URL(string: photos[indexPath.item].photoUrl)
+        let imageUrl = URL(string: photos?[indexPath.item].photoUrl ?? "") // TO DO: ""
         cell.photoView.kf.setImage(with: imageUrl)
         
         return cell
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -67,7 +64,6 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         
         let photoVC = storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
         photoVC.index = indexPath.item
-        photoVC.photos = photos
         self.navigationController?.pushViewController(photoVC, animated: true)
     }
 }

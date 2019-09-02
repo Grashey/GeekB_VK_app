@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 @IBDesignable
 
 class PhotoViewController: UIViewController {
@@ -22,8 +23,13 @@ class PhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        let photos = try? RealmService.getData(type: Photo.self)
+        photos?.forEach{ photo in
+            self.photos.append(photo)
+        }
+        
         likeCountView.textColor = .lightGray
-        let imageUrl = URL(string: photos[index].photoMaxUrl)
+        let imageUrl = URL(string: self.photos[index].photoMaxUrl)
         photoFullScreenView.kf.setImage(with: imageUrl)
         likeCountView.text = String(likeCount)
         nextPhotoView.isHidden = true
