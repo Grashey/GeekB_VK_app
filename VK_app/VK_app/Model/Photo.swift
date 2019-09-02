@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import RealmSwift
 
-class FriendsPhoto: Object {
+class Photo: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var photoUrl: String = ""
     @objc dynamic var photoMaxUrl: String = ""
@@ -24,8 +24,9 @@ class FriendsPhoto: Object {
         let sizesArray = json["sizes"].arrayValue
         let maxIndex = sizesArray.count - 1
         self.photoMaxUrl = json["sizes"][maxIndex]["url"].stringValue
-        
-        
-        
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

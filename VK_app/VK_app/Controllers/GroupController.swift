@@ -49,10 +49,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
             self.myGroups = group
             self.groupsTable.reloadData()
         }
-        
-        //networkService.sendRequestGroupProfile(groupId: "35850939")
-        //networkService.groupSearch(searchtext: "geekbrains")
-        
         searchBar.delegate = self
     }
     
@@ -124,8 +120,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
             let groups = try? RealmService.getData(type: Group.self)
         {
             photoVC.groupId = groups[indexPath.row].id
-            //photoVC.groupAvatar = groups[indexPath.row].avatar! as UIImage
-            //photoVC.groupName = groups[indexPath.row].name
             }
         }
 }

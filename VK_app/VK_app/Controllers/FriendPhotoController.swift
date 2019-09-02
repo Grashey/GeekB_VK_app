@@ -14,7 +14,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     @IBOutlet var photoView: UICollectionView!
     
     var friendId = Int()
-    var photos = [FriendsPhoto]()
+    var photos = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

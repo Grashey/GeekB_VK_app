@@ -12,15 +12,7 @@ import RealmSwift
 
 class NewsfeedViewController: UITableViewController {
     
-    @IBOutlet var newsTable: UITableView!
-    
-    var groupAvatars = [UIImage]()
-    var groupNames = [String]()
-    var groupIndexes = [Int]()
-    var indexMax = Int()
-    let numberOfRows = 10
-    var newGroupAvatars = [UIImage]()
-    var newGroupNames = [String]()
+    @IBOutlet var newsfeedTable: UITableView!
     
     var news = [News]()
     
@@ -31,22 +23,8 @@ class NewsfeedViewController: UITableViewController {
         networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
             guard let self = self else { return }
             self.news = news
-            self.newsTable.reloadData()
+            self.newsfeedTable.reloadData()
         })
-        
-//        //симулирую рандомный показ новостей от моих групп (в дальнейшем заменить на timeStamp)
-//        let groupVC = storyboard?.instantiateViewController(withIdentifier: "GroupController") as! GroupController
-//        indexMax = groupVC.self.groups.count - 1
-//        for i in 0...indexMax {
-//            groupAvatars.append(groupVC.self.groups[i].avatar!)
-//            groupNames.append(groupVC.self.groups[i].name)
-//        }
-//        for _ in 1...numberOfRows {
-//            let randomIndex = Int.random(in: 0...indexMax)
-//            groupIndexes.append(randomIndex)
-//            newGroupAvatars.append(groupAvatars[randomIndex])
-//            newGroupNames.append(groupNames[randomIndex])
-//        }
     }
     
     // MARK: - Tableview methods
@@ -87,11 +65,10 @@ class NewsfeedViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NewsSegue",
             let indexPath = tableView.indexPathForSelectedRow,
-            let photoVC = segue.destination as? GroupNewsController
+            let newsVC = segue.destination as? GroupNewsController
         {
-            let index = groupIndexes[indexPath.row]
-            photoVC.groupAvatar = groupAvatars[index]
-            photoVC.groupName = groupNames[index]
+            newsVC.groupId = news[indexPath.row].groupId
+          
         }
     }
 }
