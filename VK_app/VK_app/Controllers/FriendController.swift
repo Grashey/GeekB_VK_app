@@ -28,7 +28,7 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
             guard let self = self else { return }
             try? RealmService.saveData(objects: friend)
             let friends = try? RealmService.getData(type: Friend.self)
-            (self.firstCharacter, self.sortedFriends) = self.sort((friends.self)!)
+            (self.firstCharacter, self.sortedFriends) = self.sort(friends!.self)
             self.friendsTable.reloadData()
         }
         
@@ -45,13 +45,6 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-//        if(searchActive) {
-//            return filteredFriends.count
-//        } else {
-//            let friends = try? RealmService.getData(type: Friend.self)
-//            return friends?.count ?? 0
-//        }
         
         let character = firstCharacter[section]
         let friendsCount = sortedFriends[character]?.count
@@ -78,24 +71,8 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
         return UITableViewCell()
     }
     
-    // TO DO !!!!
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if(searchActive){
-//                sortedFriends.removeAll { (friend) -> Bool in
-//                    friend.name == filteredFriends[indexPath.row].name
-//                }
-                filteredFriends.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            } else {
-                //sortedFriends.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    
+        
         let header = GradientView()
         header.startColor = UIColor(white: 1, alpha: 0.5)
         header.endColor = .clear
@@ -103,15 +80,28 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
         header.endPoint = CGPoint(x: 1, y: 0.1)
         header.startLocation = 0
         header.endLocation = 0.2
-    
+        
         let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 18))
         label.font = UIFont.systemFont(ofSize: 14)
         label.text = String(firstCharacter[section])
         header.addSubview(label)
-    
+        
         return header
     }
     
+    // TO DO !!!! (вкрутить подписку на изменения?? )
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if searchActive {
+                
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
+    }
+
     //MARK: - UISearchBar method
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -139,7 +129,7 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
         var characters = [Character]()
         var sortedFriends = [Character: [Friend]]()
         
-        if(searchActive){
+        if searchActive {
             filteredFriends.forEach { friend in
                 guard let character = friend.surname.first else { return }
                 if var thisCharFriends = sortedFriends[character] {
@@ -186,26 +176,3 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
         self.performSegue(withIdentifier: "FriendPhotoSegue", sender: sender)
     }
 }
-    
-
-
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        let friendCell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
-//
-//        let character = firstCharacter[indexPath.section]
-//        if let friends = sortedFriends[character] {
-//            friendCell.friendNameLabel.text = friends[indexPath.row].name + " " + friends[indexPath.row].surname
-//
-//            let imageUrl = URL(string: friends[indexPath.row].avatar)
-//            friendCell.friendAvatarView.kf.setImage(with: imageUrl)
-//
-//            friendCell.indexPath = indexPath
-//            friendCell.delegate = self
-//
-//            return friendCell
-//        }
-//        return UITableViewCell()
-//    }
-

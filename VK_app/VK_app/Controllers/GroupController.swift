@@ -54,7 +54,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     
     //MARK: - TableViewDataSource methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(searchActive) {
+        if searchActive {
             return filteredGroups.count
         } else {
             return myGroups.count
@@ -64,7 +64,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
-        if(searchActive){
+        if searchActive {
             groupCell.groupNameLabel.text = filteredGroups[indexPath.row].name
             
             let imageUrl = URL(string: filteredGroups[indexPath.row].avatar)
@@ -80,7 +80,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if(searchActive){
+            if searchActive {
                 myGroups.removeAll { (group) -> Bool in
                     group.name == filteredGroups[indexPath.row].name
                 }
@@ -116,12 +116,16 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GroupNewsSegue",
             let indexPath = tableView.indexPathForSelectedRow,
-            let photoVC = segue.destination as? GroupNewsController,
-            let groups = try? RealmService.getData(type: Group.self)
+            let photoVC = segue.destination as? GroupNewsController
         {
-            photoVC.groupId = groups[indexPath.row].id
+            if searchActive {
+                photoVC.groupId = filteredGroups[indexPath.row].id
+            } else {
+                photoVC.groupId = myGroups[indexPath.row].id
             }
+            
         }
+    }
 }
 
 extension GroupController: UIViewControllerTransitioningDelegate {
