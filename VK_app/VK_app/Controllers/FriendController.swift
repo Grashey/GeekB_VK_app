@@ -15,7 +15,7 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
     var firstCharacter = [Character]()
     var sortedFriends: [Character: [Friend]] = [:]
     var searchActive : Bool = false
-    var filteredFriends: [Friend] = []
+    var filteredFriends: Results<Friend>? = nil
     
     @IBOutlet var friendsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -31,7 +31,6 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
             (self.firstCharacter, self.sortedFriends) = self.sort(friends!.self)
             self.friendsTable.reloadData()
         }
-        
         searchBar.delegate = self
     }
     
@@ -88,36 +87,23 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
         
         return header
     }
-    
-    // TO DO !!!! (вкрутить подписку на изменения?? )
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if searchActive {
-                
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            } else {
-                
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        }
-    }
 
     //MARK: - UISearchBar method
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        let friends = try? RealmService.getData(type: Friend.self)
-        filteredFriends = (friends?.filter ({ (friend) -> Bool in
-            let tmp: NSString = (friend.name + friend.surname) as NSString
-            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            return range.location != NSNotFound
-        }))!
         if searchText.isEmpty {
             searchActive = false
         } else {
             searchActive = true
         }
+        
+        let friends = try? RealmService.getData(type: Friend.self)
+        filteredFriends = friends?.filter("name CONTAINS[cd] %@ OR surname CONTAINS[cd] %@", searchText, searchText)
+        (self.firstCharacter, self.sortedFriends) = self.sort(filteredFriends!.self)
         tableView.reloadData()
-        print(filteredFriends)
+        print(searchText.isEmpty)
+        print(searchActive)
+        //print(filteredFriends as Any)
     }
     
     /// Sorts friends + first letters
@@ -130,7 +116,7 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
         var sortedFriends = [Character: [Friend]]()
         
         if searchActive {
-            filteredFriends.forEach { friend in
+            filteredFriends!.forEach { friend in
                 guard let character = friend.surname.first else { return }
                 if var thisCharFriends = sortedFriends[character] {
                     thisCharFriends.append(friend)

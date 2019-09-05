@@ -9,9 +9,7 @@
 import UIKit
 
 class GroupController: UITableViewController, UISearchBarDelegate {
-    
-    var myGroups = [Group]()
-    
+
     @IBOutlet var groupsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func addGroup(segue: UIStoryboardSegue){
@@ -36,6 +34,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
     
+    var myGroups = [Group]()
     var searchActive : Bool = false
     var filteredGroups:[Group] = []
     
@@ -84,7 +83,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
                 myGroups.removeAll { (group) -> Bool in
                     group.name == filteredGroups[indexPath.row].name
                 }
-                filteredGroups.remove(at: indexPath.row)
+                //filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             } else {
                 myGroups.remove(at: indexPath.row)
