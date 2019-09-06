@@ -16,8 +16,6 @@ class Friend: Object {
     @objc dynamic var surname: String = ""
     @objc dynamic var avatar: String = ""
     
-    let photos = LinkingObjects(fromType: Photo.self, property: "owner")
-    
     convenience init (_ json: JSON) {
         self.init()
         

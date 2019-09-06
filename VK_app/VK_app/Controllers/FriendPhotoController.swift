@@ -21,12 +21,14 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         let networkService = NetworkService()
         networkService.getPhotos(userId: "\(friendId)") { photos in
             try? RealmService.saveData(objects: photos)
+            self.collectionView.reloadData()
         }
     }
 
     //MARK: - CollectionViewDataSource methods
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let photos = try? RealmService.getData(type: Photo.self)
+        let allPhotos = try? RealmService.getData(type: Photo.self)
+        let photos = allPhotos?.filter("ownerId == [cd] %@", String(friendId))
         return photos?.count ?? 0
     }
     
@@ -37,7 +39,8 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let photos = try? RealmService.getData(type: Photo.self)
+        let allPhotos = try? RealmService.getData(type: Photo.self)
+        let photos = allPhotos?.filter("ownerId == [cd] %@", String(friendId))
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! FriendPhotoCell
         let imageUrl = URL(string: photos?[indexPath.item].photoUrl ?? "") // TO DO: ""
@@ -63,6 +66,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     override func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let photoVC = storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
+        
         photoVC.index = indexPath.item
         self.navigationController?.pushViewController(photoVC, animated: true)
     }
