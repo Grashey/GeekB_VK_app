@@ -69,6 +69,7 @@ class NewsfeedViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
             return cell
         }
+        self.newsfeedTable.reloadData()
         return UITableViewCell()
     }
     
