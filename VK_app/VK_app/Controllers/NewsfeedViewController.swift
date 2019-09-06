@@ -33,33 +33,43 @@ class NewsfeedViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return news.count
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsViewCell", for: indexPath) as! NewsViewCell
         
-        let groupId = news[indexPath.row].groupId
-        
-        let groups = try? RealmService.getData(type: Group.self)
-        let group = groups?.filter("id == %@", groupId)
-        group?.forEach {
-            cell.groupLabel.text = $0.name
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
+            let groups = try? RealmService.getData(type: Group.self)
+            let groupId = news[indexPath.section].groupId
+            let group = groups?.filter("id == %@", groupId)
+            group?.forEach {
+                cell.groupLabel.text = $0.name
+                let imageUrl = URL(string: $0.avatar)
+                cell.groupAvatar.kf.setImage(with: imageUrl)
+            }
+            return cell
             
-            let imageUrl = URL(string: $0.avatar)
-            cell.groupAvatar.kf.setImage(with: imageUrl)
+        } else if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as! NewsTextCell
+            cell.newsTextView.text = news[indexPath.section].text //TO DO: setup view height
+            return cell
+        
+        } else if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
+            let imageUrl = URL(string: news[indexPath.section].photo)
+            cell.newsImageView.kf.setImage(with: imageUrl) //TO DO: setup view height
+            return cell
+            
+        } else if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
+            return cell
         }
-        
-        cell.newsTextView.text = news[indexPath.row].text // TO DO: setup view height
-        
-        let imageUrl = URL(string: news[indexPath.row].photo)
-        cell.newsImageView.kf.setImage(with: imageUrl)
-        
-        return cell
+        return UITableViewCell()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,7 +77,7 @@ class NewsfeedViewController: UITableViewController {
             let indexPath = tableView.indexPathForSelectedRow,
             let newsVC = segue.destination as? GroupNewsController
         {
-            newsVC.groupId = news[indexPath.row].groupId
+            newsVC.groupId = news[indexPath.section].groupId
           
         }
     }

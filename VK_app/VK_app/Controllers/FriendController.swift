@@ -101,9 +101,6 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
         filteredFriends = friends?.filter("name CONTAINS[cd] %@ OR surname CONTAINS[cd] %@", searchText, searchText)
         (self.firstCharacter, self.sortedFriends) = self.sort(filteredFriends!.self)
         tableView.reloadData()
-        print(searchText.isEmpty)
-        print(searchActive)
-        //print(filteredFriends as Any)
     }
     
     /// Sorts friends + first letters
