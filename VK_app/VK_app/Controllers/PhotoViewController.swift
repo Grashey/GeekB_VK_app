@@ -19,11 +19,13 @@ class PhotoViewController: UIViewController {
     
     var likeCount = 0
     var index = Int()
+    var ownerId = Int()
     var photos = [Photo]()
     
     override func viewDidLoad() {
         
-        let photos = try? RealmService.getData(type: Photo.self)
+        let allPhotos = try? RealmService.getData(type: Photo.self)
+        let photos = allPhotos?.filter("ownerId == [cd] %@", String(self.ownerId))
         photos?.forEach{ photo in
             self.photos.append(photo)
         }

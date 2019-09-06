@@ -8,12 +8,14 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class FriendPhotoController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var photoView: UICollectionView!
     
     var friendId = Int()
+    var photos: Results<Photo>? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +24,13 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         networkService.getPhotos(userId: "\(friendId)") { photos in
             try? RealmService.saveData(objects: photos)
             self.collectionView.reloadData()
+            let allPhotos = try? RealmService.getData(type: Photo.self)
+            self.photos = allPhotos?.filter("ownerId == [cd] %@", String(self.friendId))
         }
     }
 
     //MARK: - CollectionViewDataSource methods
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let allPhotos = try? RealmService.getData(type: Photo.self)
-        let photos = allPhotos?.filter("ownerId == [cd] %@", String(friendId))
         return photos?.count ?? 0
     }
     
@@ -39,13 +41,10 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let allPhotos = try? RealmService.getData(type: Photo.self)
-        let photos = allPhotos?.filter("ownerId == [cd] %@", String(friendId))
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! FriendPhotoCell
         let imageUrl = URL(string: photos?[indexPath.item].photoUrl ?? "") // TO DO: ""
         cell.photoView.kf.setImage(with: imageUrl)
-        
         return cell
     }
     
@@ -66,8 +65,9 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     override func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let photoVC = storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
-        
+        photoVC.ownerId = friendId
         photoVC.index = indexPath.item
+        print(photoVC.index)
         self.navigationController?.pushViewController(photoVC, animated: true)
     }
 }
