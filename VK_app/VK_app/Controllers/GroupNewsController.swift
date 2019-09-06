@@ -61,7 +61,7 @@ class GroupNewsController: UITableViewController {
             
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
-            let imageUrl = URL(string: news[indexPath.section].photo)
+            let imageUrl = URL(string: news[indexPath.section].photo) // TO DO: collectionview for images
             cell.newsImageView.kf.setImage(with: imageUrl) //TO DO: setup view height
             return cell
             
