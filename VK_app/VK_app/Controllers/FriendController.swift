@@ -16,6 +16,7 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
     var sortedFriends: [Character: [Friend]] = [:]
     var searchActive : Bool = false
     var filteredFriends: Results<Friend>?
+    private var notificationToken: NotificationToken?
     
     @IBOutlet var friendsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -27,11 +28,26 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
         networkService.getFriends() { [weak self] friend in
             guard let self = self else { return }
             try? RealmService.saveData(objects: friend)
+            
             let friends = try? RealmService.getData(type: Friend.self)
             (self.firstCharacter, self.sortedFriends) = self.sort(friends!.self)
-            self.friendsTable.reloadData()
+            
+            self.notificationToken = friends?.observe { change in
+                switch change {
+                case .initial:
+                    self.tableView.reloadData()
+                case .update(_ , let deletions, let insertions, let modifications):
+                    self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
+                case .error(let error):
+                    self.show(error)
+                }
+            }
         }
         searchBar.delegate = self
+    }
+    
+    deinit {
+        notificationToken?.invalidate()
     }
     
     //MARK: - UITableViewDataSource methods

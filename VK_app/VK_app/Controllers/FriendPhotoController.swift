@@ -16,6 +16,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     
     var friendId = Int()
     var photos: Results<Photo>?
+    private var notificationToken: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +24,29 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         let networkService = NetworkService()
         networkService.getPhotos(userId: "\(friendId)") { photos in
             try? RealmService.saveData(objects: photos)
-            self.collectionView.reloadData()
-            let allPhotos = try? RealmService.getData(type: Photo.self)
-            self.photos = allPhotos?.filter("ownerId == [cd] %@", String(self.friendId))
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        photos = try? RealmService.getData(type: Photo.self).filter("ownerId == [cd] %@", String(self.friendId))
+        notificationToken = photos?.observe { change in
+            switch change {
+            case .initial:
+                self.collectionView.reloadData()
+            case .update:
+                self.collectionView.reloadData()
+            case .error(let error):
+                self.show(error)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        
+        notificationToken?.invalidate()
     }
 
     //MARK: - CollectionViewDataSource methods
