@@ -79,7 +79,6 @@ class NewsfeedViewController: UITableViewController {
             let newsVC = segue.destination as? GroupNewsController
         {
             newsVC.groupId = news[indexPath.section].groupId
-          
         }
     }
 }

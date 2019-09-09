@@ -25,8 +25,8 @@ class GroupCell: UITableViewCell {
             self.groupAvatarView.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
         }, completion: { _ in
             UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 100, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-                self.groupAvatarView.transform = CGAffineTransform.identity
-            }, completion: nil)
+                    self.groupAvatarView.transform = CGAffineTransform.identity
+                }, completion: nil)
         })
     }
 }

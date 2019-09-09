@@ -24,8 +24,8 @@ class FriendCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     
-    let springGR = UITapGestureRecognizer(target: self, action: #selector(compression))
-    friendAvatarView.addGestureRecognizer(springGR)
+        let springGR = UITapGestureRecognizer(target: self, action: #selector(compression))
+        friendAvatarView.addGestureRecognizer(springGR)
     }
     
     @objc func compression() {

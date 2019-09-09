@@ -140,12 +140,12 @@ class PhotoViewController: UIViewController {
             let imageUrl = URL(string: self.photos[self.index].photoMaxUrl)
             self.photoFullScreenView.kf.setImage(with: imageUrl)
             self.photoFullScreenView.transform = .identity
-            })
+        })
     }
     
     private func likeCountUp(_ text: String) {
         UIView.transition(with: likeCountView, duration: 0.4, options: .transitionFlipFromRight, animations: {
-        self.likeCountView.text = text
+            self.likeCountView.text = text
         })
     }
     

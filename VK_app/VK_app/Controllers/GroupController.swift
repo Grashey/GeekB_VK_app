@@ -83,8 +83,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
                 myGroups.removeAll { (group) -> Bool in
                     group.name == filteredGroups[indexPath.row].name
                 }
-                //filteredGroups.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             } else {
                 myGroups.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -122,7 +121,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
             } else {
                 photoVC.groupId = myGroups[indexPath.row].id
             }
-            
         }
     }
 }

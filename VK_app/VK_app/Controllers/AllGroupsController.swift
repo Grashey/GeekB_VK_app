@@ -28,7 +28,6 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
             self.allGroups = group
             self.allGroupsTable.reloadData()
         }
-        
         searchBar.delegate = self
     }
     
