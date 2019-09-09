@@ -43,6 +43,7 @@
 		B6B26C1323224AAB00A965D1 /* NewsTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B26C1223224AAB00A965D1 /* NewsTextCell.swift */; };
 		B6B26C1523224AF000A965D1 /* NewsMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B26C1423224AF000A965D1 /* NewsMediaCell.swift */; };
 		B6B26C172326416F00A965D1 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B26C162326416F00A965D1 /* UIViewController+Ext.swift */; };
+		B6B26C192326448700A965D1 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B26C182326448700A965D1 /* UITableView+Ext.swift */; };
 		B6E595E022F875E900580098 /* NavigationControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */; };
 		B6FF586322DE33E200B1604D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF586222DE33E200B1604D /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		B6B26C1223224AAB00A965D1 /* NewsTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTextCell.swift; sourceTree = "<group>"; };
 		B6B26C1423224AF000A965D1 /* NewsMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMediaCell.swift; sourceTree = "<group>"; };
 		B6B26C162326416F00A965D1 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		B6B26C182326448700A965D1 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerAnimator.swift; sourceTree = "<group>"; };
 		B6FF586222DE33E200B1604D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		EB8EB2F842D62FA1BAC82924 /* Pods-VK_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK_app/Pods-VK_app.release.xcconfig"; sourceTree = "<group>"; };
@@ -157,7 +159,7 @@
 				B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */,
 				B69D0E0823071C39003C9109 /* NetworkService.swift */,
 				B66A63C92318A254004AF737 /* RealmService.swift */,
-				B6B26C162326416F00A965D1 /* UIViewController+Ext.swift */,
+				B6B26C1A232645A200A965D1 /* Extensions */,
 				B68F97C322D24E0B00E0ACB4 /* Storyboard */,
 				B68F97C122D24DE400E0ACB4 /* Controllers */,
 				B68F97C022D24DCD00E0ACB4 /* Cell */,
@@ -239,6 +241,15 @@
 				B6B26C0F2322464100A965D1 /* NewsHeaderCell.swift */,
 			);
 			path = NewsCell;
+			sourceTree = "<group>";
+		};
+		B6B26C1A232645A200A965D1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B6B26C162326416F00A965D1 /* UIViewController+Ext.swift */,
+				B6B26C182326448700A965D1 /* UITableView+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B64C7B94231581CE00FCF264 /* Photo.swift in Sources */,
+				B6B26C192326448700A965D1 /* UITableView+Ext.swift in Sources */,
 				B6B26C1323224AAB00A965D1 /* NewsTextCell.swift in Sources */,
 				B6A5729922F9E7BC001D78DD /* AnimatedNavigationController.swift in Sources */,
 				B675DC9122C679C30074C418 /* LoginController.swift in Sources */,
