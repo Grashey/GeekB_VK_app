@@ -46,11 +46,9 @@ class GroupNewsController: UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
             let groups = try? RealmService.getData(type: Group.self)
-            let group = groups?.filter("id == %@", groupId)
-            group?.forEach {
-                cell.groupLabel.text = $0.name
-                let imageUrl = URL(string: $0.avatar)
-                cell.groupAvatar.kf.setImage(with: imageUrl)
+            let filteredGroup = groups?.filter("id == %@", groupId)
+            if let group = filteredGroup?[indexPath.row] {
+                cell.configure(with: group)
             }
             return cell
             

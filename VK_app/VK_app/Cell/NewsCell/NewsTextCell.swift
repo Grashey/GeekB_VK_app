@@ -12,7 +12,4 @@ class NewsTextCell: UITableViewCell {
     
     @IBOutlet weak var newsTextView: UITextView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 }

@@ -41,20 +41,15 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
         if(searchActive){
-            groupCell.groupNameLabel.text = filteredGroups[indexPath.row].name
-            
-            let imageUrl = URL(string: filteredGroups[indexPath.row].avatar)
-            groupCell.groupAvatarView.kf.setImage(with: imageUrl)
-            
+            let group = filteredGroups[indexPath.row]
+            cell.configure(with: group)
         } else {
-            groupCell.groupNameLabel.text = allGroups[indexPath.row].name
-            
-            let imageUrl = URL(string: allGroups[indexPath.row].avatar)
-            groupCell.groupAvatarView.kf.setImage(with: imageUrl)
+            let group = allGroups[indexPath.row]
+            cell.configure(with: group)
         }
-        return groupCell
+        return cell
     }
     
     //MARK: - UISearchBar methods

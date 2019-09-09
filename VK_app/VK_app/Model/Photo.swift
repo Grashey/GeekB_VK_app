@@ -15,6 +15,7 @@ class Photo: Object {
     @objc dynamic var photoUrl: String = ""
     @objc dynamic var photoMaxUrl: String = ""
     @objc dynamic var ownerId: String = ""
+    var owner = LinkingObjects(fromType: Friend.self, property: "photos")
     
     
     convenience init (_ json: JSON, ownerId: String) {

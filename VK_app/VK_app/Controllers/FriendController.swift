@@ -15,7 +15,7 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
     var firstCharacter = [Character]()
     var sortedFriends: [Character: [Friend]] = [:]
     var searchActive : Bool = false
-    var filteredFriends: Results<Friend>? = nil
+    var filteredFriends: Results<Friend>?
     
     @IBOutlet var friendsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -53,19 +53,17 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let friendCell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
         
         let character = firstCharacter[indexPath.section]
         if let friends = sortedFriends[character] {
-            friendCell.friendNameLabel.text = friends[indexPath.row].name + " " + friends[indexPath.row].surname
+            let friend = friends[indexPath.row]
+            cell.configure(with: friend)
         
-            let imageUrl = URL(string: friends[indexPath.row].avatar)
-            friendCell.friendAvatarView.kf.setImage(with: imageUrl)
+            cell.indexPath = indexPath
+            cell.delegate = self
         
-            friendCell.indexPath = indexPath
-            friendCell.delegate = self
-        
-            return friendCell
+            return cell
         }
         return UITableViewCell()
     }

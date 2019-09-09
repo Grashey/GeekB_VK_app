@@ -13,7 +13,10 @@ class NewsHeaderCell: UITableViewCell {
     @IBOutlet weak var groupAvatar: UIImageView!
     @IBOutlet weak var groupLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    public func configure(with group: Group) {
+        groupLabel.text = group.name
+        
+        let imageUrl = URL(string: group.avatar)
+        groupAvatar.kf.setImage(with: imageUrl)
     }
 }

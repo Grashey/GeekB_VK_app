@@ -29,4 +29,11 @@ class GroupCell: UITableViewCell {
                 }, completion: nil)
         })
     }
+    
+    public func configure(with group: Group) {
+        groupNameLabel.text = group.name
+        
+        let imageUrl = URL(string: group.avatar)
+        groupAvatarView.kf.setImage(with: imageUrl)
+    }
 }

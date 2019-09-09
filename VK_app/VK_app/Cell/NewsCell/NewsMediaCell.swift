@@ -12,7 +12,4 @@ class NewsMediaCell: UITableViewCell {
     
     @IBOutlet weak var newsImageView: UIImageView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 }

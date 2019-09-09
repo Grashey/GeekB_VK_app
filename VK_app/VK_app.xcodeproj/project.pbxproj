@@ -157,14 +157,13 @@
 			children = (
 				B675DC8E22C679C30074C418 /* AppDelegate.swift */,
 				B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */,
-				B69D0E0823071C39003C9109 /* NetworkService.swift */,
-				B66A63C92318A254004AF737 /* RealmService.swift */,
-				B6B26C1A232645A200A965D1 /* Extensions */,
 				B68F97C322D24E0B00E0ACB4 /* Storyboard */,
 				B68F97C122D24DE400E0ACB4 /* Controllers */,
 				B68F97C022D24DCD00E0ACB4 /* Cell */,
 				B68F97C222D24DF900E0ACB4 /* Model */,
 				B6A16EBE22E10E18001E10D0 /* View */,
+				B6B26C1B2326475000A965D1 /* Services */,
+				B6B26C1A232645A200A965D1 /* Extensions */,
 				B60C84AD22E7633200007A8E /* TO DO */,
 				B675DC9A22C679C40074C418 /* Info.plist */,
 			);
@@ -250,6 +249,15 @@
 				B6B26C182326448700A965D1 /* UITableView+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B6B26C1B2326475000A965D1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B69D0E0823071C39003C9109 /* NetworkService.swift */,
+				B66A63C92318A254004AF737 /* RealmService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

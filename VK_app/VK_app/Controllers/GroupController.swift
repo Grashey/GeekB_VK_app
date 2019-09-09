@@ -62,19 +62,15 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
         if searchActive {
-            groupCell.groupNameLabel.text = filteredGroups[indexPath.row].name
-            
-            let imageUrl = URL(string: filteredGroups[indexPath.row].avatar)
-            groupCell.groupAvatarView.kf.setImage(with: imageUrl)
+            let group = filteredGroups[indexPath.row]
+            cell.configure(with: group)
         } else {
-            groupCell.groupNameLabel.text = myGroups[indexPath.row].name
-            
-            let imageUrl = URL(string: myGroups[indexPath.row].avatar)
-            groupCell.groupAvatarView.kf.setImage(with: imageUrl)
+            let group = myGroups[indexPath.row]
+            cell.configure(with: group)
         }
-        return groupCell
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -103,6 +99,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
             let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return range.location != NSNotFound
         })
+        
         if searchText.isEmpty {
             searchActive = false
         } else {

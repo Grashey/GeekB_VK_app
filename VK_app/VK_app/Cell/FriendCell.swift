@@ -41,4 +41,11 @@ class FriendCell: UITableViewCell {
             })
         })
     }
+    
+    public func configure(with friend: Friend) {
+        friendNameLabel.text = friend.name + " " + friend.surname
+        
+        let imageUrl = URL(string: friend.avatar)
+        friendAvatarView.kf.setImage(with: imageUrl)
+    }
 }

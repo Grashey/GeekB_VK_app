@@ -15,7 +15,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     @IBOutlet var photoView: UICollectionView!
     
     var friendId = Int()
-    var photos: Results<Photo>? = nil
+    var photos: Results<Photo>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +43,10 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! FriendPhotoCell
-        let imageUrl = URL(string: photos?[indexPath.item].photoUrl ?? "") // TO DO: ""
-        cell.photoView.kf.setImage(with: imageUrl)
+        if let photo = photos?[indexPath.row] {
+            cell.configure(with: photo)
+        }
+        
         return cell
     }
     
@@ -67,7 +69,6 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         let photoVC = storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
         photoVC.ownerId = friendId
         photoVC.index = indexPath.item
-        print(photoVC.index)
         self.navigationController?.pushViewController(photoVC, animated: true)
     }
 }
