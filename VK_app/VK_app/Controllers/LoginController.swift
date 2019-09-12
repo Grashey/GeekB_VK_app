@@ -64,18 +64,13 @@ class LoginController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         NotificationCenter.default.removeObserver(self)
-        
         navigationController?.navigationBar.isHidden = false
     }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }
@@ -84,7 +79,6 @@ class LoginController: UIViewController {
         
         print("username: \(usernameTextField.text ?? "")")
         print("password: \(passwordTextField.text ?? "")")
-        
     }
     
     @objc private func keyboardWasShown(notification: Notification){

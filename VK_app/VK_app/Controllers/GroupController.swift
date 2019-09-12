@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GroupController: UITableViewController, UISearchBarDelegate {
-    
-    var myGroups = [Group]()
-    
+
     @IBOutlet var groupsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func addGroup(segue: UIStoryboardSegue){
@@ -33,61 +32,95 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         //}) else { return }
 
         //myGroups.append(newGroup)
-        tableView.reloadData()
+        //tableView.reloadData()
     }
     
+    var myGroups: Results<Group>?
     var searchActive : Bool = false
-    var filteredGroups:[Group] = []
+    var filteredGroups: Results<Group>?
+    private var notificationToken: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.getGroups() { [weak self] group in
-            guard let self = self else { return }
+        networkService.getGroups() { group in
             try? RealmService.saveData(objects: group)
-            self.myGroups = group
-            self.groupsTable.reloadData()
+        }
+        
+        myGroups = try? RealmService.getData(type: Group.self)
+        notificationToken = myGroups?.observe { change in
+            switch change {
+            case .initial:
+                self.tableView.reloadData()
+            case .update(_ , let deletions, let insertions, let modifications):
+                self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
+                self.tableView.reloadData()
+                print(deletions)
+                print(insertions)
+                print(modifications) // при каждом запросе обновляется!!! зачем??
+            case .error(let error):
+                self.show(error)
+            }
         }
         searchBar.delegate = self
     }
     
+    deinit {
+        notificationToken?.invalidate()
+    }
+    
     //MARK: - TableViewDataSource methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(searchActive) {
-            return filteredGroups.count
+        if searchActive {
+            return filteredGroups?.count ?? 0
         } else {
-            return myGroups.count
+            return myGroups?.count ?? 0
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let groupCell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
-        if(searchActive){
-            groupCell.groupNameLabel.text = filteredGroups[indexPath.row].name
-            
-            let imageUrl = URL(string: filteredGroups[indexPath.row].avatar)
-            groupCell.groupAvatarView.kf.setImage(with: imageUrl)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
+        if searchActive {
+            if let group = filteredGroups?[indexPath.row] {
+                cell.configure(with: group)
+            }
         } else {
-            groupCell.groupNameLabel.text = myGroups[indexPath.row].name
-            
-            let imageUrl = URL(string: myGroups[indexPath.row].avatar)
-            groupCell.groupAvatarView.kf.setImage(with: imageUrl)
+            if let group = myGroups?[indexPath.row] {
+                cell.configure(with: group)
+            }
         }
-        return groupCell
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if(searchActive){
-                myGroups.removeAll { (group) -> Bool in
-                    group.name == filteredGroups[indexPath.row].name
+            if searchActive {
+                let groupId = filteredGroups?[indexPath.row].id
+                guard let object = myGroups?.filter("id = %@", groupId ?? 0) else { return }
+                do {
+                    let realm = try Realm()
+                    realm.beginWrite()
+                    realm.delete(object)
+                    try realm.commitWrite()
+                    //networkService.groups.leave
+                } catch {
+                    print(error)
                 }
-                filteredGroups.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             } else {
-                myGroups.remove(at: indexPath.row)
+                let groupId = myGroups?[indexPath.row].id
+                guard let object = myGroups?.filter("id = %@", groupId ?? 0) else { return }
+                do {
+                    let realm = try Realm()
+                    realm.beginWrite()
+                    realm.delete(object)
+                    try realm.commitWrite()
+                    //networkService.groups.leave
+                } catch {
+                    print(error)
+                }
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
@@ -100,28 +133,28 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     //MARK: - UISearchBar methods
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filteredGroups = myGroups.filter ({ (group) -> Bool in
-            let tmp: NSString = group.name as NSString
-            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            return range.location != NSNotFound
-        })
         if searchText.isEmpty {
             searchActive = false
         } else {
             searchActive = true
         }
+        
+        filteredGroups = myGroups?.filter("name CONTAINS[cd] %@", searchText)
         tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GroupNewsSegue",
             let indexPath = tableView.indexPathForSelectedRow,
-            let photoVC = segue.destination as? GroupNewsController,
-            let groups = try? RealmService.getData(type: Group.self)
+            let photoVC = segue.destination as? GroupNewsController
         {
-            photoVC.groupId = groups[indexPath.row].id
+            if searchActive {
+                photoVC.groupId = filteredGroups?[indexPath.row].id ?? 0
+            } else {
+                photoVC.groupId = myGroups?[indexPath.row].id ?? 0
             }
         }
+    }
 }
 
 extension GroupController: UIViewControllerTransitioningDelegate {

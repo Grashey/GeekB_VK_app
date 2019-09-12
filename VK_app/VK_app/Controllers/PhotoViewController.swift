@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 @IBDesignable
 
 class PhotoViewController: UIViewController {
@@ -18,12 +19,19 @@ class PhotoViewController: UIViewController {
     
     var likeCount = 0
     var index = Int()
+    var ownerId = Int()
     var photos = [Photo]()
     
     override func viewDidLoad() {
         
+        let allPhotos = try? RealmService.getData(type: Photo.self)
+        let photos = allPhotos?.filter("ownerId == [cd] %@", String(self.ownerId))
+        photos?.forEach{ photo in
+            self.photos.append(photo)
+        }
+        
         likeCountView.textColor = .lightGray
-        let imageUrl = URL(string: photos[index].photoMaxUrl)
+        let imageUrl = URL(string: self.photos[index].photoMaxUrl)
         photoFullScreenView.kf.setImage(with: imageUrl)
         likeCountView.text = String(likeCount)
         nextPhotoView.isHidden = true
@@ -132,12 +140,12 @@ class PhotoViewController: UIViewController {
             let imageUrl = URL(string: self.photos[self.index].photoMaxUrl)
             self.photoFullScreenView.kf.setImage(with: imageUrl)
             self.photoFullScreenView.transform = .identity
-            })
+        })
     }
     
     private func likeCountUp(_ text: String) {
         UIView.transition(with: likeCountView, duration: 0.4, options: .transitionFlipFromRight, animations: {
-        self.likeCountView.text = text
+            self.likeCountView.text = text
         })
     }
     

@@ -1,5 +1,5 @@
 //
-//  NewsViewCell.swift
+//  NewsFooterCell.swift
 //  VK_app
 //
 //  Created by Aleksandr Fetisov on 25/07/2019.
@@ -8,12 +8,7 @@
 
 import UIKit
 
-class NewsViewCell: UITableViewCell {
-    
-    @IBOutlet weak var groupAvatar: UIImageView!
-    @IBOutlet weak var groupLabel: UILabel!
-    @IBOutlet weak var newsTextView: UITextView!
-    @IBOutlet weak var newsImageView: UIImageView!
+class NewsFooterCell: UITableViewCell {
     
     @IBOutlet weak var likeImageView: LikeImageView!
     @IBOutlet weak var likeCountLabel: UILabel!

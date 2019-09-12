@@ -10,14 +10,17 @@ import UIKit
 import Kingfisher
 import RealmSwift
 
-class FriendController: UITableViewController, FriendCellDelegate {
+class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDelegate {
     
     var firstCharacter = [Character]()
     var sortedFriends: [Character: [Friend]] = [:]
+    var searchActive : Bool = false
+    var filteredFriends: Results<Friend>?
+    private var notificationToken: NotificationToken?
     
     @IBOutlet var friendsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,10 +28,26 @@ class FriendController: UITableViewController, FriendCellDelegate {
         networkService.getFriends() { [weak self] friend in
             guard let self = self else { return }
             try? RealmService.saveData(objects: friend)
+            
             let friends = try? RealmService.getData(type: Friend.self)
-            (self.firstCharacter, self.sortedFriends) = self.sort((friends.self)!)
-            self.friendsTable.reloadData()
+            (self.firstCharacter, self.sortedFriends) = self.sort(friends!.self)
+            
+            self.notificationToken = friends?.observe { change in
+                switch change {
+                case .initial:
+                    self.tableView.reloadData()
+                case .update(_ , let deletions, let insertions, let modifications):
+                    self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
+                case .error(let error):
+                    self.show(error)
+                }
+            }
         }
+        searchBar.delegate = self
+    }
+    
+    deinit {
+        notificationToken?.invalidate()
     }
     
     //MARK: - UITableViewDataSource methods
@@ -50,19 +69,17 @@ class FriendController: UITableViewController, FriendCellDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let friendCell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
         
         let character = firstCharacter[indexPath.section]
         if let friends = sortedFriends[character] {
-            friendCell.friendNameLabel.text = friends[indexPath.row].name + " " + friends[indexPath.row].surname
-            
-            let imageUrl = URL(string: friends[indexPath.row].avatar)
-            friendCell.friendAvatarView.kf.setImage(with: imageUrl)
-            
-            friendCell.indexPath = indexPath
-            friendCell.delegate = self
-          
-            return friendCell
+            let friend = friends[indexPath.row]
+            cell.configure(with: friend)
+        
+            cell.indexPath = indexPath
+            cell.delegate = self
+        
+            return cell
         }
         return UITableViewCell()
     }
@@ -84,30 +101,58 @@ class FriendController: UITableViewController, FriendCellDelegate {
         
         return header
     }
+
+    //MARK: - UISearchBar method
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText.isEmpty {
+            searchActive = false
+        } else {
+            searchActive = true
+        }
+        
+        let friends = try? RealmService.getData(type: Friend.self)
+        filteredFriends = friends?.filter("name CONTAINS[cd] %@ OR surname CONTAINS[cd] %@", searchText, searchText)
+        (self.firstCharacter, self.sortedFriends) = self.sort(filteredFriends!.self)
+        tableView.reloadData()
+    }
     
     /// Sorts friends + first letters
     ///
     /// - Parameter friends: input friends
     /// - Returns: tuple with characters & friends
     private func sort(_: Results<Friend>) -> (characters: [Character], sortedFriends: [Character: [Friend]]){
-        
+    
         var characters = [Character]()
         var sortedFriends = [Character: [Friend]]()
-        let friends = try? RealmService.getData(type: Friend.self)
         
-        friends?.forEach { friend in
-            guard let character = friend.surname.first else { return }
-            if var thisCharFriends = sortedFriends[character] {
-                thisCharFriends.append(friend)
-                let sortedCharFriends = thisCharFriends.sorted(by: {$0.surname < $1.surname})
-                sortedFriends[character] = sortedCharFriends
-            } else {
-                sortedFriends[character] = [friend]
-                characters.append(character)
+        if searchActive {
+            filteredFriends!.forEach { friend in
+                guard let character = friend.surname.first else { return }
+                if var thisCharFriends = sortedFriends[character] {
+                    thisCharFriends.append(friend)
+                    let sortedCharFriends = thisCharFriends.sorted(by: {$0.surname < $1.surname})
+                    sortedFriends[character] = sortedCharFriends
+                } else {
+                    sortedFriends[character] = [friend]
+                    characters.append(character)
+                }
+            }
+        } else {
+            let friends = try? RealmService.getData(type: Friend.self)
+            friends?.forEach { friend in
+                guard let character = friend.surname.first else { return }
+                if var thisCharFriends = sortedFriends[character] {
+                    thisCharFriends.append(friend)
+                    let sortedCharFriends = thisCharFriends.sorted(by: {$0.surname < $1.surname})
+                    sortedFriends[character] = sortedCharFriends
+                } else {
+                    sortedFriends[character] = [friend]
+                    characters.append(character)
+                }
             }
         }
         characters.sort()
-        
         return (characters, sortedFriends)
     }
     
@@ -120,10 +165,10 @@ class FriendController: UITableViewController, FriendCellDelegate {
             if let friends = sortedFriends[character] {
                 let friend = friends[indexPath.row]
                 photoVC.friendId = friend.id
-                print(friend.id)
             }
         }
     }
+    
     func performSegueFromView(sender: IndexPath) {
         self.performSegue(withIdentifier: "FriendPhotoSegue", sender: sender)
     }
