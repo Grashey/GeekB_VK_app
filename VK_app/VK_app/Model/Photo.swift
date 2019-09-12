@@ -14,7 +14,9 @@ class Photo: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var photoUrl: String = ""
     @objc dynamic var photoMaxUrl: String = ""
-    let owner = List<Friend>()
+    @objc dynamic var ownerId: String = ""
+    var owner = LinkingObjects(fromType: Friend.self, property: "photos")
+    
     
     convenience init (_ json: JSON, ownerId: String) {
         self.init()
@@ -26,10 +28,7 @@ class Photo: Object {
         let maxIndex = sizesArray.count - 1
         self.photoMaxUrl = json["sizes"][maxIndex]["url"].stringValue
         
-        let friendsResult = try? RealmService.getData(type: Friend.self)
-        let currenfFriend = friendsResult?.filter("id == %@", Int(ownerId)!)
-        guard let friend = currenfFriend?.first else { return }
-        self.owner.append(friend)
+        self.ownerId = ownerId
     }
     
     override static func primaryKey() -> String? {

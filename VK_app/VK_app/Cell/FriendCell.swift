@@ -24,8 +24,8 @@ class FriendCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     
-    let springGR = UITapGestureRecognizer(target: self, action: #selector(compression))
-    friendAvatarView.addGestureRecognizer(springGR)
+        let springGR = UITapGestureRecognizer(target: self, action: #selector(compression))
+        friendAvatarView.addGestureRecognizer(springGR)
     }
     
     @objc func compression() {
@@ -40,5 +40,12 @@ class FriendCell: UITableViewCell {
                 self.delegate?.performSegueFromView(sender: self.indexPath)
             })
         })
+    }
+    
+    public func configure(with friend: Friend) {
+        friendNameLabel.text = friend.name + " " + friend.surname
+        
+        let imageUrl = URL(string: friend.avatar)
+        friendAvatarView.kf.setImage(with: imageUrl)
     }
 }

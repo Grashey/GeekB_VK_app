@@ -8,29 +8,50 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class FriendPhotoController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var photoView: UICollectionView!
     
     var friendId = Int()
-    var photos = [Photo]()
+    var photos: Results<Photo>?
+    private var notificationToken: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.getPhotos(userId: "\(friendId)") { [weak self] photos in
-            guard let self = self else { return }
+        networkService.getPhotos(userId: "\(friendId)") { photos in
             try? RealmService.saveData(objects: photos)
-            self.photos = photos
-            self.photoView.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        photos = try? RealmService.getData(type: Photo.self).filter("ownerId == [cd] %@", String(self.friendId))
+        notificationToken = photos?.observe { change in
+            switch change {
+            case .initial:
+                self.collectionView.reloadData()
+            case .update:
+                self.collectionView.reloadData()
+            case .error(let error):
+                self.show(error)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        
+        notificationToken?.invalidate()
     }
 
     //MARK: - CollectionViewDataSource methods
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return photos?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -42,11 +63,11 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! FriendPhotoCell
-        let imageUrl = URL(string: photos[indexPath.item].photoUrl)
-        cell.photoView.kf.setImage(with: imageUrl)
+        if let photo = photos?[indexPath.row] {
+            cell.configure(with: photo)
+        }
         
         return cell
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -66,8 +87,8 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     override func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let photoVC = storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
+        photoVC.ownerId = friendId
         photoVC.index = indexPath.item
-        photoVC.photos = photos
         self.navigationController?.pushViewController(photoVC, animated: true)
     }
 }

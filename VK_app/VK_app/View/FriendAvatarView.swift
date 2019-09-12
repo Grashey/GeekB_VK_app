@@ -25,11 +25,9 @@ class FriendAvatarView: UIView {
         shadowView.layer.shadowOffset = shadowOffset
         shadowView.layer.shadowRadius = shadowRadius
         shadowView.layer.shadowOpacity = shadowOpacity
-        
         shadowView.backgroundColor = UIColor.white
-        avatarImageView.backgroundColor = .clear
         
-        //shadowView.layer.masksToBounds = true
+        avatarImageView.backgroundColor = .clear
         avatarImageView.layer.masksToBounds = true
     }
   
