@@ -14,6 +14,11 @@ class NewsfeedViewController: UITableViewController {
     
     @IBOutlet var newsfeedTable: UITableView!
     
+    @IBAction func logOutButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "logOutSegue", sender: self)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     var news = [News]()
     
     override func viewDidLoad() {
@@ -23,6 +28,8 @@ class NewsfeedViewController: UITableViewController {
         networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
             guard let self = self else { return }
             self.news = news
+            
+            print(news[0])
             self.newsfeedTable.reloadData()
         })
     }
@@ -35,9 +42,17 @@ class NewsfeedViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return news.count
     }
-    
+    var countrows = Int()
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        var count = 2
+        if !news[section].text.isEmpty {
+            count += 1
+        }
+        if !news[section].photo.isEmpty {
+            count += 1
+        }
+        countrows = count - 1
+        return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,18 +67,25 @@ class NewsfeedViewController: UITableViewController {
             }
             return cell
             
-        } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as! NewsTextCell
-            cell.newsTextView.text = news[indexPath.section].text //TO DO: setup view height
-            return cell
-        
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == 1 && indexPath.row < countrows {
+            if !news[indexPath.section].text.isEmpty {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as! NewsTextCell
+                cell.newsTextView.text = news[indexPath.section].text //TO DO: setup view height
+                return cell
+            } else if !news[indexPath.section].photo.isEmpty {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
+                let imageUrl = URL(string: news[indexPath.section].photo) // TO DO: collectionview for images
+                cell.newsImageView.kf.setImage(with: imageUrl) //TO DO: setup view height
+                return cell
+            }
+            
+        } else if indexPath.row == 2 && indexPath.row < countrows {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
             let imageUrl = URL(string: news[indexPath.section].photo) // TO DO: collectionview for images
             cell.newsImageView.kf.setImage(with: imageUrl) //TO DO: setup view height
             return cell
             
-        } else if indexPath.row == 3 {
+        } else if indexPath.row == countrows {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
             return cell
         }

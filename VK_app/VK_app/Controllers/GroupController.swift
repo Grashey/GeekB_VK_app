@@ -35,6 +35,11 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         //tableView.reloadData()
     }
     
+    @IBAction func logOutButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "logOutSegue", sender: self)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     var myGroups: Results<Group>?
     var searchActive : Bool = false
     var filteredGroups: Results<Group>?

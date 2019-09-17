@@ -28,6 +28,8 @@ class LoginController: UIViewController {
     @IBOutlet weak var wordBallon: UIView!
     @IBOutlet weak var meowLabel: UILabel!
     
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

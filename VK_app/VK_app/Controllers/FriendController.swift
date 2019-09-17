@@ -20,30 +20,33 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
     
     @IBOutlet var friendsTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBAction func logOutButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "logOutSegue", sender: self)
+        self.dismiss(animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.getFriends() { [weak self] friend in
-            guard let self = self else { return }
+        networkService.getFriends() { friend in
             try? RealmService.saveData(objects: friend)
-            
-            let friends = try? RealmService.getData(type: Friend.self)
-            (self.firstCharacter, self.sortedFriends) = self.sort(friends!.self)
-            
-            self.notificationToken = friends?.observe { change in
-                switch change {
-                case .initial:
-                    self.tableView.reloadData()
-                case .update(_ , let deletions, let insertions, let modifications):
-                    self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
-                case .error(let error):
-                    self.show(error)
-                }
-            }
         }
         searchBar.delegate = self
+        
+        let friends = try? RealmService.getData(type: Friend.self)
+        self.notificationToken = friends?.observe { [weak self] change in
+            guard let friends = friends,
+                let self = self else { return }
+            switch change {
+            case .initial, .update:
+                (self.firstCharacter, self.sortedFriends) = self.sort(friends)
+                self.tableView.reloadData()
+            case .error(let error):
+                self.show(error)
+            }
+        }
     }
     
     deinit {

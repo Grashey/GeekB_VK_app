@@ -25,10 +25,6 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         networkService.getPhotos(userId: "\(friendId)") { photos in
             try? RealmService.saveData(objects: photos)
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         
         photos = try? RealmService.getData(type: Photo.self).filter("ownerId == [cd] %@", String(self.friendId))
         notificationToken = photos?.observe { change in
@@ -43,9 +39,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        
+    deinit {
         notificationToken?.invalidate()
     }
 
