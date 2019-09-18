@@ -20,6 +20,7 @@ class NewsfeedViewController: UITableViewController {
     }
     
     var news = [News]()
+    let formatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +29,16 @@ class NewsfeedViewController: UITableViewController {
         networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
             guard let self = self else { return }
             self.news = news
-            
-            print(news[0])
             self.newsfeedTable.reloadData()
         })
+        formatter.timeStyle = .short
+        formatter.dateStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        
     }
     
     // MARK: - Tableview methods
@@ -42,17 +49,9 @@ class NewsfeedViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return news.count
     }
-    var countrows = Int()
+  
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = 2
-        if !news[section].text.isEmpty {
-            count += 1
-        }
-        if !news[section].photo.isEmpty {
-            count += 1
-        }
-        countrows = count - 1
-        return count
+        return news[section].cellCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,32 +62,35 @@ class NewsfeedViewController: UITableViewController {
             let groupId = news[indexPath.section].groupId
             let filteredGroup = groups?.filter("id == %@", groupId)
             if let group = filteredGroup?[indexPath.row] {
-                cell.configure(with: group)
+                let date = news[indexPath.section].date
+                cell.configure(with: group, date: date)
             }
             return cell
-            
-        } else if indexPath.row == 1 && indexPath.row < countrows {
+
+        } else if indexPath.row == 1 {
             if !news[indexPath.section].text.isEmpty {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as! NewsTextCell
-                cell.newsTextView.text = news[indexPath.section].text //TO DO: setup view height
-                return cell
-            } else if !news[indexPath.section].photo.isEmpty {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as! NewsTextCell
+            cell.newsTextView.text = news[indexPath.section].text //TO DO: setup view height
+            return cell
+            } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
                 let imageUrl = URL(string: news[indexPath.section].photo) // TO DO: collectionview for images
                 cell.newsImageView.kf.setImage(with: imageUrl) //TO DO: setup view height
                 return cell
             }
-            
-        } else if indexPath.row == 2 && indexPath.row < countrows {
+
+        } else if news[indexPath.section].cellCount - 1 != 2,
+            indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
             let imageUrl = URL(string: news[indexPath.section].photo) // TO DO: collectionview for images
             cell.newsImageView.kf.setImage(with: imageUrl) //TO DO: setup view height
             return cell
-            
-        } else if indexPath.row == countrows {
+
+        } else if indexPath.row == news[indexPath.section].cellCount - 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
             return cell
         }
+            
         self.newsfeedTable.reloadData()
         return UITableViewCell()
     }

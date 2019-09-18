@@ -385,25 +385,36 @@
                                                 <constraint firstAttribute="width" secondItem="ChD-E6-nlj" secondAttribute="height" multiplier="1:1" id="jmG-d8-bbN"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icY-Fv-JaQ" userLabel="Group Label">
-                                            <rect key="frame" x="244.99999999999997" y="107.66666666666666" width="41.666666666666657" height="20.333333333333329"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icY-Fv-JaQ" userLabel="Group Label">
+                                            <rect key="frame" x="245" y="97.666666666666657" width="94" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5x-G3-7ik">
+                                            <rect key="frame" x="245" y="128" width="29" height="97.333333333333314"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="ChD-E6-nlj" firstAttribute="top" secondItem="wGx-nm-aLK" secondAttribute="top" constant="5" id="AuQ-I2-ryK"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Y5x-G3-7ik" secondAttribute="trailing" constant="20" symbolic="YES" id="CdK-7n-hvU"/>
+                                        <constraint firstItem="Y5x-G3-7ik" firstAttribute="top" secondItem="icY-Fv-JaQ" secondAttribute="bottom" constant="10" id="Ehx-BP-RkN"/>
                                         <constraint firstItem="ChD-E6-nlj" firstAttribute="leading" secondItem="wGx-nm-aLK" secondAttribute="leading" constant="10" id="HPp-ks-fj2"/>
+                                        <constraint firstItem="Y5x-G3-7ik" firstAttribute="leading" secondItem="icY-Fv-JaQ" secondAttribute="leading" id="QLT-To-3Sf"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="icY-Fv-JaQ" secondAttribute="trailing" constant="5" id="ZEB-cE-33g"/>
-                                        <constraint firstItem="icY-Fv-JaQ" firstAttribute="centerY" secondItem="ChD-E6-nlj" secondAttribute="centerY" id="aKZ-tv-lmW"/>
+                                        <constraint firstItem="icY-Fv-JaQ" firstAttribute="centerY" secondItem="ChD-E6-nlj" secondAttribute="centerY" constant="-10" id="aKZ-tv-lmW"/>
                                         <constraint firstAttribute="bottom" secondItem="ChD-E6-nlj" secondAttribute="bottom" constant="5" id="gny-ai-Crg"/>
+                                        <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Y5x-G3-7ik" secondAttribute="bottom" constant="10" id="tcv-m7-5oP"/>
                                         <constraint firstItem="icY-Fv-JaQ" firstAttribute="leading" secondItem="ChD-E6-nlj" secondAttribute="trailing" constant="10" id="v0g-KY-sNl"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="groupAvatar" destination="ChD-E6-nlj" id="9Ao-Vp-9C0"/>
                                     <outlet property="groupLabel" destination="icY-Fv-JaQ" id="GW4-7Z-nRU"/>
+                                    <outlet property="timeLabel" destination="Y5x-G3-7ik" id="saP-6k-jKR"/>
                                     <segue destination="5vY-3V-atX" kind="show" identifier="NewsSegue" id="hvy-RA-t6f"/>
                                 </connections>
                             </tableViewCell>
@@ -1176,6 +1187,6 @@
         <image name="viewCountIcon" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hrz-Wl-26j"/>
+        <segue reference="hvy-RA-t6f"/>
     </inferredMetricsTieBreakers>
 </document>

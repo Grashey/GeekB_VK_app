@@ -18,7 +18,7 @@ class News: Object {
     @objc dynamic var date: Int = 0
     @objc dynamic var photo: String = ""
     @objc dynamic var type: String = ""
-    
+    var cellCount: Int = 2
     
     convenience init (_ json: JSON) {
         self.init()
@@ -33,5 +33,12 @@ class News: Object {
         self.text = json["text"].stringValue
         self.date = json["date"].intValue
         self.photo = json["attachments"][0]["photo"]["sizes"][maxIndex]["url"].stringValue
+        
+        if !self.text.isEmpty {
+            cellCount += 1
+        }
+        if !self.photo.isEmpty {
+            cellCount += 1
+        }
     }
 }
