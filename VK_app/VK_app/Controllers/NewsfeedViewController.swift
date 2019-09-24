@@ -35,12 +35,6 @@ class NewsfeedViewController: UITableViewController {
         formatter.dateStyle = .none
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        
-    }
-    
     // MARK: - Tableview methods
     override func  tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -51,10 +45,12 @@ class NewsfeedViewController: UITableViewController {
     }
   
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news[section].cellCount
+        return news[section].data.count + 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let data = news[indexPath.section]
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
@@ -66,35 +62,31 @@ class NewsfeedViewController: UITableViewController {
                 cell.configure(with: group, date: date)
             }
             return cell
-
-        } else if indexPath.row == 1 {
-            if !news[indexPath.section].text.isEmpty {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as! NewsTextCell
-            cell.newsTextView.text = news[indexPath.section].text //TO DO: setup view height
-            return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
-                let imageUrl = URL(string: news[indexPath.section].photo) // TO DO: collectionview for images
-                cell.newsImageView.kf.setImage(with: imageUrl) //TO DO: setup view height
-                return cell
-            }
-
-        } else if news[indexPath.section].cellCount - 1 != 2,
-            indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
-            let imageUrl = URL(string: news[indexPath.section].photo) // TO DO: collectionview for images
-            cell.newsImageView.kf.setImage(with: imageUrl) //TO DO: setup view height
-            return cell
-
-        } else if indexPath.row == news[indexPath.section].cellCount - 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
-            return cell
-        }
             
+        } else if indexPath.row == news[indexPath.section].data.count + 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
+            cell.configure(with: data)
+            return cell
+            
+        } else if !news[indexPath.section].data.isEmpty {
+            for (index, element) in news[indexPath.section].data.enumerated() {
+                if indexPath.row == index + 1 {
+                    if element == "NewsTextCell" {
+                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as! NewsTextCell
+                        cell.configure(with: data)
+                        return cell
+                    } else if element == "NewsMediaCell" {
+                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
+                        cell.configure(with: data)
+                        return cell
+                    }
+                }
+            }
+        }
         self.newsfeedTable.reloadData()
         return UITableViewCell()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NewsSegue",
             let indexPath = tableView.indexPathForSelectedRow,
@@ -104,3 +96,5 @@ class NewsfeedViewController: UITableViewController {
         }
     }
 }
+
+

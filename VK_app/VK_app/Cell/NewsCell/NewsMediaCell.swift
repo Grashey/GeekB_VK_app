@@ -12,4 +12,9 @@ class NewsMediaCell: UITableViewCell {
     
     @IBOutlet weak var newsImageView: UIImageView!
 
+    public func configure(with data: News) {
+        
+        let imageUrl = URL(string: data.photo)
+        newsImageView.kf.setImage(with: imageUrl)
+    }
 }
