@@ -18,7 +18,13 @@ class News: Object {
     @objc dynamic var date: Int = 0
     @objc dynamic var photo: String = ""
     @objc dynamic var type: String = ""
+    @objc dynamic var comments: Int = 0
+    @objc dynamic var likes: Int = 0
+    @objc dynamic var userLikes: Int = 0
+    @objc dynamic var reposts: Int = 0
+    @objc dynamic var views: Int = 0
     
+    var data = [String]()
     
     convenience init (_ json: JSON) {
         self.init()
@@ -33,5 +39,19 @@ class News: Object {
         self.text = json["text"].stringValue
         self.date = json["date"].intValue
         self.photo = json["attachments"][0]["photo"]["sizes"][maxIndex]["url"].stringValue
+        self.comments = json["comments"]["count"].intValue
+        self.likes = json["likes"]["count"].intValue
+        self.userLikes = json["likes"]["user_likes"].intValue
+        self.reposts = json["reposts"]["count"].intValue
+        self.views = json["views"]["count"].intValue
+        
+        if !self.text.isEmpty {
+            let name = "NewsTextCell"
+            data.append(name)
+        }
+        if !self.photo.isEmpty {
+            let name = "NewsMediaCell"
+            data.append(name)
+        }
     }
 }

@@ -88,4 +88,16 @@ class NewsFooterCell: UITableViewCell {
             label.text = text
         })
     }
+    
+    public func configure(with data: News) {
+        likeCount = data.likes
+        commentCount = data.comments
+        repostCount = data.reposts
+        viewsCount = data.views
+        
+        likeCountLabel.text = String(likeCount)
+        commentCountLabel.text = String(commentCount)
+        repostCountLabel.text = String(repostCount)
+        viewCountLabel.text = String(viewsCount)
+    }
 }

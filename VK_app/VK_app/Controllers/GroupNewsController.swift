@@ -48,7 +48,8 @@ class GroupNewsController: UITableViewController {
             let groups = try? RealmService.getData(type: Group.self)
             let filteredGroup = groups?.filter("id == %@", groupId)
             if let group = filteredGroup?[indexPath.row] {
-                cell.configure(with: group)
+                let date = news[indexPath.section].date
+                cell.configure(with: group, date: date)
             }
             return cell
             

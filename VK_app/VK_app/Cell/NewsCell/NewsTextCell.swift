@@ -12,4 +12,7 @@ class NewsTextCell: UITableViewCell {
     
     @IBOutlet weak var newsTextView: UITextView!
 
+    public func configure(with data: News) {
+        newsTextView.text = data.text
+    }
 }
