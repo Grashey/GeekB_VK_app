@@ -140,4 +140,26 @@ class NetworkService {
             }
         }
     }
+    
+    static func getGroupById(id: Int, completion: @escaping ([Group]) -> Void){
+        let parameters: Parameters = [
+            "v" : "5.96",
+            "access_token" : Session.instance.token,
+            "group_id" : id
+        ]
+        
+        AF.request("https://api.vk.com/method/groups.getById", method: .get, parameters: parameters).responseJSON {
+            responce in
+            switch responce.result {
+            case .success(let data):
+                let json = JSON(data)
+                let group = json["response"].arrayValue
+                let groups = group.map { Group($0) }
+                completion(groups)
+            case .failure(let error):
+                print(error)
+                completion([])
+            }
+        }
+    }
 }

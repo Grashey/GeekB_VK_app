@@ -54,13 +54,10 @@ class NewsfeedViewController: UITableViewController {
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
-            let groups = try? RealmService.getData(type: Group.self)
             let groupId = news[indexPath.section].groupId
-            let filteredGroup = groups?.filter("id == %@", groupId)
-            if let group = filteredGroup?[indexPath.row] {
-                let date = news[indexPath.section].date
-                cell.configure(with: group, date: date)
-            }
+            NetworkService.getGroupById(id: groupId, completion: { group in
+                cell.configure(with: group[0], date: data.date)
+            })
             return cell
             
         } else if indexPath.row == news[indexPath.section].data.count + 1 {
@@ -83,7 +80,6 @@ class NewsfeedViewController: UITableViewController {
                 }
             }
         }
-        self.newsfeedTable.reloadData()
         return UITableViewCell()
     }
 
