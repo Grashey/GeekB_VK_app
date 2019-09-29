@@ -29,7 +29,7 @@ class NewsfeedViewController: UITableViewController {
         networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
             guard let self = self else { return }
             self.news = news
-            self.newsfeedTable.reloadData()
+            DispatchQueue.main.async { self.newsfeedTable.reloadData() }
         })
         formatter.timeStyle = .short
         formatter.dateStyle = .none
@@ -56,7 +56,8 @@ class NewsfeedViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
             let groupId = news[indexPath.section].groupId
             NetworkService.getGroupById(id: groupId, completion: { group in
-                cell.configure(with: group[0], date: data.date)
+                guard let group = group.first else { return }
+                cell.configure(with: group, date: data.date)
             })
             return cell
             

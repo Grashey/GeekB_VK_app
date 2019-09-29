@@ -124,8 +124,7 @@ class NetworkService {
             "filter" : "post"
         ]
         
-        AF.request("https://api.vk.com/method/newsfeed.get", method: .get, parameters: parameters).responseJSON {
-            responce in
+        AF.request("https://api.vk.com/method/newsfeed.get", method: .get, parameters: parameters).responseJSON(queue: DispatchQueue.global()) { responce in
             switch responce.result {
             case .success(let data):
                 let json = JSON(data)
@@ -141,7 +140,7 @@ class NetworkService {
         }
     }
     
-    static func getGroupById(id: Int, completion: @escaping ([Group]) -> Void){
+    static func getGroupById(id: Int, completion: @escaping ([News]) -> Void){
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
@@ -153,9 +152,9 @@ class NetworkService {
             switch responce.result {
             case .success(let data):
                 let json = JSON(data)
-                let group = json["response"].arrayValue
-                let groups = group.map { Group($0) }
-                completion(groups)
+                let groupJSONs = json["response"].arrayValue
+                let group = groupJSONs.map { News($0) }
+                completion(group)
             case .failure(let error):
                 print(error)
                 completion([])

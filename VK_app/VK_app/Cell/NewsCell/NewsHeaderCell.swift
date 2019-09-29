@@ -14,7 +14,7 @@ class NewsHeaderCell: UITableViewCell {
     @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    public func configure(with group: Group, date: Int) {
+    public func configure(with group: News, date: Int) {
         groupLabel.text = group.name
         
         let imageUrl = URL(string: group.avatar)
