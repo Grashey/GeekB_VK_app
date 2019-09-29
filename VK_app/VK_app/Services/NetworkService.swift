@@ -12,6 +12,8 @@ import SwiftyJSON
 
 class NetworkService {
     
+    let dispatchGroup = DispatchGroup()
+    
     func getFriends(completion: @escaping ([Friend]) -> Void){
         
         let parameters: Parameters = [
@@ -117,6 +119,7 @@ class NetworkService {
     }
     
     func getNewsfeed(groupId: Any, completion: @escaping ([News]) -> Void) {
+        
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
@@ -127,12 +130,16 @@ class NetworkService {
         AF.request("https://api.vk.com/method/newsfeed.get", method: .get, parameters: parameters).responseJSON(queue: DispatchQueue.global()) { responce in
             switch responce.result {
             case .success(let data):
-                let json = JSON(data)
-                let newsJSONs = json["response"]["items"].arrayValue
-                let news = newsJSONs.map { News($0) }
-                let postNews = news.filter { $0.type == "post" }
-                
-                completion(postNews)
+                var postNews = [News]()
+                DispatchQueue.global().async(group: self.dispatchGroup) {
+                    let json = JSON(data)
+                    let newsJSONs = json["response"]["items"].arrayValue
+                    let news = newsJSONs.map { News($0) }
+                    postNews = news.filter { $0.type == "post" }
+                }
+                self.dispatchGroup.notify(queue: .main) {
+                    completion(postNews)
+                }
             case .failure(let error):
                 print(error)
                 completion([])
@@ -140,21 +147,25 @@ class NetworkService {
         }
     }
     
-    static func getGroupById(id: Int, completion: @escaping ([News]) -> Void){
+    func getGroupById(id: Int, completion: @escaping ([News]) -> Void){
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
             "group_id" : id
         ]
         
-        AF.request("https://api.vk.com/method/groups.getById", method: .get, parameters: parameters).responseJSON {
-            responce in
+        AF.request("https://api.vk.com/method/groups.getById", method: .get, parameters: parameters).responseJSON(queue: DispatchQueue.global()) { responce in
             switch responce.result {
             case .success(let data):
-                let json = JSON(data)
-                let groupJSONs = json["response"].arrayValue
-                let group = groupJSONs.map { News($0) }
-                completion(group)
+                var group = [News]()
+                DispatchQueue.global().async(group: self.dispatchGroup) {
+                    let json = JSON(data)
+                    let groupJSONs = json["response"].arrayValue
+                    group = groupJSONs.map { News($0) }
+                }
+                self.dispatchGroup.notify(queue: .main) {
+                    completion(group)
+                }
             case .failure(let error):
                 print(error)
                 completion([])
