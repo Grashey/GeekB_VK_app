@@ -22,20 +22,16 @@ class NewsfeedViewController: UITableViewController {
     var news = [News]()
     let formatter = DateFormatter()
     let networkService = NetworkService()
-    let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DispatchQueue.global().async(group: dispatchGroup) {
-            self.networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
-                guard let self = self else { return }
-                self.news = news
-            })
-        }
-        dispatchGroup.notify(queue: .main) {
+        networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
+            guard let self = self else { return }
+            self.news = news
             self.newsfeedTable.reloadData()
-        }
+        })
+
         
         formatter.timeStyle = .short
         formatter.dateStyle = .none
@@ -61,7 +57,7 @@ class NewsfeedViewController: UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
             let groupId = news[indexPath.section].groupId
-            networkService.getGroupById(id: groupId, completion: { group in
+            self.networkService.getGroupById(id: groupId, completion: { group in
                 guard let group = group.first else { return }
                 cell.configure(with: group, date: data.date)
             })

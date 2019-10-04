@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class NetworkService {
     
-    let dispatchGroup = DispatchGroup()
+    public let dispatchGroup = DispatchGroup()
     
     func getFriends(completion: @escaping ([Friend]) -> Void){
         
