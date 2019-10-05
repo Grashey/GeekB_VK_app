@@ -148,18 +148,18 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "GroupNewsSegue",
-//            let indexPath = tableView.indexPathForSelectedRow,
-//            let photoVC = segue.destination as? GroupNewsController
-//        {
-//            if searchActive {
-//                photoVC.groupId = filteredGroups?[indexPath.row].id ?? 0
-//            } else {
-//                photoVC.groupId = myGroups?[indexPath.row].id ?? 0
-//            }
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GroupNewsSegue",
+            let indexPath = tableView.indexPathForSelectedRow,
+            let photoVC = segue.destination as? GroupNewsController
+        {
+            if searchActive {
+                photoVC.groupId = filteredGroups?[indexPath.row].id ?? 0
+            } else {
+                photoVC.groupId = myGroups?[indexPath.row].id ?? 0
+            }
+        }
+    }
 }
 
 extension GroupController: UIViewControllerTransitioningDelegate {
