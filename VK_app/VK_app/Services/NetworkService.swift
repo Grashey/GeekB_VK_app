@@ -118,7 +118,7 @@ class NetworkService {
         }
     }
     
-    func getNewsfeed(groupId: Any, completion: @escaping ([News]) -> Void) {
+    func getNewsfeed(groupId: Any, completion: @escaping ([News],[NewsGroup],[NewsProfile]) -> Void) {
         
         let parameters: Parameters = [
             "v" : "5.96",
@@ -131,44 +131,35 @@ class NetworkService {
             switch responce.result {
             case .success(let data):
                 var postNews = [News]()
+                var groups = [NewsGroup]()
+                var profiles = [NewsProfile]()
+                
                 DispatchQueue.global().async(group: self.dispatchGroup) {
                     let json = JSON(data)
                     let newsJSONs = json["response"]["items"].arrayValue
                     let news = newsJSONs.map { News($0) }
                     postNews = news.filter { $0.type == "post" }
                 }
-                self.dispatchGroup.notify(queue: .main) {
-                    completion(postNews)
-                }
-            case .failure(let error):
-                print(error)
-                completion([])
-            }
-        }
-    }
-    
-    func getGroupById(id: Int, completion: @escaping ([News]) -> Void){
-        let parameters: Parameters = [
-            "v" : "5.96",
-            "access_token" : Session.instance.token,
-            "group_id" : id
-        ]
-        
-        AF.request("https://api.vk.com/method/groups.getById", method: .get, parameters: parameters).responseJSON(queue: DispatchQueue.global()) { responce in
-            switch responce.result {
-            case .success(let data):
-                var group = [News]()
+                
                 DispatchQueue.global().async(group: self.dispatchGroup) {
                     let json = JSON(data)
-                    let groupJSONs = json["response"].arrayValue
-                    group = groupJSONs.map { News($0) }
+                    let groupJSONs = json["response"]["groups"].arrayValue
+                    groups = groupJSONs.map { NewsGroup($0) }
                 }
+                
+                DispatchQueue.global().async(group: self.dispatchGroup) {
+                    let json = JSON(data)
+                    let profileJSONs = json["response"]["profiles"].arrayValue
+                    profiles = profileJSONs.map { NewsProfile($0) }
+                }
+                
                 self.dispatchGroup.notify(queue: .main) {
-                    completion(group)
+                    completion(postNews, groups, profiles)
                 }
+                
             case .failure(let error):
                 print(error)
-                completion([])
+                completion([],[],[])
             }
         }
     }

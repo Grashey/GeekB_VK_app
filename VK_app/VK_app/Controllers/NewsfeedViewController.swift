@@ -20,15 +20,19 @@ class NewsfeedViewController: UITableViewController {
     }
     
     var news = [News]()
+    var groups = [NewsGroup]()
+    var profiles = [NewsProfile]()
     let formatter = DateFormatter()
     let networkService = NetworkService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
+        networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news, groups, profiles  in
             guard let self = self else { return }
             self.news = news
+            self.groups = groups
+            self.profiles = profiles
             self.newsfeedTable.reloadData()
         })
 
@@ -56,12 +60,12 @@ class NewsfeedViewController: UITableViewController {
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
-            let groupId = news[indexPath.section].groupId
-            self.networkService.getGroupById(id: groupId, completion: { group in
-                guard let group = group.first else { return }
-                cell.configure(with: group, date: data.date)
-            })
-            return cell
+            for element in groups {
+                if -data.sourceId == element.groupId {
+                    cell.configure(with: element, date: data.date)
+                    return cell
+                }
+            }
             
         } else if indexPath.row == news[indexPath.section].data.count + 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
@@ -86,14 +90,14 @@ class NewsfeedViewController: UITableViewController {
         return UITableViewCell()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "NewsSegue",
-            let indexPath = tableView.indexPathForSelectedRow,
-            let newsVC = segue.destination as? GroupNewsController
-        {
-            newsVC.groupId = news[indexPath.section].groupId
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "NewsSegue",
+//            let indexPath = tableView.indexPathForSelectedRow,
+//            let newsVC = segue.destination as? GroupNewsController
+//        {
+//            newsVC.groupId = news[indexPath.section].groupId
+//        }
+//    }
 }
 
 

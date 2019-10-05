@@ -11,38 +11,38 @@ import Kingfisher
 import RealmSwift
 
 class GroupNewsController: UITableViewController {
-    
-    @IBOutlet var newsTable: UITableView!
-    
-    var groupId = Int()
-    var news = [News]()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let networkService = NetworkService()
-        networkService.getNewsfeed(groupId: -groupId, completion: { [weak self] news in
-            guard let self = self else { return }
-            self.news = news
-            self.newsTable.reloadData()
-        })
-    }
-
-    // MARK: - Tableview methods
-    override func  tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return news.count
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+//
+//    @IBOutlet var newsTable: UITableView!
+//
+//    var groupId = Int()
+//    var news = [News]()
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        let networkService = NetworkService()
+//        networkService.getNewsfeed(groupId: -groupId, completion: { [weak self] news in
+//            guard let self = self else { return }
+//            self.news = news
+//            self.newsTable.reloadData()
+//        })
+//    }
+//
+//    // MARK: - Tableview methods
+//    override func  tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
+//
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return news.count
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 4
+//    }
+//
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
 //        if indexPath.row == 0 {
 //            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
 //            let groups = try? RealmService.getData(type: Group.self)
@@ -68,6 +68,6 @@ class GroupNewsController: UITableViewController {
 //            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
 //            return cell
 //        }
-        return UITableViewCell()
-    }
+//        return UITableViewCell()
+//    }
 }
