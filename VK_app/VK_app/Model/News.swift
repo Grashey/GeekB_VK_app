@@ -52,6 +52,10 @@ class News: Object {
             let name = "NewsMediaCell"
             data.append(name)
         }
+        if self.signerId > 0 {
+            let name = "NewsProfileCell"
+            data.append(name)
+        }
     }
 }
 
