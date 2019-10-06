@@ -52,7 +52,7 @@ class GroupNewsController: UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
             for element in groups {
-                if -data.sourceId == element.groupId {
+                if -data.groupId == element.groupId {
                     cell.configure(with: element, date: data.date)
                     return cell
                 }
@@ -77,7 +77,7 @@ class GroupNewsController: UITableViewController {
                     }  else if element == "NewsProfileCell" {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsProfileCell", for: indexPath) as! NewsProfileCell
                         for element in profiles {
-                            if data.signerId == element.userId {
+                            if data.userId == element.userId {
                                 cell.configure(with: element)
                                 return cell
                            }

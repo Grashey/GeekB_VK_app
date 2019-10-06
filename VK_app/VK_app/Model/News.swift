@@ -12,8 +12,8 @@ import RealmSwift
 
 class News: Object {
 
-    @objc dynamic var sourceId: Int = 0
-    @objc dynamic var signerId: Int = 0
+    @objc dynamic var groupId: Int = 0
+    @objc dynamic var userId: Int = 0
     @objc dynamic var type: String = ""
     @objc dynamic var text: String = ""
     @objc dynamic var photo: String = ""
@@ -32,8 +32,8 @@ class News: Object {
         let sizesArray = json["attachments"][0]["photo"]["sizes"].arrayValue
         let maxIndex = sizesArray.count - 1
 
-        self.sourceId = json["source_id"].intValue
-        self.signerId = json["signer_id"].intValue
+        self.groupId = json["source_id"].intValue
+        self.userId = json["signer_id"].intValue
         self.type = json["type"].stringValue
         self.text = json["text"].stringValue
         self.photo = json["attachments"][0]["photo"]["sizes"][maxIndex]["url"].stringValue
@@ -52,7 +52,7 @@ class News: Object {
             let name = "NewsMediaCell"
             data.append(name)
         }
-        if self.signerId > 0 {
+        if self.userId > 0 {
             let name = "NewsProfileCell"
             data.append(name)
         }

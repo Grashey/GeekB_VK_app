@@ -61,7 +61,7 @@ class NewsfeedViewController: UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
             for element in groups {
-                if -data.sourceId == element.groupId {
+                if -data.groupId == element.groupId {
                     cell.configure(with: element, date: data.date)
                     return cell
                 }
@@ -86,7 +86,7 @@ class NewsfeedViewController: UITableViewController {
                     } else if element == "NewsProfileCell" {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsProfileCell", for: indexPath) as! NewsProfileCell
                         for element in profiles {
-                            if data.signerId == element.userId {
+                            if data.userId == element.userId {
                                 cell.configure(with: element)
                                 return cell
                             }
@@ -103,7 +103,7 @@ class NewsfeedViewController: UITableViewController {
             let indexPath = tableView.indexPathForSelectedRow,
             let newsVC = segue.destination as? GroupNewsController
         {
-            newsVC.groupId = -news[indexPath.section].sourceId
+            newsVC.groupId = -news[indexPath.section].groupId
         }
     }
 }
