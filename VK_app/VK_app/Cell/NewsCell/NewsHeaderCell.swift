@@ -14,10 +14,10 @@ class NewsHeaderCell: UITableViewCell {
     @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    public func configure(with group: Group, date: Int) {
-        groupLabel.text = group.name
+    public func configure(with group: NewsGroup, date: Int) {
+        groupLabel.text = group.groupName
         
-        let imageUrl = URL(string: group.avatar)
+        let imageUrl = URL(string: group.groupAvatar)
         groupAvatar.kf.setImage(with: imageUrl)
         
         let currentDateTime = Date().timeIntervalSince1970

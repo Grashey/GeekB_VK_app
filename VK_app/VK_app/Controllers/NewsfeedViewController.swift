@@ -20,17 +20,22 @@ class NewsfeedViewController: UITableViewController {
     }
     
     var news = [News]()
+    var groups = [NewsGroup]()
+    var profiles = [NewsProfile]()
     let formatter = DateFormatter()
+    let networkService = NetworkService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkService = NetworkService()
-        networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news in
+        networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news, groups, profiles  in
             guard let self = self else { return }
             self.news = news
+            self.groups = groups
+            self.profiles = profiles
             self.newsfeedTable.reloadData()
         })
+
         formatter.timeStyle = .short
         formatter.dateStyle = .none
     }
@@ -54,14 +59,12 @@ class NewsfeedViewController: UITableViewController {
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
-            let groups = try? RealmService.getData(type: Group.self)
-            let groupId = news[indexPath.section].groupId
-            let filteredGroup = groups?.filter("id == %@", groupId)
-            if let group = filteredGroup?[indexPath.row] {
-                let date = news[indexPath.section].date
-                cell.configure(with: group, date: date)
+            for element in groups {
+                if -data.groupId == element.groupId {
+                    cell.configure(with: element, date: data.date)
+                    return cell
+                }
             }
-            return cell
             
         } else if indexPath.row == news[indexPath.section].data.count + 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
@@ -79,11 +82,18 @@ class NewsfeedViewController: UITableViewController {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
                         cell.configure(with: data)
                         return cell
+                    } else if element == "NewsProfileCell" {
+                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsProfileCell", for: indexPath) as! NewsProfileCell
+                        for element in profiles {
+                            if data.userId == element.userId {
+                                cell.configure(with: element)
+                                return cell
+                            }
+                        }
                     }
                 }
             }
         }
-        self.newsfeedTable.reloadData()
         return UITableViewCell()
     }
 
@@ -92,7 +102,7 @@ class NewsfeedViewController: UITableViewController {
             let indexPath = tableView.indexPathForSelectedRow,
             let newsVC = segue.destination as? GroupNewsController
         {
-            newsVC.groupId = news[indexPath.section].groupId
+            newsVC.groupId = -news[indexPath.section].groupId
         }
     }
 }
