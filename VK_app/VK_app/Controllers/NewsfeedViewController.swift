@@ -36,7 +36,6 @@ class NewsfeedViewController: UITableViewController {
             self.newsfeedTable.reloadData()
         })
 
-        
         formatter.timeStyle = .short
         formatter.dateStyle = .none
     }
