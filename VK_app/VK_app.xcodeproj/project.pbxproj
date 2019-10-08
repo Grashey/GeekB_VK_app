@@ -15,6 +15,7 @@
 		B618FDC622D370B5004467E2 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC522D370B5004467E2 /* FriendController.swift */; };
 		B618FDCA22D389AD004467E2 /* FriendPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC922D389AD004467E2 /* FriendPhotoController.swift */; };
 		B618FDCC22D38A8C004467E2 /* FriendPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDCB22D38A8C004467E2 /* FriendPhotoCell.swift */; };
+		B6281C30234D029F00473926 /* OperationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6281C2F234D029F00473926 /* OperationService.swift */; };
 		B62992DC22DA288A00452C80 /* FriendAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62992DB22DA288A00452C80 /* FriendAvatarView.swift */; };
 		B62B20E722D0F3BB007F9161 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20E622D0F3BB007F9161 /* FriendCell.swift */; };
 		B62B20ED22D22CA2007F9161 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20EC22D22CA2007F9161 /* Friend.swift */; };
@@ -59,6 +60,7 @@
 		B618FDC522D370B5004467E2 /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		B618FDC922D389AD004467E2 /* FriendPhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoController.swift; sourceTree = "<group>"; };
 		B618FDCB22D38A8C004467E2 /* FriendPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCell.swift; sourceTree = "<group>"; };
+		B6281C2F234D029F00473926 /* OperationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationService.swift; sourceTree = "<group>"; };
 		B62992DB22DA288A00452C80 /* FriendAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAvatarView.swift; sourceTree = "<group>"; };
 		B62B20E622D0F3BB007F9161 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		B62B20EC22D22CA2007F9161 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			children = (
 				B69D0E0823071C39003C9109 /* NetworkService.swift */,
 				B66A63C92318A254004AF737 /* RealmService.swift */,
+				B6281C2F234D029F00473926 /* OperationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				B6B26C172326416F00A965D1 /* UIViewController+Ext.swift in Sources */,
 				B62B20F122D22EF0007F9161 /* GroupController.swift in Sources */,
 				B618FDCA22D389AD004467E2 /* FriendPhotoController.swift in Sources */,
+				B6281C30234D029F00473926 /* OperationService.swift in Sources */,
 				B69D0E0923071C39003C9109 /* NetworkService.swift in Sources */,
 				B675DC8F22C679C30074C418 /* AppDelegate.swift in Sources */,
 				B62B20EF22D22EAC007F9161 /* Group.swift in Sources */,

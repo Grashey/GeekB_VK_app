@@ -60,7 +60,6 @@ class GroupController: UITableViewController, UISearchBarDelegate {
                 self.tableView.reloadData()
             case .update(_ , let deletions, let insertions, let modifications):
                 self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
-                self.tableView.reloadData()
                 print(deletions)
                 print(insertions)
                 print(modifications) // при каждом запросе обновляется!!! зачем??
@@ -109,9 +108,8 @@ class GroupController: UITableViewController, UISearchBarDelegate {
                     realm.beginWrite()
                     realm.delete(object)
                     try realm.commitWrite()
-                    //networkService.groups.leave
                 } catch {
-                    print(error)
+                    show(error)
                 }
                 tableView.deleteRows(at: [indexPath], with: .fade)
             } else {
@@ -122,9 +120,8 @@ class GroupController: UITableViewController, UISearchBarDelegate {
                     realm.beginWrite()
                     realm.delete(object)
                     try realm.commitWrite()
-                    //networkService.groups.leave
                 } catch {
-                    print(error)
+                    show(error)
                 }
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
