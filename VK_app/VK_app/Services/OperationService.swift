@@ -109,3 +109,13 @@ class SaveGroupData: OperationService {
         self.state = .finished
     }
 }
+
+class LoadGroupData: OperationService {
+    
+    var data: Results<Group>?
+    
+    override func main() {
+      data = try? RealmService.getData(type: Group.self)
+        self.state = .finished
+    }
+}
