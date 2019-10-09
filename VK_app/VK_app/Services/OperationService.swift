@@ -6,19 +6,22 @@
 //  Copyright © 2019 Aleksandr Fetisov. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import Alamofire
+import SwiftyJSON
+import RealmSwift
 
 class OperationService: Operation {
     
     enum State: String {
-        case Ready, Executing, Finished
+        case ready, executing, finished
         
         fileprivate var keyPath: String {
-            return "is" + rawValue
+            return "is" + rawValue.capitalized
         }
     }
     
-    var state = State.Ready {
+    var state = State.ready {
         willSet {
             willChangeValue(forKey: newValue.keyPath)
             willChangeValue(forKey: state.keyPath)
@@ -34,29 +37,73 @@ class OperationService: Operation {
     }
     
     override var isReady: Bool {
-        return super.isReady && state == .Ready
+        return super.isReady && state == .ready
     }
     
     override var isExecuting: Bool {
-        return state == .Executing
+        return state == .executing
     }
     
     override var isFinished: Bool {
-        return state == .Finished
+        return state == .finished
     }
     
     override func start() {
         if isCancelled {
-            state = .Finished
+            state = .finished
             return
         }
         main()
-        state = .Executing
+        state = .executing
     }
     
     override func cancel() {
         super.cancel()
-        state = .Finished
+        state = .finished
     }
 }
 
+class GetGroupDataOperation: OperationService {
+    
+    override func cancel() {
+        request.cancel()
+        super.cancel()
+    }
+    
+    private var request: DataRequest
+    var data: Data?
+    
+    override func main() {
+        request.responseData(queue: .global()) { [weak self] response in
+            self?.data = response.data
+            self?.state = .finished
+            
+        }
+    }
+    
+    init(request: DataRequest) {
+        self.request = request
+    }
+}
+
+class ParseGroupData: OperationService {
+    
+    var outputData: [Group]?
+    
+    override func main() {
+        guard let getDataOperation = dependencies.first as? GetGroupDataOperation,
+            let data = getDataOperation.data else { return }
+            let json = JSON(data)
+            let groupJSONs = json["response"]["items"].arrayValue
+            outputData = groupJSONs.map { Group($0) }
+    }
+}
+
+class SaveGroupData: OperationService {
+    
+    override func main() {
+        guard let parseData = dependencies.first as? ParseGroupData,
+            let parsedData = parseData.outputData else { return }
+            try? RealmService.saveData(objects: parsedData)
+    }
+}
