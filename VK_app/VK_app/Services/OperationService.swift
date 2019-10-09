@@ -96,6 +96,7 @@ class ParseGroupData: OperationService {
             let json = JSON(data)
             let groupJSONs = json["response"]["items"].arrayValue
             outputData = groupJSONs.map { Group($0) }
+        self.state = .finished
     }
 }
 
@@ -105,5 +106,6 @@ class SaveGroupData: OperationService {
         guard let parseData = dependencies.first as? ParseGroupData,
             let parsedData = parseData.outputData else { return }
             try? RealmService.saveData(objects: parsedData)
+        self.state = .finished
     }
 }
