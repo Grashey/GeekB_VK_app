@@ -76,15 +76,13 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         let saveData = SaveGroupData()
         saveData.addDependency(parseData)
         q.addOperation(saveData)
-        
-        let loadData = LoadGroupData()
-        loadData.addDependency(saveData)
-        q.addOperation(loadData)
-        
-//        if let data = loadData.data {
-//            myGroups = data
-//            tableView.reloadData()
-//        }
+             
+        q.addBarrierBlock {
+            DispatchQueue.main.async {
+                self.myGroups = try? RealmService.getData(type: Group.self)
+                self.tableView.reloadData()
+            }
+        }
         
         notificationToken = myGroups?.observe { change in
             switch change {
