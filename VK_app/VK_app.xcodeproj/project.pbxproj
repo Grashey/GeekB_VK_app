@@ -15,6 +15,7 @@
 		B618FDC622D370B5004467E2 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC522D370B5004467E2 /* FriendController.swift */; };
 		B618FDCA22D389AD004467E2 /* FriendPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDC922D389AD004467E2 /* FriendPhotoController.swift */; };
 		B618FDCC22D38A8C004467E2 /* FriendPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B618FDCB22D38A8C004467E2 /* FriendPhotoCell.swift */; };
+		B6281C30234D029F00473926 /* OperationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6281C2F234D029F00473926 /* OperationService.swift */; };
 		B62992DC22DA288A00452C80 /* FriendAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62992DB22DA288A00452C80 /* FriendAvatarView.swift */; };
 		B62B20E722D0F3BB007F9161 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20E622D0F3BB007F9161 /* FriendCell.swift */; };
 		B62B20ED22D22CA2007F9161 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B20EC22D22CA2007F9161 /* Friend.swift */; };
@@ -31,6 +32,7 @@
 		B678876E22FC6624009298A7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B678876D22FC6624009298A7 /* Session.swift */; };
 		B678879023018F0F009298A7 /* NewsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */; };
 		B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */; };
+		B69C4C522349574300324B13 /* NewsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69C4C512349574300324B13 /* NewsProfileCell.swift */; };
 		B69D0E052306AE7C003C9109 /* VKLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69D0E042306AE7C003C9109 /* VKLoginController.swift */; };
 		B69D0E072306B91F003C9109 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69D0E062306B91F003C9109 /* WebKit.framework */; };
 		B69D0E0923071C39003C9109 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69D0E0823071C39003C9109 /* NetworkService.swift */; };
@@ -58,6 +60,7 @@
 		B618FDC522D370B5004467E2 /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		B618FDC922D389AD004467E2 /* FriendPhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoController.swift; sourceTree = "<group>"; };
 		B618FDCB22D38A8C004467E2 /* FriendPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCell.swift; sourceTree = "<group>"; };
+		B6281C2F234D029F00473926 /* OperationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationService.swift; sourceTree = "<group>"; };
 		B62992DB22DA288A00452C80 /* FriendAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAvatarView.swift; sourceTree = "<group>"; };
 		B62B20E622D0F3BB007F9161 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		B62B20EC22D22CA2007F9161 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 		B678876D22FC6624009298A7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
+		B69C4C512349574300324B13 /* NewsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsProfileCell.swift; sourceTree = "<group>"; };
 		B69D0E042306AE7C003C9109 /* VKLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginController.swift; sourceTree = "<group>"; };
 		B69D0E062306B91F003C9109 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		B69D0E0823071C39003C9109 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -236,6 +240,7 @@
 			children = (
 				B60C84AE22EA25CA00007A8E /* NewsFooterCell.swift */,
 				B6B26C1223224AAB00A965D1 /* NewsTextCell.swift */,
+				B69C4C512349574300324B13 /* NewsProfileCell.swift */,
 				B6B26C1423224AF000A965D1 /* NewsMediaCell.swift */,
 				B6B26C0F2322464100A965D1 /* NewsHeaderCell.swift */,
 			);
@@ -256,6 +261,7 @@
 			children = (
 				B69D0E0823071C39003C9109 /* NetworkService.swift */,
 				B66A63C92318A254004AF737 /* RealmService.swift */,
+				B6281C2F234D029F00473926 /* OperationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -382,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B69C4C522349574300324B13 /* NewsProfileCell.swift in Sources */,
 				B64C7B94231581CE00FCF264 /* Photo.swift in Sources */,
 				B6B26C192326448700A965D1 /* UITableView+Ext.swift in Sources */,
 				B6B26C1323224AAB00A965D1 /* NewsTextCell.swift in Sources */,
@@ -400,6 +407,7 @@
 				B6B26C172326416F00A965D1 /* UIViewController+Ext.swift in Sources */,
 				B62B20F122D22EF0007F9161 /* GroupController.swift in Sources */,
 				B618FDCA22D389AD004467E2 /* FriendPhotoController.swift in Sources */,
+				B6281C30234D029F00473926 /* OperationService.swift in Sources */,
 				B69D0E0923071C39003C9109 /* NetworkService.swift in Sources */,
 				B675DC8F22C679C30074C418 /* AppDelegate.swift in Sources */,
 				B62B20EF22D22EAC007F9161 /* Group.swift in Sources */,
@@ -565,7 +573,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77NB29ZK26;
 				INFOPLIST_FILE = VK_app/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -585,7 +593,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77NB29ZK26;
 				INFOPLIST_FILE = VK_app/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

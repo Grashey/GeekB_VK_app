@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
 
 class GroupController: UITableViewController, UISearchBarDelegate {
 
@@ -48,19 +49,47 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkService = NetworkService()
-        networkService.getGroups() { group in
-            try? RealmService.saveData(objects: group)
+//        let networkService = NetworkService()
+//        networkService.getGroups() { group in
+//            try? RealmService.saveData(objects: group)
+//        }
+//
+//        myGroups = try? RealmService.getData(type: Group.self)
+        
+        let q = OperationQueue()
+        
+        let parameters: Parameters = [
+                   "v" : "5.96",
+                   "access_token" : Session.instance.token,
+                   "extended" : 1
+               ]
+        
+        let url = "https://api.vk.com/method/groups.get"
+        let request = AF.request(url, method: .get, parameters: parameters)
+        let getDataOperation = GetGroupDataOperation(request: request)
+        q.addOperation(getDataOperation)
+        
+        let parseData = ParseGroupData()
+        parseData.addDependency(getDataOperation)
+        q.addOperation(parseData)
+        
+        let saveData = SaveGroupData()
+        saveData.addDependency(parseData)
+        q.addOperation(saveData)
+             
+        q.addBarrierBlock {
+            DispatchQueue.main.async {
+                self.myGroups = try? RealmService.getData(type: Group.self)
+                self.tableView.reloadData()
+            }
         }
         
-        myGroups = try? RealmService.getData(type: Group.self)
         notificationToken = myGroups?.observe { change in
             switch change {
             case .initial:
                 self.tableView.reloadData()
             case .update(_ , let deletions, let insertions, let modifications):
                 self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
-                self.tableView.reloadData()
                 print(deletions)
                 print(insertions)
                 print(modifications) // при каждом запросе обновляется!!! зачем??
@@ -109,9 +138,8 @@ class GroupController: UITableViewController, UISearchBarDelegate {
                     realm.beginWrite()
                     realm.delete(object)
                     try realm.commitWrite()
-                    //networkService.groups.leave
                 } catch {
-                    print(error)
+                    show(error)
                 }
                 tableView.deleteRows(at: [indexPath], with: .fade)
             } else {
@@ -122,9 +150,8 @@ class GroupController: UITableViewController, UISearchBarDelegate {
                     realm.beginWrite()
                     realm.delete(object)
                     try realm.commitWrite()
-                    //networkService.groups.leave
                 } catch {
-                    print(error)
+                    show(error)
                 }
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
