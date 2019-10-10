@@ -15,7 +15,7 @@ class NewsProfileCell: UITableViewCell {
     
     public func configure(with data: NewsProfile) {
         
-        profileNameLabel.text = data.userSurname + " " + data.userName
+        profileNameLabel.text = data.userName + " " + data.userSurname
         
         let imageUrl = URL(string: data.userAvatar)
         profileAvatar.kf.setImage(with: imageUrl)

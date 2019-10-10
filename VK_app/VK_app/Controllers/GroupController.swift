@@ -49,15 +49,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let networkService = NetworkService()
-//        networkService.getGroups() { group in
-//            try? RealmService.saveData(objects: group)
-//        }
-//
-//        myGroups = try? RealmService.getData(type: Group.self)
-        
         let q = OperationQueue()
-        
         let parameters: Parameters = [
                    "v" : "5.96",
                    "access_token" : Session.instance.token,
@@ -77,12 +69,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         saveData.addDependency(parseData)
         q.addOperation(saveData)
              
-        q.addBarrierBlock {
-            DispatchQueue.main.async {
-                self.myGroups = try? RealmService.getData(type: Group.self)
-                self.tableView.reloadData()
-            }
-        }
+        self.myGroups = try? RealmService.getData(type: Group.self)
         
         notificationToken = myGroups?.observe { change in
             switch change {

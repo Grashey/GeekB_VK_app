@@ -1,5 +1,5 @@
 //
-//  OperationService.swift
+//  AsyncOperation.swift
 //  VK_app
 //
 //  Created by Aleksandr Fetisov on 08.10.2019.
@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 
-class OperationService: Operation {
+class AsyncOperation: Operation {
     
     enum State: String {
         case ready, executing, finished
@@ -63,7 +63,7 @@ class OperationService: Operation {
     }
 }
 
-class GetGroupDataOperation: OperationService {
+class GetGroupDataOperation: AsyncOperation {
     
     override func cancel() {
         request.cancel()
@@ -86,7 +86,7 @@ class GetGroupDataOperation: OperationService {
     }
 }
 
-class ParseGroupData: OperationService {
+class ParseGroupData: Operation {
     
     var outputData: [Group]?
     
@@ -96,16 +96,14 @@ class ParseGroupData: OperationService {
             let json = JSON(data)
             let groupJSONs = json["response"]["items"].arrayValue
             outputData = groupJSONs.map { Group($0) }
-        self.state = .finished
     }
 }
 
-class SaveGroupData: OperationService {
+class SaveGroupData: Operation {
     
     override func main() {
         guard let parseData = dependencies.first as? ParseGroupData,
             let parsedData = parseData.outputData else { return }
             try? RealmService.saveData(objects: parsedData)
-        self.state = .finished
     }
 }
