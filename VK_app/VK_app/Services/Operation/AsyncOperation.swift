@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
-import RealmSwift
 
 class AsyncOperation: Operation {
     
@@ -60,50 +57,5 @@ class AsyncOperation: Operation {
     override func cancel() {
         super.cancel()
         state = .finished
-    }
-}
-
-class GetGroupDataOperation: AsyncOperation {
-    
-    override func cancel() {
-        request.cancel()
-        super.cancel()
-    }
-    
-    private var request: DataRequest
-    var data: Data?
-    
-    override func main() {
-        request.responseData(queue: .global()) { [weak self] response in
-            self?.data = response.data
-            self?.state = .finished
-            
-        }
-    }
-    
-    init(request: DataRequest) {
-        self.request = request
-    }
-}
-
-class ParseGroupData: Operation {
-    
-    var outputData: [Group]?
-    
-    override func main() {
-        guard let getDataOperation = dependencies.first as? GetGroupDataOperation,
-            let data = getDataOperation.data else { return }
-            let json = JSON(data)
-            let groupJSONs = json["response"]["items"].arrayValue
-            outputData = groupJSONs.map { Group($0) }
-    }
-}
-
-class SaveGroupData: Operation {
-    
-    override func main() {
-        guard let parseData = dependencies.first as? ParseGroupData,
-            let parsedData = parseData.outputData else { return }
-            try? RealmService.saveData(objects: parsedData)
     }
 }

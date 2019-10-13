@@ -58,7 +58,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         
         let url = "https://api.vk.com/method/groups.get"
         let request = AF.request(url, method: .get, parameters: parameters)
-        let getDataOperation = GetGroupDataOperation(request: request)
+        let getDataOperation = GetGroupData(request: request)
         q.addOperation(getDataOperation)
         
         let parseData = ParseGroupData()
