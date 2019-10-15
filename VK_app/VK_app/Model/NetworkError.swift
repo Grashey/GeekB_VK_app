@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+enum NetworkError: Error {
+    case JsonError(message: String)
+}
+extension NetworkError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .JsonError(let message):
+            return NSLocalizedString(message, comment: "")
+        }
+    }
+}

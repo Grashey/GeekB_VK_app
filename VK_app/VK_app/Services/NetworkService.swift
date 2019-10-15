@@ -9,35 +9,41 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import PromiseKit
 
 class NetworkService {
     
     public let dispatchGroup = DispatchGroup()
     
-    func getFriends(completion: @escaping ([Friend]) -> Void){
+    func getFriends() -> Promise<[Friend]> {
         
+        let url = "https://api.vk.com/method/friends.get"
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
             "fields" : "photo_100"
         ]
         
-        AF.request("https://api.vk.com/method/friends.get", method: .get, parameters: parameters).responseJSON {
-            responce in
-            switch responce.result {
-            case .success(let data):
-                let json = JSON(data)
+        return Alamofire.request(url, method: .get, parameters: parameters)
+            .responseJSON()
+            .map(on: .global()) { json in
+                
+                let json = JSON(json)
+
+                if let errorMessage = json["error"]["error_msg"].string {
+                    let error = NetworkError.JsonError(message: errorMessage)
+                    throw error
+                }
+                
                 let friendJSONs = json["response"]["items"].arrayValue
-                let friends = friendJSONs.map { Friend($0) }
-                completion(friends)
-            case .failure(let error):
-                print(error)
-                completion([])
+                return friendJSONs.map { Friend($0) }
             }
         }
-    }
+  
     
     func getPhotos(userId: String, completion: @escaping ([Photo]) -> Void){
+        
+        let url = "https://api.vk.com/method/photos.getAll"
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
@@ -46,7 +52,7 @@ class NetworkService {
             "offset" : 0
         ]
         
-        AF.request("https://api.vk.com/method/photos.getAll", method: .get, parameters: parameters).responseJSON {
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             responce in
             switch responce.result {
             case .success(let data):
@@ -62,13 +68,15 @@ class NetworkService {
     }
     
     func getGroups(completion: @escaping ([Group]) -> Void){
+        
+        let url = "https://api.vk.com/method/groups.get"
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
             "extended" : 1
         ]
         
-        AF.request("https://api.vk.com/method/groups.get", method: .get, parameters: parameters).responseJSON {
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             responce in
             switch responce.result {
             case .success(let data):
@@ -84,26 +92,30 @@ class NetworkService {
     }
     
     func groupSearch(searchtext: String){
+        
+        let url = "https://api.vk.com/method/groups.search"
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
             "q" : searchtext
         ]
         
-        AF.request("https://api.vk.com" + "/method/groups.search", method: .get, parameters: parameters).responseJSON { responce in
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { responce in
             print("search for groups: \(searchtext)")
             print(responce.value!)
         }
     }
     
     func getPopularGroups(completion: @escaping ([Group]) -> Void){
+        
+        let url = "https://api.vk.com/method/groups.getCatalog"
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
             "category_id" : 0
         ]
         
-        AF.request("https://api.vk.com/method/groups.getCatalog", method: .get, parameters: parameters).responseJSON {
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             responce in
             switch responce.result {
             case .success(let data):
@@ -120,6 +132,7 @@ class NetworkService {
     
     func getNewsfeed(groupId: Any, completion: @escaping ([News],[NewsGroup],[NewsProfile]) -> Void) {
         
+        let url = "https://api.vk.com/method/newsfeed.get"
         let parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
@@ -127,7 +140,7 @@ class NetworkService {
             "filter" : "post"
         ]
         
-        AF.request("https://api.vk.com/method/newsfeed.get", method: .get, parameters: parameters).responseJSON(queue: DispatchQueue.global()) { responce in
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON(queue: DispatchQueue.global()) { responce in
             switch responce.result {
             case .success(let data):
                 var postNews = [News]()

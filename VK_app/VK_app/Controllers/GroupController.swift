@@ -57,7 +57,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
                ]
         
         let url = "https://api.vk.com/method/groups.get"
-        let request = AF.request(url, method: .get, parameters: parameters)
+        let request = Alamofire.request(url, method: .get, parameters: parameters)
         let getDataOperation = GetGroupData(request: request)
         q.addOperation(getDataOperation)
         
@@ -79,7 +79,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
                 self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
                 print(deletions)
                 print(insertions)
-                print(modifications) // при каждом запросе обновляется!!! зачем??
+                print(modifications)
             case .error(let error):
                 self.show(error)
             }
