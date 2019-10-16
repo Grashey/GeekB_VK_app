@@ -26,7 +26,7 @@ class NetworkService {
         
         return Alamofire.request(url, method: .get, parameters: parameters)
             .responseJSON()
-            .map(on: .global()) { json in
+            .map(on: .global()) { json, response in
                 
                 let json = JSON(json)
 
@@ -52,8 +52,7 @@ class NetworkService {
             "offset" : 0
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
-            responce in
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { responce in
             switch responce.result {
             case .success(let data):
                 let json = JSON(data)
@@ -76,8 +75,7 @@ class NetworkService {
             "extended" : 1
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
-            responce in
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { responce in
             switch responce.result {
             case .success(let data):
                 let json = JSON(data)
