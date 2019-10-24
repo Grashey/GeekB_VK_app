@@ -8,7 +8,7 @@ target 'VK_app' do
   pod 'Kingfisher', '~> 5.7.1'
   pod 'RealmSwift', '~> 3.17.3'
   pod 'SwiftKeychainWrapper', '~> 3.4.0'
-  pod 'PromiseKit' '~> 6.11.0'
+  pod 'PromiseKit', '~> 6.8.0'
   pod 'PromiseKit/Alamofire'
 
 end
