@@ -30,9 +30,15 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
         super.viewDidLoad()
         
         let networkService = NetworkService()
-        networkService.getFriends() { friend in
-            try? RealmService.saveData(objects: friend)
-        }
+        let promise = networkService.getFriends()
+        
+        promise
+            .done { friends in
+                try? RealmService.saveData(objects: friends)
+            } .catch { error in
+                self.show(error)
+            }
+        
         searchBar.delegate = self
         
         let friends = try? RealmService.getData(type: Friend.self)

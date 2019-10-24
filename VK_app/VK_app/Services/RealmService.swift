@@ -18,9 +18,9 @@ class RealmService {
         update: Realm.UpdatePolicy = .modified) throws {
             let realm = try Realm(configuration: configuration)
             try realm.write {
-                realm.add(objects, update: .all)
+                realm.add(objects, update: update)
             }
-        print(configuration.fileURL ?? Error.self)
+        print(configuration.fileURL ?? "")
     }
         
     static func getData<T: Object>(type: T.Type,

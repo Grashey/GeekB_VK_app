@@ -49,6 +49,7 @@
 		B6B26C1523224AF000A965D1 /* NewsMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B26C1423224AF000A965D1 /* NewsMediaCell.swift */; };
 		B6B26C172326416F00A965D1 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B26C162326416F00A965D1 /* UIViewController+Ext.swift */; };
 		B6B26C192326448700A965D1 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B26C182326448700A965D1 /* UITableView+Ext.swift */; };
+		B6CFD7712355F93D00CCFCC3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFD7702355F93D00CCFCC3 /* NetworkError.swift */; };
 		B6E595E022F875E900580098 /* NavigationControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */; };
 		B6FF586322DE33E200B1604D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF586222DE33E200B1604D /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,7 @@
 		B6B26C1423224AF000A965D1 /* NewsMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMediaCell.swift; sourceTree = "<group>"; };
 		B6B26C162326416F00A965D1 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		B6B26C182326448700A965D1 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		B6CFD7702355F93D00CCFCC3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerAnimator.swift; sourceTree = "<group>"; };
 		B6FF586222DE33E200B1604D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		EB8EB2F842D62FA1BAC82924 /* Pods-VK_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK_app/Pods-VK_app.release.xcconfig"; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				B678876D22FC6624009298A7 /* Session.swift */,
 				B62B20EE22D22EAC007F9161 /* Group.swift */,
 				B60C84B422EB44F400007A8E /* News.swift */,
+				B6CFD7702355F93D00CCFCC3 /* NetworkError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-VK_app/Pods-VK_app-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
@@ -370,6 +374,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
@@ -414,6 +419,7 @@
 				B6A5729B22FAC94D001D78DD /* NewsfeedViewController.swift in Sources */,
 				B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */,
 				B60C84AF22EA25CA00007A8E /* NewsFooterCell.swift in Sources */,
+				B6CFD7712355F93D00CCFCC3 /* NetworkError.swift in Sources */,
 				B6A1B84322E5B8E8009FC00E /* GradientView.swift in Sources */,
 				B69D0E052306AE7C003C9109 /* VKLoginController.swift in Sources */,
 				B6281C362353A3B200473926 /* SaveGroupData.swift in Sources */,
