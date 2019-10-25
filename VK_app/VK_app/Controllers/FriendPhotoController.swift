@@ -24,15 +24,13 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         let networkService = NetworkService()
         networkService.getPhotos(userId: "\(friendId)") { photos in
             try? RealmService.saveData(objects: photos)
-            self.linkPhotosToFriend(userId: self.friendId, photos: photos)
+            try? RealmService.linkPhotosToFriend(userId: self.friendId, photos: photos)
         }
         
         photos = try? RealmService.getData(type: Photo.self).filter("ownerId == [cd] %@", String(self.friendId))
         notificationToken = photos?.observe { change in
             switch change {
-            case .initial:
-                self.collectionView.reloadData()
-            case .update:
+            case .initial, .update:
                 self.collectionView.reloadData()
             case .error(let error):
                 self.show(error)
@@ -85,22 +83,6 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         photoVC.ownerId = friendId
         photoVC.index = indexPath.item
         self.navigationController?.pushViewController(photoVC, animated: true)
-    }
-    
-    func linkPhotosToFriend(userId: Int, photos: [Photo]) {
-        var currentFriend = Friend()
-        do {
-            let realm = try Realm()
-            let friend = realm.objects(Friend.self).filter("id == [cd] %@", userId)
-            for object in friend {
-                currentFriend = object
-            }
-            realm.beginWrite()
-            currentFriend.photos.append(objectsIn: photos)
-            try realm.commitWrite()
-        } catch {
-            self.show(error)
-        }
     }
 }
 

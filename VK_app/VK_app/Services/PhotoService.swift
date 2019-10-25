@@ -122,6 +122,6 @@ extension PhotoService {
         
         func reloadRow(atIndexPath indexPath: IndexPath) {
             collection.reloadItems(at: [indexPath])
-        }
+        } 
     }
 }
