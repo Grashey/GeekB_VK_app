@@ -11,6 +11,7 @@ import Alamofire
 
 class PhotoService {
     
+    private var memoryCache = [String: UIImage]()
     private let cacheLifeTime: TimeInterval = 60*60*24*7
     private static let pathName: String = {
         
@@ -25,22 +26,22 @@ class PhotoService {
         return pathName
     }()
     
-    private func getFilePath(url: String) -> String? {
+    private func getFilePath(urlString: String) -> String? {
         
         guard let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return nil }
-        let hashName = url.split(separator: "/").last ?? "default"
+        let hashName = urlString.split(separator: "/").last ?? "default"
         return cachesDirectory.appendingPathComponent(PhotoService.pathName + "/" + hashName).path
     }
     
-    private func saveImageToCache(url: String, image: UIImage) {
-        guard let fileName = getFilePath(url: url) else { return }
+    private func saveImageToCache(urlString: String, image: UIImage) {
+        guard let fileName = getFilePath(urlString: urlString) else { return }
         let data = image.pngData()
         FileManager.default.createFile(atPath: fileName, contents: data, attributes: nil)
     }
     
-    private func getImageFromCache(url: String) -> UIImage? {
+    private func getImageFromCache(urlString: String) -> UIImage? {
         guard
-            let fileName = getFilePath(url: url),
+            let fileName = getFilePath(urlString: urlString),
             let info = try? FileManager.default.attributesOfItem(atPath: fileName),
             let modificationDate = info[FileAttributeKey.modificationDate] as? Date
             else { return nil }
@@ -50,78 +51,36 @@ class PhotoService {
         guard lifeTime <= cacheLifeTime,
             let image = UIImage(contentsOfFile: fileName) else { return nil }
         
-        images[url] = image
+        memoryCache[urlString] = image
         return image
     }
     
-    private var images = [String: UIImage]()
-    
-    private func loadPhoto(atIndexPath indexPath: IndexPath, byUrl url: String) {
+    private func loadPhoto(urlString: String, completion: @escaping (UIImage?) -> Void) {
         
-        Alamofire.request(url).responseData(queue: .global()) { [weak self] response in
+        Alamofire.request(urlString).responseData() { [weak self] response in
             guard
+                let self = self,
                 let data = response.data,
-                let image = UIImage(data: data) else { return }
-            
-            self?.images[url] = image
-            self?.saveImageToCache(url: url, image: image)
-            DispatchQueue.main.async {
-                self?.container.reloadRow(atIndexPath: indexPath)
+                let image = UIImage(data: data) else {
+                    completion(nil)
+                    return
             }
+            self.memoryCache[urlString] = image
+            self.saveImageToCache(urlString: urlString, image: image)
+            completion(image)
         }
     }
     
-    func photo(atIndexPath indexPath: IndexPath, byUrl url: String) -> UIImage? {
+    func photo(urlString: String, completion: @escaping (UIImage?) -> Void) {
         
-        var image: UIImage?
-        if let photo = images[url] {
-            image = photo
-        } else if let photo = getImageFromCache(url: url) {
-            image = photo
+        if let image = memoryCache[urlString] {
+            completion(image)
+        } else if let image = getImageFromCache(urlString: urlString) {
+            completion(image)
         } else {
-            loadPhoto(atIndexPath: indexPath, byUrl: url)
+            loadPhoto(urlString: urlString, completion: completion)
         }
-        return image
-    }
-    
-    private let container: DataReloadable
-    
-    init(container: UITableView) {
-        self.container = Table(table: container)
-    }
-    
-    init(container: UICollectionView) {
-        self.container = Collection(collection: container)
     }
 }
 
-fileprivate protocol DataReloadable {
-    func reloadRow(atIndexPath indexPath: IndexPath)
-}
 
-extension PhotoService {
-    
-    private class Table: DataReloadable {
-        let table: UITableView
-        
-        init(table: UITableView) {
-            self.table = table
-        }
-        
-        func reloadRow(atIndexPath indexPath: IndexPath) {
-            table.reloadRows(at: [indexPath], with: .none)
-        }
-    }
-    
-    private class Collection: DataReloadable {
-        let collection: UICollectionView
-        
-        init(collection: UICollectionView) {
-            self.collection = collection
-        }
-        
-        func reloadRow(atIndexPath indexPath: IndexPath) {
-            collection.reloadItems(at: [indexPath])
-        } 
-    }
-}

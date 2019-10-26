@@ -29,6 +29,7 @@ class PhotoViewController: UIViewController {
         photos?.forEach{ photo in
             self.photos.append(photo)
         }
+        try? RealmService.linkPhotosToFriend(userId: ownerId, photos: self.photos)
         
         likeCountView.textColor = .lightGray
         let imageUrl = URL(string: self.photos[index].photoMaxUrl)

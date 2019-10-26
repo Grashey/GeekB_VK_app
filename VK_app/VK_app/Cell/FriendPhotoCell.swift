@@ -12,9 +12,10 @@ class FriendPhotoCell: UICollectionViewCell {
   
     @IBOutlet weak var photoView: UIImageView!
     
-    public func configure(with photo: Photo) {
-        let imageUrl = URL(string: photo.photoUrl)
-        photoView.kf.setImage(with: imageUrl)
+    public func configure(with photo: Photo, by photoService: PhotoService) {
+        let urlString = photo.photoUrl
+        photoService.photo(urlString: urlString) { [weak self] image in
+            self?.photoView.image = image
+        }
     }
 }
-

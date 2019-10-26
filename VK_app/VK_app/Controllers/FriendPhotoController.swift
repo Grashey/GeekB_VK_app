@@ -16,6 +16,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     
     var friendId = Int()
     var photos: Results<Photo>?
+    private let photoService = PhotoService()
     private var notificationToken: NotificationToken?
     
     override func viewDidLoad() {
@@ -24,7 +25,6 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         let networkService = NetworkService()
         networkService.getPhotos(userId: "\(friendId)") { photos in
             try? RealmService.saveData(objects: photos)
-            try? RealmService.linkPhotosToFriend(userId: self.friendId, photos: photos)
         }
         
         photos = try? RealmService.getData(type: Photo.self).filter("ownerId == [cd] %@", String(self.friendId))
@@ -57,7 +57,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! FriendPhotoCell
         if let photo = photos?[indexPath.row] {
-            cell.configure(with: photo)
+            cell.configure(with: photo, by: photoService)
         }
         
         return cell
