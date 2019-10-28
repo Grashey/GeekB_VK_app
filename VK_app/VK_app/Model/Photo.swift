@@ -17,7 +17,6 @@ class Photo: Object {
     @objc dynamic var ownerId: String = ""
     var owner = LinkingObjects(fromType: Friend.self, property: "photos")
     
-    
     convenience init (_ json: JSON, ownerId: String) {
         self.init()
         

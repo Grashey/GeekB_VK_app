@@ -10,7 +10,6 @@ import UIKit
 import SwiftyJSON
 import RealmSwift
 
-
 class Group: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""

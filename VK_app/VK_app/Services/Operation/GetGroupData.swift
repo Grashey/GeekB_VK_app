@@ -23,7 +23,6 @@ class GetGroupData: AsyncOperation {
         request.responseData(queue: .global()) { [weak self] response in
             self?.data = response.data
             self?.state = .finished
-            
         }
     }
     

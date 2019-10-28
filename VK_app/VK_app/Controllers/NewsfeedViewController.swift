@@ -22,7 +22,6 @@ class NewsfeedViewController: UITableViewController {
     var news = [News]()
     var groups = [NewsGroup]()
     var profiles = [NewsProfile]()
-    let formatter = DateFormatter()
     let newsPostDateFormatter = NewsfeedDateFormatter()
     let networkService = NetworkService()
     
@@ -36,9 +35,6 @@ class NewsfeedViewController: UITableViewController {
             self.profiles = profiles
             self.newsfeedTable.reloadData()
         })
-
-        formatter.timeStyle = .short
-        formatter.dateStyle = .none
     }
     
     // MARK: - Tableview methods
