@@ -20,7 +20,7 @@ class Group: Object {
         
         self.id = json["id"].intValue
         self.name = json["name"].stringValue
-        self.avatar = json["photo_100"].stringValue
+        self.avatar = json["photo_50"].stringValue
     }
     
     override static func primaryKey() -> String? {

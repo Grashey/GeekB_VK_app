@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -367,55 +367,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsHeaderCell" rowHeight="233" id="6fd-hk-vjV" customClass="NewsHeaderCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="233"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsHeaderCell" rowHeight="65" translatesAutoresizingMaskIntoConstraints="NO" id="6fd-hk-vjV" customClass="NewsHeaderCell" customModule="VK_app" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6fd-hk-vjV" id="wGx-nm-aLK">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultGroup" translatesAutoresizingMaskIntoConstraints="NO" id="ChD-E6-nlj">
-                                            <rect key="frame" x="10" y="5" width="45" height="223"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="45" id="X8e-YQ-ln3"/>
-                                                <constraint firstAttribute="width" secondItem="ChD-E6-nlj" secondAttribute="height" multiplier="1:1" id="jmG-d8-bbN"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icY-Fv-JaQ" userLabel="Group Label">
-                                            <rect key="frame" x="65" y="96.333333333333329" width="94" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5x-G3-7ik">
-                                            <rect key="frame" x="65" y="123.66666666666669" width="29" height="99.333333333333314"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="ChD-E6-nlj" firstAttribute="top" secondItem="wGx-nm-aLK" secondAttribute="top" constant="5" id="AuQ-I2-ryK"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Y5x-G3-7ik" secondAttribute="trailing" constant="20" symbolic="YES" id="CdK-7n-hvU"/>
-                                        <constraint firstItem="Y5x-G3-7ik" firstAttribute="top" secondItem="icY-Fv-JaQ" secondAttribute="bottom" constant="7" id="Ehx-BP-RkN"/>
-                                        <constraint firstItem="ChD-E6-nlj" firstAttribute="leading" secondItem="wGx-nm-aLK" secondAttribute="leading" constant="10" id="HPp-ks-fj2"/>
-                                        <constraint firstItem="Y5x-G3-7ik" firstAttribute="leading" secondItem="icY-Fv-JaQ" secondAttribute="leading" id="QLT-To-3Sf"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="icY-Fv-JaQ" secondAttribute="trailing" constant="5" id="ZEB-cE-33g"/>
-                                        <constraint firstItem="icY-Fv-JaQ" firstAttribute="centerY" secondItem="ChD-E6-nlj" secondAttribute="centerY" constant="-10" id="aKZ-tv-lmW"/>
-                                        <constraint firstAttribute="bottom" secondItem="ChD-E6-nlj" secondAttribute="bottom" constant="5" id="gny-ai-Crg"/>
-                                        <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Y5x-G3-7ik" secondAttribute="bottom" constant="10" id="tcv-m7-5oP"/>
-                                        <constraint firstItem="icY-Fv-JaQ" firstAttribute="leading" secondItem="ChD-E6-nlj" secondAttribute="trailing" constant="10" id="v0g-KY-sNl"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="groupAvatar" destination="ChD-E6-nlj" id="9Ao-Vp-9C0"/>
-                                    <outlet property="groupLabel" destination="icY-Fv-JaQ" id="GW4-7Z-nRU"/>
-                                    <outlet property="timeLabel" destination="Y5x-G3-7ik" id="saP-6k-jKR"/>
                                     <segue destination="5vY-3V-atX" kind="show" identifier="NewsSegue" id="hvy-RA-t6f"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTextCell" id="2G1-bO-Phb" userLabel="News Text Cell" customClass="NewsTextCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="261" width="414" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="93" width="414" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2G1-bO-Phb" id="z5t-dc-MDq">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -440,14 +404,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsMediaCell" id="Vah-HP-dah" customClass="NewsMediaCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="304.66666793823242" width="414" height="414.33334350585938"/>
+                                <rect key="frame" x="0.0" y="136.66666793823242" width="414" height="414.33334350585938"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vah-HP-dah" id="BWC-P7-xVa">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="414.33334350585938"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultNews" translatesAutoresizingMaskIntoConstraints="NO" id="L0I-tg-Pvg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="414.33333333333331"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="defaultNews" translatesAutoresizingMaskIntoConstraints="NO" id="L0I-tg-Pvg">
+                                            <rect key="frame" x="0.0" y="11" width="414" height="414.33333333333331"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="L0I-tg-Pvg" secondAttribute="height" multiplier="1:1" id="odZ-1d-vRl"/>
                                             </constraints>
@@ -466,7 +430,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsProfileCell" rowHeight="39" id="4Tp-Jn-zcz" customClass="NewsProfileCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="719.0000114440918" width="414" height="39"/>
+                                <rect key="frame" x="0.0" y="551.0000114440918" width="414" height="39"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Tp-Jn-zcz" id="F6n-3S-h5f">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
@@ -501,7 +465,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsFooterCell" rowHeight="64" id="p5c-wN-q3V" userLabel="News Footer Cell" customClass="NewsFooterCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="758.0000114440918" width="414" height="64"/>
+                                <rect key="frame" x="0.0" y="590.0000114440918" width="414" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p5c-wN-q3V" id="Mkn-cV-gv2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
@@ -659,51 +623,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsHeaderCell" rowHeight="233" id="s8W-2r-qc3" customClass="NewsHeaderCell" customModule="VK_app" customModuleProvider="target">
+                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsHeaderCell" rowHeight="233" translatesAutoresizingMaskIntoConstraints="NO" id="s8W-2r-qc3" customClass="NewsHeaderCell" customModule="VK_app" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="233"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s8W-2r-qc3" id="PQS-lp-Gpd">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultGroup" translatesAutoresizingMaskIntoConstraints="NO" id="VuC-E6-aw2">
-                                            <rect key="frame" x="10" y="5" width="45" height="223"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="45" id="hdN-BZ-6EZ"/>
-                                                <constraint firstAttribute="width" secondItem="VuC-E6-aw2" secondAttribute="height" multiplier="1:1" id="r90-If-EAh"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7u-PG-DF0" userLabel="Group Label">
-                                            <rect key="frame" x="65" y="96.333333333333329" width="94" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dh-i3-Eyy">
-                                            <rect key="frame" x="65" y="123.66666666666669" width="29" height="99.333333333333314"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="8Dh-i3-Eyy" firstAttribute="top" secondItem="J7u-PG-DF0" secondAttribute="bottom" constant="7" id="15B-hU-vIG"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="J7u-PG-DF0" secondAttribute="trailing" constant="5" id="C5I-t0-O2p"/>
-                                        <constraint firstItem="J7u-PG-DF0" firstAttribute="leading" secondItem="VuC-E6-aw2" secondAttribute="trailing" constant="10" id="Hnq-g4-MKP"/>
-                                        <constraint firstItem="VuC-E6-aw2" firstAttribute="leading" secondItem="PQS-lp-Gpd" secondAttribute="leading" constant="10" id="L5v-Wd-nfu"/>
-                                        <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="8Dh-i3-Eyy" secondAttribute="bottom" constant="10" id="Rh4-aC-5eN"/>
-                                        <constraint firstAttribute="bottom" secondItem="VuC-E6-aw2" secondAttribute="bottom" constant="5" id="SUJ-mF-0iQ"/>
-                                        <constraint firstItem="VuC-E6-aw2" firstAttribute="top" secondItem="PQS-lp-Gpd" secondAttribute="top" constant="5" id="SxN-Kd-JEt"/>
-                                        <constraint firstItem="8Dh-i3-Eyy" firstAttribute="leading" secondItem="J7u-PG-DF0" secondAttribute="leading" id="Xfw-m2-VOy"/>
-                                        <constraint firstItem="J7u-PG-DF0" firstAttribute="centerY" secondItem="VuC-E6-aw2" secondAttribute="centerY" constant="-10" id="bXV-f7-763"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Dh-i3-Eyy" secondAttribute="trailing" constant="20" symbolic="YES" id="qLG-Qf-38m"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="groupAvatar" destination="VuC-E6-aw2" id="HVm-4K-ZIB"/>
-                                    <outlet property="groupLabel" destination="J7u-PG-DF0" id="iCa-BE-hoI"/>
-                                    <outlet property="timeLabel" destination="8Dh-i3-Eyy" id="Kf7-8n-zuy"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTextCell" rowHeight="64" id="XfS-ye-3PF" userLabel="News Text Cell" customClass="NewsTextCell" customModule="VK_app" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="261" width="414" height="64"/>
