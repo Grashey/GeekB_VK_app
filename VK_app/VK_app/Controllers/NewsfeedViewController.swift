@@ -23,6 +23,7 @@ class NewsfeedViewController: UITableViewController {
     var groups = [NewsGroup]()
     var profiles = [NewsProfile]()
     let formatter = DateFormatter()
+    let newsPostDateFormatter = NewsfeedDateFormatter()
     let networkService = NetworkService()
     
     override func viewDidLoad() {
@@ -61,7 +62,7 @@ class NewsfeedViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
             for element in groups {
                 if -data.groupId == element.groupId {
-                    cell.configure(with: element, date: data.date)
+                    cell.configure(with: element, date: data.date, postDateFormatter: newsPostDateFormatter)
                     return cell
                 }
             }

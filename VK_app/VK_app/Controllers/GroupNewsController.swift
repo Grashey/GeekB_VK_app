@@ -18,6 +18,7 @@ class GroupNewsController: UITableViewController {
     var news = [News]()
     var groups = [NewsGroup]()
     var profiles = [NewsProfile]()
+    let newsPostDateFormatter = NewsfeedDateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +54,7 @@ class GroupNewsController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
             for element in groups {
                 if -data.groupId == element.groupId {
-                    cell.configure(with: element, date: data.date)
+                    cell.configure(with: element, date: data.date, postDateFormatter: newsPostDateFormatter)
                     return cell
                 }
             }
