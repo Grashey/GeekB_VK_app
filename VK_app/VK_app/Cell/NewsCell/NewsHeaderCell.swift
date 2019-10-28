@@ -65,13 +65,15 @@ class NewsHeaderCell: UITableViewCell {
     }
     
     private func setGroupLabelFrame() {
+        groupLabel.font = .boldSystemFont(ofSize: 16)
         let size = getLabelSize(text: groupLabel.text ?? "", font: groupLabel.font)
         let origin = CGPoint(x: indent * 2 + iconWidth, y: indent)
         groupLabel.frame = CGRect(origin: origin, size: size)
     }
     
     private func setTimeLabelFrame() {
-        let size = timeLabel.intrinsicContentSize
+        timeLabel.font = .systemFont(ofSize: 10)
+        let size = getLabelSize(text: groupLabel.text ?? "", font: timeLabel.font)
         let origin = CGPoint(x: indent * 2 + iconWidth, y: indent + iconWidth / 2)
         timeLabel.frame = CGRect(origin: origin, size: size)
     }

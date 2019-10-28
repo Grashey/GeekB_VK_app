@@ -28,6 +28,9 @@ class NewsfeedViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(NewsHeaderCell.self, forCellReuseIdentifier: "NewsHeaderCell")
+        tableView.register(NewsTextCell.self, forCellReuseIdentifier: "NewsTextCell")
+        
         networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news, groups, profiles  in
             guard let self = self else { return }
             self.news = news
@@ -92,6 +95,10 @@ class NewsfeedViewController: UITableViewController {
             }
         }
         return UITableViewCell()
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
