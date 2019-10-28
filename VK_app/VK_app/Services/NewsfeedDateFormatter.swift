@@ -84,9 +84,9 @@ class NewsfeedDateFormatter {
         }
         
         if interval < 60 {
-            text = "\(secondsAgo) секунд назад"
+            text = "\(secondsAgo) секунд\(stringFormatter(secondsAgo)) назад"
         } else if interval < oneHour {
-            text = "\(minutesAgo) минут назад"
+            text = "\(minutesAgo) минут\(stringFormatter(minutesAgo)) назад"
         } else if interval < oneHour * 2 {
             text = "час назад"
         } else if interval < oneHour * 3 {
@@ -94,10 +94,29 @@ class NewsfeedDateFormatter {
         } else if interval < oneHour * 4 {
             text = "три часа назад"
         } else if day == currentDay {
-            text = "сегодня в \(hour):\(minute)"
+            text = "сегодня в \(hour):\(formatMinutes(minute))"
         } else {
-            text = "\(day) \(monthString) в \(hour):\(minute)"
+            text = "\(day) \(monthString) в \(hour):\(formatMinutes(minute))"
         }
         return text
+    }
+    
+    func formatMinutes(_ minute: Int) -> String {
+        if minute < 10 {
+            let minuteString = "0\(minute)"
+            return minuteString
+        } else {
+            return String(minute)
+        }
+    }
+    
+    func stringFormatter (_ count: Int) -> String {
+        var char = String()
+        if count == 1 || count == 21 || count == 31 || count == 41 || count == 51 {
+            char = "у"
+        } else if count >= 2 && count <= 4 || count >= 22 && count <= 24 || count >= 32 && count <= 34 || count >= 42 && count <= 44 || count >= 52 && count <= 54 {
+            char = "ы"
+        }
+        return char
     }
 }
