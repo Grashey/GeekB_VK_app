@@ -73,7 +73,7 @@ class NewsHeaderCell: UITableViewCell {
     
     private func setTimeLabelFrame() {
         timeLabel.font = .systemFont(ofSize: 10)
-        let size = getLabelSize(text: groupLabel.text ?? "", font: timeLabel.font)
+        let size = getLabelSize(text: timeLabel.text ?? "", font: timeLabel.font)
         let origin = CGPoint(x: indent * 2 + iconWidth, y: indent + iconWidth / 2)
         timeLabel.frame = CGRect(origin: origin, size: size)
     }
@@ -81,7 +81,7 @@ class NewsHeaderCell: UITableViewCell {
     private func getLabelSize(text: String, font: UIFont) -> CGSize {
         let maxWidth = contentView.bounds.width - indent * 2 - iconWidth
         let textBlock = CGSize(width: maxWidth, height: CGFloat.greatestFiniteMagnitude)
-        let rect = text.boundingRect(with: textBlock, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        let rect = text.boundingRect(with: textBlock, options: .truncatesLastVisibleLine, attributes: [NSAttributedString.Key.font: font], context: nil)
         let width = Double(rect.size.width)
         let height = Double(rect.size.height)
         let size = CGSize(width: ceil(width), height: ceil(height))
