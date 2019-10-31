@@ -16,7 +16,7 @@ class News: Object {
     @objc dynamic var userId: Int = 0
     @objc dynamic var type: String = ""
     @objc dynamic var text: String = ""
-    @objc dynamic var photo: String = ""
+    //@objc dynamic var photo: String = ""
     @objc dynamic var date: Int = 0
     @objc dynamic var comments: Int = 0
     @objc dynamic var likes: Int = 0
@@ -25,18 +25,35 @@ class News: Object {
     @objc dynamic var views: Int = 0
     
     var data = [String]()
+    var photos = [String]()
     
     convenience init (_ json: JSON) {
         self.init()
         
         let sizesArray = json["attachments"][0]["photo"]["sizes"].arrayValue
         let maxIndex = sizesArray.count - 1
+        
+        let photosArray = json["attachments"].arrayValue
+        let photosMaxIndex = photosArray.count - 1
+        
+        switch photosMaxIndex {
+        case 0:
+            let photo = json["attachments"][0]["photo"]["sizes"][maxIndex]["url"].stringValue
+            photos.append(photo)
+        case -1:
+            return
+        default:
+            for i in 0...photosMaxIndex {
+                let photo = json["attachments"][i]["photo"]["sizes"][maxIndex]["url"].stringValue
+                photos.append(photo)
+            }
+        }
 
         self.groupId = json["source_id"].intValue
         self.userId = json["signer_id"].intValue
         self.type = json["type"].stringValue
         self.text = json["text"].stringValue
-        self.photo = json["attachments"][0]["photo"]["sizes"][maxIndex]["url"].stringValue
+        //self.photo = json["attachments"][0]["photo"]["sizes"][maxIndex]["url"].stringValue
         self.date = json["date"].intValue
         self.comments = json["comments"]["count"].intValue
         self.likes = json["likes"]["count"].intValue
@@ -48,7 +65,7 @@ class News: Object {
             let name = "NewsTextCell"
             data.append(name)
         }
-        if !self.photo.isEmpty {
+        if !self.photos.isEmpty {
             let name = "NewsMediaCell"
             data.append(name)
         }

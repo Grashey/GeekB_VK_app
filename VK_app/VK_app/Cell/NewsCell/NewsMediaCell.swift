@@ -13,8 +13,10 @@ class NewsMediaCell: UITableViewCell {
     @IBOutlet weak var newsImageView: UIImageView!
 
     public func configure(with data: News) {
-        
-        let imageUrl = URL(string: data.photo)
-        newsImageView.kf.setImage(with: imageUrl)
+        let photos = data.photos
+        for i in 0...photos.count - 1 {
+            let imageUrl = URL(string: photos[i])
+            newsImageView.kf.setImage(with: imageUrl)
+        }
     }
 }

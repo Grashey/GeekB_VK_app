@@ -97,22 +97,22 @@ class NewsfeedViewController: UITableViewController {
         return UITableViewCell()
     }
     
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
+//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "NewsSegue",
-            let indexPath = tableView.indexPathForSelectedRow,
-            let newsVC = segue.destination as? GroupNewsController
-        {
-            newsVC.groupId = -news[indexPath.section].groupId
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "NewsSegue",
+//            let indexPath = tableView.indexPathForSelectedRow,
+//            let newsVC = segue.destination as? GroupNewsController
+//        {
+//            newsVC.groupId = -news[indexPath.section].groupId
+//        }
+//    }
 }
 
 
