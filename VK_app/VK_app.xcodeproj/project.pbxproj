@@ -51,6 +51,10 @@
 		B6B26C192326448700A965D1 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B26C182326448700A965D1 /* UITableView+Ext.swift */; };
 		B6BA0A2D236233AB00A701B7 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BA0A2C236233AB00A701B7 /* PhotoService.swift */; };
 		B6BA0A312367080900A701B7 /* NewsfeedDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BA0A302367080900A701B7 /* NewsfeedDateFormatter.swift */; };
+		B6BA0A37236B098700A701B7 /* CustomNewsPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BA0A36236B098700A701B7 /* CustomNewsPhotoController.swift */; };
+		B6BA0A39236B0B1700A701B7 /* CustomNewsPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BA0A38236B0B1700A701B7 /* CustomNewsPhotoCell.swift */; };
+		B6BA0A3B236B0D0400A701B7 /* CustomNewsfeedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BA0A3A236B0D0400A701B7 /* CustomNewsfeedCollection.swift */; };
+		B6BA0A3D236B0FB900A701B7 /* CustomCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BA0A3C236B0FB900A701B7 /* CustomCollectionCell.swift */; };
 		B6CFD7712355F93D00CCFCC3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CFD7702355F93D00CCFCC3 /* NetworkError.swift */; };
 		B6E595E022F875E900580098 /* NavigationControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */; };
 		B6FF586322DE33E200B1604D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF586222DE33E200B1604D /* PhotoViewController.swift */; };
@@ -104,6 +108,10 @@
 		B6B26C182326448700A965D1 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		B6BA0A2C236233AB00A701B7 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		B6BA0A302367080900A701B7 /* NewsfeedDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedDateFormatter.swift; sourceTree = "<group>"; };
+		B6BA0A36236B098700A701B7 /* CustomNewsPhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNewsPhotoController.swift; sourceTree = "<group>"; };
+		B6BA0A38236B0B1700A701B7 /* CustomNewsPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNewsPhotoCell.swift; sourceTree = "<group>"; };
+		B6BA0A3A236B0D0400A701B7 /* CustomNewsfeedCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNewsfeedCollection.swift; sourceTree = "<group>"; };
+		B6BA0A3C236B0FB900A701B7 /* CustomCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionCell.swift; sourceTree = "<group>"; };
 		B6CFD7702355F93D00CCFCC3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		B6E595DF22F875E900580098 /* NavigationControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerAnimator.swift; sourceTree = "<group>"; };
 		B6FF586222DE33E200B1604D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +252,10 @@
 				B675DC9222C679C30074C418 /* Main.storyboard */,
 				B675DC9522C679C40074C418 /* Assets.xcassets */,
 				B675DC9722C679C40074C418 /* LaunchScreen.storyboard */,
+				B6BA0A36236B098700A701B7 /* CustomNewsPhotoController.swift */,
+				B6BA0A38236B0B1700A701B7 /* CustomNewsPhotoCell.swift */,
+				B6BA0A3A236B0D0400A701B7 /* CustomNewsfeedCollection.swift */,
+				B6BA0A3C236B0FB900A701B7 /* CustomCollectionCell.swift */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -428,21 +440,25 @@
 				B6CFD7712355F93D00CCFCC3 /* NetworkError.swift in Sources */,
 				B6A1B84322E5B8E8009FC00E /* GradientView.swift in Sources */,
 				B69D0E052306AE7C003C9109 /* VKLoginController.swift in Sources */,
+				B6BA0A3D236B0FB900A701B7 /* CustomCollectionCell.swift in Sources */,
 				B6281C362353A3B200473926 /* SaveGroupData.swift in Sources */,
 				B62B20E722D0F3BB007F9161 /* FriendCell.swift in Sources */,
 				B618FDCC22D38A8C004467E2 /* FriendPhotoCell.swift in Sources */,
 				B6BA0A2D236233AB00A701B7 /* PhotoService.swift in Sources */,
+				B6BA0A3B236B0D0400A701B7 /* CustomNewsfeedCollection.swift in Sources */,
 				B6B26C1523224AF000A965D1 /* NewsMediaCell.swift in Sources */,
 				B60C84B522EB44F400007A8E /* News.swift in Sources */,
 				B62B20ED22D22CA2007F9161 /* Friend.swift in Sources */,
 				B6B26C172326416F00A965D1 /* UIViewController+Ext.swift in Sources */,
 				B62B20F122D22EF0007F9161 /* GroupController.swift in Sources */,
 				B618FDCA22D389AD004467E2 /* FriendPhotoController.swift in Sources */,
+				B6BA0A39236B0B1700A701B7 /* CustomNewsPhotoCell.swift in Sources */,
 				B6281C342353A33400473926 /* ParseGroupData.swift in Sources */,
 				B6281C30234D029F00473926 /* AsyncOperation.swift in Sources */,
 				B69D0E0923071C39003C9109 /* NetworkService.swift in Sources */,
 				B675DC8F22C679C30074C418 /* AppDelegate.swift in Sources */,
 				B62B20EF22D22EAC007F9161 /* Group.swift in Sources */,
+				B6BA0A37236B098700A701B7 /* CustomNewsPhotoController.swift in Sources */,
 				B6B26C102322464100A965D1 /* NewsHeaderCell.swift in Sources */,
 				B6E595E022F875E900580098 /* NavigationControllerAnimator.swift in Sources */,
 				B6A1B84722E6383E009FC00E /* CharacterPickerView.swift in Sources */,

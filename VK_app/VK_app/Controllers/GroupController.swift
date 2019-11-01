@@ -165,7 +165,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GroupNewsSegue",
             let indexPath = tableView.indexPathForSelectedRow,
-            let photoVC = segue.destination as? GroupNewsController
+            let photoVC = segue.destination as? CustomNewsPhotoController
         {
             if searchActive {
                 photoVC.groupId = filteredGroups?[indexPath.row].id ?? 0

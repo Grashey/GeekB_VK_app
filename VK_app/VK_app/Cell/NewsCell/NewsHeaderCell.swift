@@ -52,7 +52,7 @@ class NewsHeaderCell: UITableViewCell {
     override var intrinsicContentSize: CGSize {
         var size = super.intrinsicContentSize
         size.width = contentView.bounds.width
-        size.height = iconWidth + indent * 2
+        size.height = groupAvatar.bounds.height
         return size
     }
     
