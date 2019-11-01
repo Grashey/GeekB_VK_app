@@ -323,7 +323,6 @@
                                 <connections>
                                     <outlet property="groupAvatarView" destination="ep9-UR-Qs1" id="kPQ-Tq-1E6"/>
                                     <outlet property="groupNameLabel" destination="ydl-cT-GT7" id="JNp-vi-j99"/>
-                                    <segue destination="Y0x-XY-47D" kind="show" identifier="GroupNewsSegue" id="1Rf-S9-BNQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -368,34 +367,61 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsMediaCell" id="Vah-HP-dah" customClass="NewsMediaCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="414.33334350585938"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsPhotoCell" id="jXs-UB-Bca" customClass="NewsPhotoCell" customModule="VK_app" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vah-HP-dah" id="BWC-P7-xVa">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="414.33334350585938"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jXs-UB-Bca" id="eQS-mb-gd9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="defaultNews" translatesAutoresizingMaskIntoConstraints="NO" id="L0I-tg-Pvg">
-                                            <rect key="frame" x="0.0" y="11" width="414" height="414.33333333333331"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="L0I-tg-Pvg" secondAttribute="height" multiplier="1:1" id="odZ-1d-vRl"/>
-                                            </constraints>
-                                        </imageView>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1bg-fC-mVu" customClass="NewsPhotoCollection" customModule="VK_app" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fUy-sh-2Lg">
+                                                <size key="itemSize" width="50" height="50"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewsPhotoCollectionCell" id="y6H-eO-4hP" customClass="NewsPhotoCollectionCell" customModule="VK_app" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NIp-Xw-bVL">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pad-An-5d2">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="pad-An-5d2" secondAttribute="trailing" id="EWq-eM-xn9"/>
+                                                            <constraint firstItem="pad-An-5d2" firstAttribute="leading" secondItem="NIp-Xw-bVL" secondAttribute="leading" id="JxU-Qb-XSF"/>
+                                                            <constraint firstAttribute="bottom" secondItem="pad-An-5d2" secondAttribute="bottom" id="VzN-jl-Kks"/>
+                                                            <constraint firstItem="pad-An-5d2" firstAttribute="top" secondItem="NIp-Xw-bVL" secondAttribute="top" id="b7i-Hd-9Xh"/>
+                                                        </constraints>
+                                                    </collectionViewCellContentView>
+                                                    <connections>
+                                                        <outlet property="photoView" destination="pad-An-5d2" id="1ho-yL-uD4"/>
+                                                    </connections>
+                                                </collectionViewCell>
+                                            </cells>
+                                        </collectionView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="L0I-tg-Pvg" firstAttribute="leading" secondItem="BWC-P7-xVa" secondAttribute="leading" id="7tC-du-3ei"/>
-                                        <constraint firstItem="L0I-tg-Pvg" firstAttribute="bottom" secondItem="BWC-P7-xVa" secondAttribute="bottom" id="9SO-qL-Lop"/>
-                                        <constraint firstAttribute="top" secondItem="L0I-tg-Pvg" secondAttribute="top" id="Etv-di-cr8"/>
-                                        <constraint firstItem="L0I-tg-Pvg" firstAttribute="centerX" secondItem="BWC-P7-xVa" secondAttribute="centerX" id="Nfz-Lk-2FY"/>
-                                        <constraint firstAttribute="trailing" secondItem="L0I-tg-Pvg" secondAttribute="trailing" id="UHj-i0-XhS"/>
+                                        <constraint firstAttribute="bottom" secondItem="1bg-fC-mVu" secondAttribute="bottom" id="Fib-ix-kBl"/>
+                                        <constraint firstAttribute="trailing" secondItem="1bg-fC-mVu" secondAttribute="trailing" id="a3F-Fi-dMS"/>
+                                        <constraint firstItem="1bg-fC-mVu" firstAttribute="leading" secondItem="eQS-mb-gd9" secondAttribute="leading" id="fl6-Yd-d8i"/>
+                                        <constraint firstItem="1bg-fC-mVu" firstAttribute="top" secondItem="eQS-mb-gd9" secondAttribute="top" id="pJ8-1X-xR0"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="newsImageView" destination="L0I-tg-Pvg" id="Y1z-dO-9Es"/>
+                                    <outlet property="photoCollection" destination="1bg-fC-mVu" id="3JW-5w-EnZ"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsProfileCell" rowHeight="39" id="4Tp-Jn-zcz" customClass="NewsProfileCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="442.33334350585938" width="414" height="39"/>
+                                <rect key="frame" x="0.0" y="71.666667938232422" width="414" height="39"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Tp-Jn-zcz" id="F6n-3S-h5f">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
@@ -430,7 +456,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsFooterCell" rowHeight="64" id="p5c-wN-q3V" userLabel="News Footer Cell" customClass="NewsFooterCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="481.33334350585938" width="414" height="64"/>
+                                <rect key="frame" x="0.0" y="110.66666793823242" width="414" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p5c-wN-q3V" id="Mkn-cV-gv2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
@@ -588,7 +614,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsHeaderCell" rowHeight="233" translatesAutoresizingMaskIntoConstraints="NO" id="s8W-2r-qc3" customClass="NewsHeaderCell" customModule="VK_app" customModuleProvider="target">
+                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsHeaderCell" rowHeight="233" translatesAutoresizingMaskIntoConstraints="NO" id="s8W-2r-qc3" customClass="NewsHeaderCell" customModule="VK_app" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="233"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s8W-2r-qc3" id="PQS-lp-Gpd">
@@ -804,84 +830,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JUV-bx-gCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5686.9565217391309" y="740.625"/>
-        </scene>
-        <!--Custom News Photo Controller-->
-        <scene sceneID="5IJ-Zh-WmI">
-            <objects>
-                <tableViewController id="Y0x-XY-47D" customClass="CustomNewsPhotoController" customModule="VK_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KJ1-Na-Og0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomNewsPhotoCell" rowHeight="106" id="BuI-Rr-QqG" customClass="CustomNewsPhotoCell" customModule="VK_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="106"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BuI-Rr-QqG" id="AQm-5A-LKX">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1kp-rB-Pld" customClass="CustomNewsfeedCollection" customModule="VK_app" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Gz1-qh-UtE">
-                                                <size key="itemSize" width="78" height="79"/>
-                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            </collectionViewFlowLayout>
-                                            <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomCollectionCell" id="DhT-jE-kuU" customClass="CustomCollectionCell" customModule="VK_app" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="78" height="79"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vXw-2W-jQz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="78" height="79"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AwN-1E-fYt">
-                                                                <rect key="frame" x="0.0" y="0.0" width="78" height="79"/>
-                                                            </imageView>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="AwN-1E-fYt" firstAttribute="top" secondItem="vXw-2W-jQz" secondAttribute="top" id="N8Q-KZ-cOh"/>
-                                                            <constraint firstAttribute="bottom" secondItem="AwN-1E-fYt" secondAttribute="bottom" id="O5a-To-xok"/>
-                                                            <constraint firstAttribute="trailing" secondItem="AwN-1E-fYt" secondAttribute="trailing" id="OBz-px-odb"/>
-                                                            <constraint firstItem="AwN-1E-fYt" firstAttribute="leading" secondItem="vXw-2W-jQz" secondAttribute="leading" id="jNk-Od-Hum"/>
-                                                        </constraints>
-                                                    </collectionViewCellContentView>
-                                                    <size key="customSize" width="78" height="79"/>
-                                                    <connections>
-                                                        <outlet property="photoView" destination="AwN-1E-fYt" id="x4W-sC-dUm"/>
-                                                    </connections>
-                                                </collectionViewCell>
-                                            </cells>
-                                        </collectionView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="1kp-rB-Pld" secondAttribute="bottom" id="4re-mQ-8gT"/>
-                                        <constraint firstAttribute="trailing" secondItem="1kp-rB-Pld" secondAttribute="trailing" id="8h3-d7-M9z"/>
-                                        <constraint firstItem="1kp-rB-Pld" firstAttribute="top" secondItem="AQm-5A-LKX" secondAttribute="top" id="E57-MS-EVo"/>
-                                        <constraint firstItem="1kp-rB-Pld" firstAttribute="leading" secondItem="AQm-5A-LKX" secondAttribute="leading" id="dW0-Ba-NvC"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="customNewsfeedCollection" destination="1kp-rB-Pld" id="tC1-Ai-jGy"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Y0x-XY-47D" id="vdh-Pi-b0y"/>
-                            <outlet property="delegate" destination="Y0x-XY-47D" id="7f5-3r-p4s"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="JHd-LQ-eLf"/>
-                    <connections>
-                        <outlet property="customNewsfeedTable" destination="KJ1-Na-Og0" id="uOs-eS-Sec"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="seC-ef-XVL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6902.898550724638" y="568.52678571428567"/>
         </scene>
         <!--All Groups Controller-->
         <scene sceneID="Nuf-YD-3jO">

@@ -78,9 +78,9 @@ class NewsfeedViewController: UITableViewController {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as! NewsTextCell
                         cell.configure(with: data)
                         return cell
-                    } else if element == "NewsMediaCell" {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
-                        cell.configure(with: data)
+                    } else if element == "NewsPhotoCell" {
+                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsPhotoCell", for: indexPath) as! NewsPhotoCell
+                        //cell.configure(with: data)
                         return cell
                     } else if element == "NewsProfileCell" {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsProfileCell", for: indexPath) as! NewsProfileCell
@@ -97,12 +97,18 @@ class NewsfeedViewController: UITableViewController {
         return UITableViewCell()
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? NewsPhotoCell else { return }
+
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
+    }
+    
 //    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return UITableView.automaticDimension
 //    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 120
     }
 
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -115,4 +121,22 @@ class NewsfeedViewController: UITableViewController {
 //    }
 }
 
+extension NewsfeedViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        return news[collectionView.tag].photos.count
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewsPhotoCollectionCell", for: indexPath) as! NewsPhotoCollectionCell
+        
+        let photosString = news[collectionView.tag].photos
+        let urlString = photosString[indexPath.item]
+        let imageUrl = URL(string: urlString)
+        cell.photoView.kf.setImage(with: imageUrl)
+        return cell
+    }
+}
 

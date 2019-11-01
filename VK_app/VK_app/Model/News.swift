@@ -66,7 +66,7 @@ class News: Object {
             data.append(name)
         }
         if !self.photos.isEmpty {
-            let name = "NewsMediaCell"
+            let name = "NewsPhotoCell"
             data.append(name)
         }
         if self.userId > 0 {
