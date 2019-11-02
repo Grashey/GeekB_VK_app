@@ -87,6 +87,8 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
         
             cell.indexPath = indexPath
             cell.delegate = self
+            cell.friendNameLabel.backgroundColor = self.friendsTable.backgroundColor
+            cell.friendAvatarView.backgroundColor = self.friendsTable.backgroundColor
         
             return cell
         }

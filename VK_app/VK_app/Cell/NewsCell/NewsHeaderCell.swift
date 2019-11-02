@@ -49,12 +49,12 @@ class NewsHeaderCell: UITableViewCell {
         setNeedsLayout()
     }
     
-    override var intrinsicContentSize: CGSize {
-        var size = super.intrinsicContentSize
-        size.width = contentView.bounds.width
-        size.height = groupAvatar.bounds.height
-        return size
-    }
+//    override var intrinsicContentSize: CGSize {
+//        var size = super.intrinsicContentSize
+//        size.width = contentView.bounds.width
+//        size.height = groupAvatar.bounds.height
+//        return size
+//    }
     
     public func configure(with group: NewsGroup, date: Int, postDateFormatter: NewsfeedDateFormatter) {
         groupLabel.text = group.groupName

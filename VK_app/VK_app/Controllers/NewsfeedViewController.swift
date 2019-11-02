@@ -25,6 +25,9 @@ class NewsfeedViewController: UITableViewController {
     let newsPostDateFormatter = NewsfeedDateFormatter()
     let networkService = NetworkService()
     
+    let heightForHeader: CGFloat = 70
+    let heightForFooter: CGFloat = 50
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -108,7 +111,13 @@ class NewsfeedViewController: UITableViewController {
 //    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        var height: CGFloat = 200
+        if indexPath.row == 0 {
+            height = heightForHeader
+        } else if indexPath.row == news[indexPath.section].data.count + 1 {
+            height = heightForFooter
+        }
+        return height
     }
 
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -42,13 +42,6 @@ class NewsTextCell: UITableViewCell {
         setNeedsLayout()
     }
     
-    override var intrinsicContentSize: CGSize {
-        var size = super.intrinsicContentSize
-        size.width = contentView.bounds.width
-        size.height = newsTextView.frame.height
-        return size
-       }
-    
     private func setTextViewFrame() {
         newsTextView.font = .systemFont(ofSize: 14)
         let size = getTextViewSize(text: newsTextView.text ?? "", font: newsTextView.font!)
