@@ -78,7 +78,7 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.reuseID, for: indexPath) as! FriendCell
         
         let character = firstCharacter[indexPath.section]
         if let friends = sortedFriends[character] {

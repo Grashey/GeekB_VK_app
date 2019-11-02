@@ -10,6 +10,8 @@ import UIKit
 
 class NewsHeaderCell: UITableViewCell {
 
+    static let reuseID = "NewsHeaderCell"
+    
     private let groupAvatar = UIImageView()
     private let groupLabel = UILabel()
     private let timeLabel = UILabel()

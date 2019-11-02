@@ -12,6 +12,8 @@ class FriendPhotoCell: UICollectionViewCell {
   
     @IBOutlet weak var photoView: UIImageView!
     
+    static let reuseID = "FriendPhotoCell"
+    
     public func configure(with photo: Photo, by photoService: PhotoService) {
         let urlString = photo.photoUrl
         photoService.photo(urlString: urlString) { [weak self] image in

@@ -13,6 +13,8 @@ class NewsProfileCell: UITableViewCell {
     @IBOutlet weak var profileAvatar: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
     
+    static let reuseID = "NewsProfileCell"
+    
     public func configure(with data: NewsProfile) {
         
         profileNameLabel.text = data.userName + " " + data.userSurname

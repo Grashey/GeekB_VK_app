@@ -10,6 +10,8 @@ import UIKit
 
 class NewsFooterCell: UITableViewCell {
     
+    static let reuseID = "NewsFooterCell"
+    
     @IBOutlet weak var likeImageView: LikeImageView!
     @IBOutlet weak var likeCountLabel: UILabel!
     

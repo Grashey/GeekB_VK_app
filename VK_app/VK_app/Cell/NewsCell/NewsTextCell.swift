@@ -12,6 +12,7 @@ class NewsTextCell: UITableViewCell {
     
     private let newsTextView = UITextView()
     
+    static let reuseID = "NewsTextCell"
     private let indent: CGFloat = 10
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

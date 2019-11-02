@@ -51,7 +51,7 @@
 //        let data = news[indexPath.section]
 //        
 //        if indexPath.row == 0 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
+//            let cell = tableView.dequeueReusableCell(withIdentifier: NewsHeaderCell.reuseID, for: indexPath) as! NewsHeaderCell
 //            for element in groups {
 //                if -data.groupId == element.groupId {
 //                    cell.configure(with: element, date: data.date, postDateFormatter: newsPostDateFormatter)
@@ -60,23 +60,23 @@
 //            }
 //            
 //        } else if indexPath.row == news[indexPath.section].data.count + 1 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
+//            let cell = tableView.dequeueReusableCell(withIdentifier: NewsFooterCell.reuseID, for: indexPath) as! NewsFooterCell
 //            cell.configure(with: data)
 //            return cell
 //            
 //        } else if !news[indexPath.section].data.isEmpty {
 //            for (index, element) in news[indexPath.section].data.enumerated() {
 //                if indexPath.row == index + 1 {
-//                    if element == "NewsTextCell" {
-//                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as! NewsTextCell
+//                    if element == NewsTextCell.reuseID {
+//                        let cell = tableView.dequeueReusableCell(withIdentifier: NewsTextCell.reuseID, for: indexPath) as! NewsTextCell
 //                        cell.configure(with: data)
 //                        return cell
-//                    } else if element == "NewsMediaCell" {
-//                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
+//                    } else if element == NewsMediaCell.reuseID {
+//                        let cell = tableView.dequeueReusableCell(withIdentifier: NewsMediaCell.reuseID, for: indexPath) as! NewsMediaCell
 //                        cell.configure(with: data)
 //                        return cell
-//                    }  else if element == "NewsProfileCell" {
-//                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsProfileCell", for: indexPath) as! NewsProfileCell
+//                    }  else if element == NewsProfileCell.reuseID {
+//                        let cell = tableView.dequeueReusableCell(withIdentifier: NewsProfileCell.reuseID, for: indexPath) as! NewsProfileCell
 //                        for element in profiles {
 //                            if data.userId == element.userId {
 //                                cell.configure(with: element)
