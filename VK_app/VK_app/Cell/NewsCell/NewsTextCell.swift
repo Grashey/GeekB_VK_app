@@ -11,8 +11,7 @@ import UIKit
 class NewsTextCell: UITableViewCell {
     
     private let newsTextView = UITextView()
-    
-    static let reuseID = String(describing: NewsTextCell.self)
+   
     private let indent: CGFloat = 10
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

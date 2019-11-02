@@ -11,8 +11,6 @@ import UIKit
 class NewsPhotoCell: UITableViewCell {
     
     @IBOutlet weak var photoCollection: NewsPhotoCollection!
-    
-    static let reuseID = String(describing: NewsPhotoCell.self)
 
     func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
         
