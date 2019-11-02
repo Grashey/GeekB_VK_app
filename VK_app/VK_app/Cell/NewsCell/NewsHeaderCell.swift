@@ -10,7 +10,7 @@ import UIKit
 
 class NewsHeaderCell: UITableViewCell {
 
-    static let reuseID = "NewsHeaderCell"
+    static let reuseID = String(describing: NewsHeaderCell.self)
     
     private let groupAvatar = UIImageView()
     private let groupLabel = UILabel()

@@ -18,7 +18,7 @@ class FriendCell: UITableViewCell {
     @IBOutlet weak var friendNameLabel: UILabel!
     @IBOutlet var shadowView: UIView!
     
-    static let reuseID = "FriendCell"
+    static let reuseID = String(describing: FriendCell.self)
     
     var delegate: FriendCellDelegate?
     var indexPath = IndexPath()

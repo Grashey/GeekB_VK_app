@@ -12,5 +12,5 @@ class NewsPhotoCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var photoView: UIImageView!
     
-    static let reuseID = "NewsPhotoCollectionCell"
+    static let reuseID = String(describing: NewsPhotoCollectionCell.self)
 }
