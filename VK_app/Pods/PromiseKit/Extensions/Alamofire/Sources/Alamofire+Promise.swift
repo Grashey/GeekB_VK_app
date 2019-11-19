@@ -187,3 +187,4 @@ public struct PMKAlamofireDataResponse {
     /// The timeline of the complete lifecycle of the request.
     public let timeline: Timeline
 }
+

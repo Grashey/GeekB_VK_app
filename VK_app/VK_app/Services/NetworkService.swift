@@ -40,7 +40,6 @@ class NetworkService {
             }
         }
   
-    
     func getPhotos(userId: String, completion: @escaping ([Photo]) -> Void){
         
         let url = "https://api.vk.com/method/photos.getAll"

@@ -10,7 +10,6 @@ import UIKit
 import SwiftyJSON
 import RealmSwift
 
-
 class Group: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
@@ -21,7 +20,7 @@ class Group: Object {
         
         self.id = json["id"].intValue
         self.name = json["name"].stringValue
-        self.avatar = json["photo_100"].stringValue
+        self.avatar = json["photo_50"].stringValue
     }
     
     override static func primaryKey() -> String? {

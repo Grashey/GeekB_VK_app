@@ -102,7 +102,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.reuseID, for: indexPath) as! GroupCell
         if searchActive {
             if let group = filteredGroups?[indexPath.row] {
                 cell.configure(with: group)
@@ -162,18 +162,18 @@ class GroupController: UITableViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GroupNewsSegue",
-            let indexPath = tableView.indexPathForSelectedRow,
-            let photoVC = segue.destination as? GroupNewsController
-        {
-            if searchActive {
-                photoVC.groupId = filteredGroups?[indexPath.row].id ?? 0
-            } else {
-                photoVC.groupId = myGroups?[indexPath.row].id ?? 0
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "GroupNewsSegue",
+//            let indexPath = tableView.indexPathForSelectedRow,
+//            let photoVC = segue.destination as? CustomNewsPhotoController
+//        {
+//            if searchActive {
+//                photoVC.groupId = filteredGroups?[indexPath.row].id ?? 0
+//            } else {
+//                photoVC.groupId = myGroups?[indexPath.row].id ?? 0
+//            }
+//        }
+//    }
 }
 
 extension GroupController: UIViewControllerTransitioningDelegate {

@@ -28,4 +28,15 @@ class RealmService {
             let realm = try Realm(configuration: configuration)
             return realm.objects(type)
     }
+    
+    static func linkPhotosToFriend(userId: Int, photos: [Photo],
+        configuration: Realm.Configuration = deleteIfMigration) throws {
+        let realm = try Realm(configuration: configuration)
+        let friend = realm.objects(Friend.self).filter("id == [cd] %@", userId)
+        for object in friend {
+            try realm.write {
+                object.photos.append(objectsIn: photos)
+            }
+        }
+    }
 }

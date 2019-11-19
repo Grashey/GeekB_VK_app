@@ -22,11 +22,14 @@ class NewsfeedViewController: UITableViewController {
     var news = [News]()
     var groups = [NewsGroup]()
     var profiles = [NewsProfile]()
-    let formatter = DateFormatter()
+    let newsPostDateFormatter = NewsfeedDateFormatter()
     let networkService = NetworkService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(NewsHeaderCell.self, forCellReuseIdentifier: NewsHeaderCell.reuseID)
+        tableView.register(NewsTextCell.self, forCellReuseIdentifier: NewsTextCell.reuseID)
         
         networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news, groups, profiles  in
             guard let self = self else { return }
@@ -35,9 +38,6 @@ class NewsfeedViewController: UITableViewController {
             self.profiles = profiles
             self.newsfeedTable.reloadData()
         })
-
-        formatter.timeStyle = .short
-        formatter.dateStyle = .none
     }
     
     // MARK: - Tableview methods
@@ -58,53 +58,116 @@ class NewsfeedViewController: UITableViewController {
         let data = news[indexPath.section]
         
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHeaderCell", for: indexPath) as! NewsHeaderCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewsHeaderCell.reuseID, for: indexPath) as! NewsHeaderCell
             for element in groups {
                 if -data.groupId == element.groupId {
-                    cell.configure(with: element, date: data.date)
+                    cell.configure(with: element, date: data.date, postDateFormatter: newsPostDateFormatter)
                     return cell
                 }
             }
             
         } else if indexPath.row == news[indexPath.section].data.count + 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFooterCell", for: indexPath) as! NewsFooterCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewsFooterCell.reuseID, for: indexPath) as! NewsFooterCell
             cell.configure(with: data)
             return cell
             
         } else if !news[indexPath.section].data.isEmpty {
             for (index, element) in news[indexPath.section].data.enumerated() {
                 if indexPath.row == index + 1 {
-                    if element == "NewsTextCell" {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as! NewsTextCell
+                    switch element {
+                    case NewsTextCell.reuseID:
+                        let cell = tableView.dequeueReusableCell(withIdentifier: NewsTextCell.reuseID, for: indexPath) as! NewsTextCell
                         cell.configure(with: data)
+                        cell.newsTextView.isScrollEnabled = cell.heightForScroll(with: data)
                         return cell
-                    } else if element == "NewsMediaCell" {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsMediaCell", for: indexPath) as! NewsMediaCell
-                        cell.configure(with: data)
+                        
+                    case NewsPhotoCell.reuseID:
+                        let cell = tableView.dequeueReusableCell(withIdentifier: NewsPhotoCell.reuseID, for: indexPath) as! NewsPhotoCell
+                        if news[indexPath.section].photos.count == 1 {
+                            cell.photoCollection.isScrollEnabled = false
+                        } else {
+                            cell.photoCollection.isScrollEnabled = true
+                        }
+                        //cell.configure(with: data)
                         return cell
-                    } else if element == "NewsProfileCell" {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsProfileCell", for: indexPath) as! NewsProfileCell
+                        
+                    case NewsProfileCell.reuseID:
+                        let cell = tableView.dequeueReusableCell(withIdentifier: NewsProfileCell.reuseID, for: indexPath) as! NewsProfileCell
                         for element in profiles {
                             if data.userId == element.userId {
                                 cell.configure(with: element)
                                 return cell
                             }
                         }
+                    default:
+                        return UITableViewCell()
                     }
                 }
             }
         }
         return UITableViewCell()
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? NewsPhotoCell else { return }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "NewsSegue",
-            let indexPath = tableView.indexPathForSelectedRow,
-            let newsVC = segue.destination as? GroupNewsController
-        {
-            newsVC.groupId = -news[indexPath.section].groupId
-        }
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
     }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height: CGFloat = UITableView.automaticDimension
+        
+        if indexPath.row == 0 {
+            let cell = NewsHeaderCell()
+            height = cell.heightForCell()
+            
+        } else if indexPath.row == news[indexPath.section].data.count + 1 {
+            let cell = NewsFooterCell()
+            height = cell.heightForCell()
+            
+        } else if !news[indexPath.section].data.isEmpty {
+            for (index, element) in news[indexPath.section].data.enumerated() {
+                if indexPath.row == index + 1 {
+                    if element == NewsTextCell.reuseID {
+                        let cell = NewsTextCell()
+                        let data = news[indexPath.section]
+                        height = cell.heightForCell(with: data)
+                        
+                    } else if element == NewsPhotoCell.reuseID {
+                        height = 400
+                    }
+                }
+            }
+        }
+        return height
+    }
+
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "NewsSegue",
+//            let indexPath = tableView.indexPathForSelectedRow,
+//            let newsVC = segue.destination as? GroupNewsController
+//        {
+//            newsVC.groupId = -news[indexPath.section].groupId
+//        }
+//    }
 }
 
+extension NewsfeedViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        return news[collectionView.tag].photos.count
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsPhotoCollectionCell.reuseID, for: indexPath) as! NewsPhotoCollectionCell
+        
+        let photosString = news[collectionView.tag].photos
+        let urlString = photosString[indexPath.item]
+        let imageUrl = URL(string: urlString)
+        cell.photoView.kf.setImage(with: imageUrl)
+        return cell
+    }
+}
 

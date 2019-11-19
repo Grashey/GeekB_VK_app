@@ -17,7 +17,7 @@ class Friend: Object {
     @objc dynamic var avatar: String = ""
     let photos = List<Photo>()
     
-    convenience init (_ json: JSON, photos: [Photo] = []) {
+    convenience init (_ json: JSON) {
         self.init()
         
         self.id = json["id"].intValue
