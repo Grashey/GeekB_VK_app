@@ -35,7 +35,7 @@ class PhotoService {
     
     private func saveImageToCache(urlString: String, image: UIImage) {
         guard let fileName = getFilePath(urlString: urlString) else { return }
-        let data = image.pngData()
+        let data = image.jpegData(compressionQuality: 1)
         FileManager.default.createFile(atPath: fileName, contents: data, attributes: nil)
     }
     

@@ -26,6 +26,7 @@ class News: Object {
     
     var data = [String]()
     var photos = [String]()
+    var aspectRatio = 1
     
     convenience init (_ json: JSON) {
         self.init()
@@ -33,13 +34,16 @@ class News: Object {
         let sizesArray = json["attachments"][0]["photo"]["sizes"].arrayValue
         let maxIndex = sizesArray.count - 1
         
+        if sizesArray.count > 0 {
+            let height = json["attachments"][0]["photo"]["sizes"][0]["height"].intValue
+            let width = json["attachments"][0]["photo"]["sizes"][0]["width"].intValue
+            aspectRatio = height / width
+        }
+        
         let photosArray = json["attachments"].arrayValue
         let photosMaxIndex = photosArray.count - 1
         
         switch photosMaxIndex {
-        case 0:
-            let photo = json["attachments"][0]["photo"]["sizes"][maxIndex]["url"].stringValue
-            photos.append(photo)
         case -1:
             return
         default:
@@ -48,7 +52,7 @@ class News: Object {
                 photos.append(photo)
             }
         }
-
+        
         self.groupId = json["source_id"].intValue
         self.userId = json["signer_id"].intValue
         self.type = json["type"].stringValue

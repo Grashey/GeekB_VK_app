@@ -15,7 +15,14 @@ class FriendPhotoCell: UICollectionViewCell {
     public func configure(with photo: Photo, by photoService: PhotoService) {
         let urlString = photo.photoUrl
         photoService.photo(urlString: urlString) { [weak self] image in
-            self?.photoView.image = image
+            guard let self = self else { return }
+            self.photoView.image = image
         }
     }
+    
+    override func prepareForReuse() {
+         super.prepareForReuse()
+         
+         setNeedsLayout()
+     }
 }

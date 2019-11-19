@@ -32,9 +32,10 @@ class PhotoViewController: UIViewController {
         try? RealmService.linkPhotosToFriend(userId: ownerId, photos: self.photos)
         
         likeCountView.textColor = .lightGray
+        likeCountView.text = String(likeCount)
+        
         let imageUrl = URL(string: self.photos[index].photoMaxUrl)
         photoFullScreenView.kf.setImage(with: imageUrl)
-        likeCountView.text = String(likeCount)
         nextPhotoView.isHidden = true
         
         let likeGR = UITapGestureRecognizer(target: self, action: #selector(heartStateChanged))

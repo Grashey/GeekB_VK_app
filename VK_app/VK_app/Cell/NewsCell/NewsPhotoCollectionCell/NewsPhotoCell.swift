@@ -15,9 +15,9 @@ class NewsPhotoCell: UITableViewCell {
     func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
         
         let layout = UICollectionViewFlowLayout()
-        let width = self.bounds.width
-        let height = self.bounds.height
-        layout.itemSize = CGSize(width: width, height: height)
+        let width = superview?.bounds.width
+        let height = photoCollection.bounds.height
+        layout.itemSize = CGSize(width: width ?? self.bounds.width, height: height)
         photoCollection.collectionViewLayout = layout
         
         photoCollection.delegate = dataSourceDelegate

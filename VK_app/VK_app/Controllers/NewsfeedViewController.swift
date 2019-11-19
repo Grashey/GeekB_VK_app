@@ -25,9 +25,6 @@ class NewsfeedViewController: UITableViewController {
     let newsPostDateFormatter = NewsfeedDateFormatter()
     let networkService = NetworkService()
     
-    let heightForHeader: CGFloat = 70
-    let heightForFooter: CGFloat = 50
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,15 +74,24 @@ class NewsfeedViewController: UITableViewController {
         } else if !news[indexPath.section].data.isEmpty {
             for (index, element) in news[indexPath.section].data.enumerated() {
                 if indexPath.row == index + 1 {
-                    if element == NewsTextCell.reuseID {
+                    switch element {
+                    case NewsTextCell.reuseID:
                         let cell = tableView.dequeueReusableCell(withIdentifier: NewsTextCell.reuseID, for: indexPath) as! NewsTextCell
                         cell.configure(with: data)
+                        cell.newsTextView.isScrollEnabled = cell.heightForScroll(with: data)
                         return cell
-                    } else if element == NewsPhotoCell.reuseID {
+                        
+                    case NewsPhotoCell.reuseID:
                         let cell = tableView.dequeueReusableCell(withIdentifier: NewsPhotoCell.reuseID, for: indexPath) as! NewsPhotoCell
+                        if news[indexPath.section].photos.count == 1 {
+                            cell.photoCollection.isScrollEnabled = false
+                        } else {
+                            cell.photoCollection.isScrollEnabled = true
+                        }
                         //cell.configure(with: data)
                         return cell
-                    } else if element == NewsProfileCell.reuseID {
+                        
+                    case NewsProfileCell.reuseID:
                         let cell = tableView.dequeueReusableCell(withIdentifier: NewsProfileCell.reuseID, for: indexPath) as! NewsProfileCell
                         for element in profiles {
                             if data.userId == element.userId {
@@ -93,6 +99,8 @@ class NewsfeedViewController: UITableViewController {
                                 return cell
                             }
                         }
+                    default:
+                        return UITableViewCell()
                     }
                 }
             }
@@ -105,17 +113,31 @@ class NewsfeedViewController: UITableViewController {
 
         tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
     }
-    
-//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height: CGFloat = 200
+        var height: CGFloat = UITableView.automaticDimension
+        
         if indexPath.row == 0 {
-            height = heightForHeader
+            let cell = NewsHeaderCell()
+            height = cell.heightForCell()
+            
         } else if indexPath.row == news[indexPath.section].data.count + 1 {
-            height = heightForFooter
+            let cell = NewsFooterCell()
+            height = cell.heightForCell()
+            
+        } else if !news[indexPath.section].data.isEmpty {
+            for (index, element) in news[indexPath.section].data.enumerated() {
+                if indexPath.row == index + 1 {
+                    if element == NewsTextCell.reuseID {
+                        let cell = NewsTextCell()
+                        let data = news[indexPath.section]
+                        height = cell.heightForCell(with: data)
+                        
+                    } else if element == NewsPhotoCell.reuseID {
+                        height = 400
+                    }
+                }
+            }
         }
         return height
     }

@@ -31,14 +31,12 @@ class RealmService {
     
     static func linkPhotosToFriend(userId: Int, photos: [Photo],
         configuration: Realm.Configuration = deleteIfMigration) throws {
-        var currentFriend = Friend()
         let realm = try Realm(configuration: configuration)
         let friend = realm.objects(Friend.self).filter("id == [cd] %@", userId)
         for object in friend {
-            currentFriend = object
-        }
-        try realm.write {
-            currentFriend.photos.append(objectsIn: photos)
+            try realm.write {
+                object.photos.append(objectsIn: photos)
+            }
         }
     }
 }

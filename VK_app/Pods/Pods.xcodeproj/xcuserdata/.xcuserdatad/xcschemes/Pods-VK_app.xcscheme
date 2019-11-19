@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "389D4D26891AA9C48CEA99AF41F2DF0A"
+               BlueprintIdentifier = "4291D5E3CB3784132F3826F587602E87"
+               BuildableName = "Pods-VK_app.framework"
                BlueprintName = "Pods-VK_app"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Pods-VK_app.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

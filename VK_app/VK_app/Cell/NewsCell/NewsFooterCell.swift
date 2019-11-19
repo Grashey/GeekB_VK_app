@@ -100,4 +100,8 @@ class NewsFooterCell: UITableViewCell {
         repostCountLabel.text = String(repostCount)
         viewCountLabel.text = String(viewsCount)
     }
+    
+    public func heightForCell() -> CGFloat {
+        return 50
+    }
 }
