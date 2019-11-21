@@ -57,7 +57,6 @@ class News: Object {
         self.userId = json["signer_id"].intValue
         self.type = json["type"].stringValue
         self.text = json["text"].stringValue
-        //self.photo = json["attachments"][0]["photo"]["sizes"][maxIndex]["url"].stringValue
         self.date = json["date"].intValue
         self.comments = json["comments"]["count"].intValue
         self.likes = json["likes"]["count"].intValue

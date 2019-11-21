@@ -160,7 +160,6 @@
 		B60C84AD22E7633200007A8E /* TO DO */ = {
 			isa = PBXGroup;
 			children = (
-				B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */,
 				B6A1B84622E6383E009FC00E /* CharacterPickerView.swift */,
 			);
 			path = "TO DO";
@@ -271,6 +270,7 @@
 				B6A1B84222E5B8E8009FC00E /* GradientView.swift */,
 				B60C84B922EEFC4900007A8E /* LoadingDotView.swift */,
 				B6A16EBC22E10DD3001E10D0 /* LikeImageView.swift */,
+				B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
