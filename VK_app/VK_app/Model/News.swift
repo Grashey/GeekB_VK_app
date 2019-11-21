@@ -31,14 +31,14 @@ class News: Object {
     convenience init (_ json: JSON) {
         self.init()
         
-        let sizesArray = json["attachments"][0]["photo"]["sizes"].arrayValue
-        let maxIndex = sizesArray.count - 1
-        
-        if sizesArray.count > 0 {
-            let height = json["attachments"][0]["photo"]["sizes"][0]["height"].intValue
-            let width = json["attachments"][0]["photo"]["sizes"][0]["width"].intValue
-            aspectRatio = height / width
-        }
+//        let sizesArray = json["attachments"][0]["photo"]["sizes"].arrayValue
+//        let maxIndex = sizesArray.count - 1
+//
+//        if sizesArray.count > 0 {
+//            let height = json["attachments"][0]["photo"]["sizes"][0]["height"].intValue
+//            let width = json["attachments"][0]["photo"]["sizes"][0]["width"].intValue
+//            aspectRatio = height / width
+//        }
         
         let photosArray = json["attachments"].arrayValue
         let photosMaxIndex = photosArray.count - 1
@@ -48,6 +48,8 @@ class News: Object {
             return
         default:
             for i in 0...photosMaxIndex {
+                let sizesArray = json["attachments"][i]["photo"]["sizes"].arrayValue
+                let maxIndex = sizesArray.count - 1
                 let photo = json["attachments"][i]["photo"]["sizes"][maxIndex]["url"].stringValue
                 photos.append(photo)
             }
@@ -57,7 +59,6 @@ class News: Object {
         self.userId = json["signer_id"].intValue
         self.type = json["type"].stringValue
         self.text = json["text"].stringValue
-        //self.photo = json["attachments"][0]["photo"]["sizes"][maxIndex]["url"].stringValue
         self.date = json["date"].intValue
         self.comments = json["comments"]["count"].intValue
         self.likes = json["likes"]["count"].intValue

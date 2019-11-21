@@ -134,7 +134,7 @@ class NewsfeedViewController: UITableViewController {
                         height = cell.heightForCell(with: data)
                         
                     } else if element == NewsPhotoCell.reuseID {
-                        height = 400
+                            height = 400
                     }
                 }
             }
@@ -167,6 +167,14 @@ extension NewsfeedViewController: UICollectionViewDelegate, UICollectionViewData
         let urlString = photosString[indexPath.item]
         let imageUrl = URL(string: urlString)
         cell.photoView.kf.setImage(with: imageUrl)
+        for (index,_) in photosString.enumerated() {
+            if index == 0 {
+                cell.photoView.contentMode = .scaleAspectFit
+            } else {
+                cell.photoView.contentMode = .scaleAspectFill
+            }
+        }
+        
         return cell
     }
 }

@@ -20,7 +20,6 @@ class NewsTextCell: UITableViewCell {
         super.init(style: .default, reuseIdentifier: "NewsTextCell")
         
         newsTextView.font = textFont
-        //newsTextView.isScrollEnabled = false
         newsTextView.isEditable = false
         
         setupSubviews()
@@ -30,7 +29,6 @@ class NewsTextCell: UITableViewCell {
         super.init(coder: coder)
         
         newsTextView.font = textFont
-        //newsTextView.isScrollEnabled = false
         newsTextView.isEditable = false
         
         setupSubviews()
