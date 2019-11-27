@@ -26,7 +26,7 @@ class News: Object {
     
     var data = [String]()
     var photos = [String]()
-    var aspectRatio = 1
+    var aspectRatio: CGFloat = 1
     
     convenience init (_ json: JSON) {
         self.init()
@@ -48,10 +48,27 @@ class News: Object {
             return
         default:
             for i in 0...photosMaxIndex {
-                let sizesArray = json["attachments"][i]["photo"]["sizes"].arrayValue
-                let maxIndex = sizesArray.count - 1
-                let photo = json["attachments"][i]["photo"]["sizes"][maxIndex]["url"].stringValue
-                photos.append(photo)
+                if json["attachments"][i]["type"] == "photo" {
+                    let sizesArray = json["attachments"][i]["photo"]["sizes"].arrayValue
+                    let maxIndex = sizesArray.count - 1
+                    let photo = json["attachments"][i]["photo"]["sizes"][maxIndex]["url"].stringValue
+                    photos.append(photo)
+                    let heightPhoto: Int? = json["attachments"][i]["photo"]["sizes"][maxIndex]["height"].intValue
+                    let widthPhoto: Int? = json["attachments"][i]["photo"]["sizes"][maxIndex]["width"].intValue
+                    if i == 0 {
+                        var aspectR: CGFloat {
+                            guard let height = heightPhoto,
+                                let width = widthPhoto,
+                                width != 0 else { return 0 }
+                            let maxRatio: CGFloat = 1.8
+                            return min(CGFloat(height) / CGFloat(width), maxRatio)
+                        }
+                        aspectRatio = aspectR
+                    }
+                } else if json["attachments"][i]["type"] == "video" {
+                    let video = json["attachments"][i]["video"]["photo_800"].stringValue
+                    photos.append(video)
+                }
             }
         }
         

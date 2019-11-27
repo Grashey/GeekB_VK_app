@@ -24,6 +24,8 @@ class NewsfeedViewController: UITableViewController {
     var profiles = [NewsProfile]()
     let newsPostDateFormatter = NewsfeedDateFormatter()
     let networkService = NetworkService()
+    var isLoading = false
+    var nextFrom = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,27 @@ class NewsfeedViewController: UITableViewController {
             self.profiles = profiles
             self.newsfeedTable.reloadData()
         })
+        
+        refreshControl = UIRefreshControl()
+        refreshControl!.attributedTitle = NSAttributedString(string: "Refreshing...")
+        refreshControl!.tintColor = .red
+        refreshControl!.addTarget(self, action: #selector(refreshNews(_:)), for: .valueChanged)
+        
+        tableView.prefetchDataSource = self
+    }
+    
+    // MARK: -  Private helper methods
+    @objc func refreshNews(_ sender: Any) {
+        let firstNewsDate = news.first!.date + 1
+        networkService.getNewsfeed(groupId: "groups", startTime: firstNewsDate) { news, groups, profiles  in
+            guard news.count > 0 else { self.refreshControl?.endRefreshing(); return }
+            self.news = news + self.news
+            self.groups = groups + self.groups
+            self.profiles = profiles + self.profiles
+            let indexSet = IndexSet(integersIn: 0..<news.count)
+            self.tableView.insertSections(indexSet, with: .automatic)
+            self.refreshControl?.endRefreshing()
+        }
     }
     
     // MARK: - Tableview methods
@@ -74,6 +97,7 @@ class NewsfeedViewController: UITableViewController {
         } else if !news[indexPath.section].data.isEmpty {
             for (index, element) in news[indexPath.section].data.enumerated() {
                 if indexPath.row == index + 1 {
+                    
                     switch element {
                     case NewsTextCell.reuseID:
                         let cell = tableView.dequeueReusableCell(withIdentifier: NewsTextCell.reuseID, for: indexPath) as! NewsTextCell
@@ -83,11 +107,6 @@ class NewsfeedViewController: UITableViewController {
                         
                     case NewsPhotoCell.reuseID:
                         let cell = tableView.dequeueReusableCell(withIdentifier: NewsPhotoCell.reuseID, for: indexPath) as! NewsPhotoCell
-                        if news[indexPath.section].photos.count == 1 {
-                            cell.photoCollection.isScrollEnabled = false
-                        } else {
-                            cell.photoCollection.isScrollEnabled = true
-                        }
                         //cell.configure(with: data)
                         return cell
                         
@@ -99,6 +118,7 @@ class NewsfeedViewController: UITableViewController {
                                 return cell
                             }
                         }
+                        
                     default:
                         return UITableViewCell()
                     }
@@ -134,7 +154,17 @@ class NewsfeedViewController: UITableViewController {
                         height = cell.heightForCell(with: data)
                         
                     } else if element == NewsPhotoCell.reuseID {
+                        if news[indexPath.section].photos.count == 1 {
+                            let tableWidth = tableView.bounds.width
+                            let news = self.news[indexPath.section]
+                            height = tableWidth * news.aspectRatio
+                        } else if news[indexPath.section].photos.count == 2 {
+                            let tableWidth = tableView.bounds.width
+                            let news = self.news[indexPath.section]
+                            height = tableWidth / 2 * news.aspectRatio
+                        } else {
                             height = 400
+                        }
                     }
                 }
             }
@@ -168,9 +198,10 @@ extension NewsfeedViewController: UICollectionViewDelegate, UICollectionViewData
         let imageUrl = URL(string: urlString)
         cell.photoView.kf.setImage(with: imageUrl)
         for (index,_) in photosString.enumerated() {
-            if index == 0 {
+            switch index {
+            case 0:
                 cell.photoView.contentMode = .scaleAspectFit
-            } else {
+            default:
                 cell.photoView.contentMode = .scaleAspectFill
             }
         }
@@ -179,3 +210,17 @@ extension NewsfeedViewController: UICollectionViewDelegate, UICollectionViewData
     }
 }
 
+extension NewsfeedViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard let maxSection = indexPaths.map({ $0.section }).max() else { return }
+        if maxSection > news.count - 3,
+            !isLoading {
+            isLoading = true
+            networkService.getNewsfeed(groupId: "groups", startFrom: nextFrom) { [weak self] (news,_, nextFrom) in
+                self?.news.append(contentsOf: news)
+                self?.tableView.reloadData()
+                self?.isLoading = false
+            }
+        }
+    }
+}

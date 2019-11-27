@@ -11,4 +11,5 @@ import UIKit
 class NewsPhotoCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var photoView: UIImageView!
+    
 }

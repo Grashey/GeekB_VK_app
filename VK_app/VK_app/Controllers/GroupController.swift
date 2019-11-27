@@ -112,6 +112,7 @@ class GroupController: UITableViewController, UISearchBarDelegate {
                 cell.configure(with: group)
             }
         }
+        cell.groupNameLabel.backgroundColor = self.tableView.backgroundColor
         return cell
     }
     

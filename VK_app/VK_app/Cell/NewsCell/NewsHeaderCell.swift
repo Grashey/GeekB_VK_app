@@ -10,9 +10,9 @@ import UIKit
 
 class NewsHeaderCell: UITableViewCell {
     
-    private let groupAvatar = UIImageView()
-    private let groupLabel = UILabel()
-    private let timeLabel = UILabel()
+    let groupAvatar = UIImageView()
+    let groupLabel = UILabel()
+    let timeLabel = UILabel()
     
     let indent: CGFloat = 10
     let iconWidth: CGFloat = 50
@@ -50,12 +50,14 @@ class NewsHeaderCell: UITableViewCell {
     }
     
     public func configure(with group: NewsGroup, date: Int, postDateFormatter: NewsfeedDateFormatter) {
-        groupLabel.text = group.groupName
-        
         let imageUrl = URL(string: group.groupAvatar)
         groupAvatar.kf.setImage(with: imageUrl)
         
+        groupLabel.text = group.groupName
+        groupLabel.backgroundColor = self.backgroundColor
+           
         timeLabel.text = postDateFormatter.getcurrentDate(date: date)
+        timeLabel.backgroundColor = self.backgroundColor
     }
     
     public func heightForCell() -> CGFloat {

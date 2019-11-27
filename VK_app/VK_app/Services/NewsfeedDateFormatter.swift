@@ -95,6 +95,8 @@ class NewsfeedDateFormatter {
             text = "три часа назад"
         } else if day == currentDay {
             text = "сегодня в \(hour):\(formatMinutes(minute))"
+        } else if currentDay - day == 1 {
+            text = "вчера в \(hour):\(formatMinutes(minute))" //решить вопрос с последним днем месяца
         } else {
             text = "\(day) \(monthString) в \(hour):\(formatMinutes(minute))"
         }

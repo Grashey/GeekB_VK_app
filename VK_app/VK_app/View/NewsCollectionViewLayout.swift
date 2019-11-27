@@ -69,15 +69,15 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
                     height = viewHeight
                     width = (viewWidth - indent) / threeItems * 2
                 } else if index == 1 {
-                    originX = viewWidth / threeItems * 2 //+ indent
+                    originX = (viewWidth - indent) / threeItems * 2 + indent
                     originY = 0
-                    height = viewHeight / 2 - indent
-                    width = viewWidth / 3 - indent
+                    height = (viewHeight - indent) / twoItems
+                    width = (viewWidth - indent) / threeItems
                 } else if index == 2 {
-                    originX = viewWidth / 3 * 2 //+ indent
-                    originY = viewHeight / 2 //+ indent
-                    height = viewHeight / 2 - indent
-                    width = viewWidth / 3 - indent
+                    originX = (viewWidth - indent) / threeItems * 2 + indent
+                    originY = (viewHeight - indent) / twoItems + indent
+                    height = (viewHeight - indent) / twoItems
+                    width = (viewWidth - indent) / threeItems
                 }
                 attributes.frame = CGRect(x: originX, y: originY, width: width, height: height)
                 cacheAttributes[indexPath] = attributes

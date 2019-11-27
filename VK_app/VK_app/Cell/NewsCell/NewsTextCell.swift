@@ -21,7 +21,6 @@ class NewsTextCell: UITableViewCell {
         
         newsTextView.font = textFont
         newsTextView.isEditable = false
-        
         setupSubviews()
     }
     
@@ -30,7 +29,6 @@ class NewsTextCell: UITableViewCell {
         
         newsTextView.font = textFont
         newsTextView.isEditable = false
-        
         setupSubviews()
     }
     
@@ -48,22 +46,22 @@ class NewsTextCell: UITableViewCell {
         setNeedsLayout()
     }
     
-    func setTextViewFrame() {
-        newsTextView.font = textFont
-        let size = getTextViewSize(text: newsTextView.text ?? "", font: textFont)
-        let origin = CGPoint(x: indent, y: indent)
-        newsTextView.frame = CGRect(origin: origin, size: size)
-    }
-    
-     func getTextViewSize(text: String, font: UIFont) -> CGSize {
-        let maxWidth = contentView.bounds.width
-        let textBlock = CGSize(width: maxWidth, height: CGFloat.greatestFiniteMagnitude)
-        let rect = text.boundingRect(with: textBlock, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
-        let width = Double(rect.size.width)
-        let height = Double(rect.size.height)
-        let size = CGSize(width: ceil(width), height: ceil(height))
-        return size
-    }
+//    func setTextViewFrame() {
+//        newsTextView.font = textFont
+//        let size = getTextViewSize(text: newsTextView.text ?? "", font: textFont)
+//        let origin = CGPoint(x: indent, y: indent)
+//        newsTextView.frame = CGRect(origin: origin, size: size)
+//    }
+//
+//     func getTextViewSize(text: String, font: UIFont) -> CGSize {
+//        let maxWidth = contentView.bounds.width
+//        let textBlock = CGSize(width: maxWidth, height: CGFloat.greatestFiniteMagnitude)
+//        let rect = text.boundingRect(with: textBlock, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+//        let width = Double(rect.size.width)
+//        let height = Double(rect.size.height)
+//        let size = CGSize(width: ceil(width), height: ceil(height))
+//        return size
+//    }
     
     public func configure(with data: News) {
         newsTextView.text = data.text

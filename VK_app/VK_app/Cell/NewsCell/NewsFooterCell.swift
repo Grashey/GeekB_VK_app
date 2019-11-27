@@ -30,6 +30,19 @@ class NewsFooterCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        let font = UIFont.systemFont(ofSize: 13)
+        
+        likeCountLabel.font = font
+        commentCountLabel.font = font
+        repostCountLabel.font = font
+        viewCountLabel.font = font
+        
+        self.backgroundColor = .white
+        likeCountLabel.backgroundColor = self.backgroundColor
+        commentCountLabel.backgroundColor = self.backgroundColor
+        repostCountLabel.backgroundColor = self.backgroundColor
+        viewCountLabel.backgroundColor = self.backgroundColor
+        
         likeCountLabel.textColor = .lightGray
         likeCountLabel.text = String(likeCount)
         commentCountLabel.text = String(commentCount)

@@ -127,15 +127,23 @@ class NetworkService {
         }
     }
     
-    func getNewsfeed(groupId: Any, completion: @escaping ([News],[NewsGroup],[NewsProfile]) -> Void) {
+    func getNewsfeed(groupId: Any, startTime: Int? = nil, startFrom: String? = nil, completion: @escaping ([News],[NewsGroup],[NewsProfile]) -> Void) {
         
         let url = "https://api.vk.com/method/newsfeed.get"
-        let parameters: Parameters = [
+        var parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
             "source_ids" : groupId,
             "filter" : "post"
         ]
+        
+        if let startTime = startTime {
+            parameters["start_time"] = "\(startTime)"
+        }
+        
+        if let startFrom = startFrom {
+            parameters["start_from"] = "\(startFrom)"
+        }
         
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON(queue: DispatchQueue.global()) { responce in
             switch responce.result {
@@ -149,6 +157,7 @@ class NetworkService {
                     let newsJSONs = json["response"]["items"].arrayValue
                     let news = newsJSONs.map { News($0) }
                     postNews = news.filter { $0.type == "post" }
+                    //let nextFrom = json["response"]["next_from"].stringValue
                 }
                 
                 DispatchQueue.global().async(group: self.dispatchGroup) {
