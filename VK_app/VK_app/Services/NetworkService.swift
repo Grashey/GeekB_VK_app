@@ -127,7 +127,7 @@ class NetworkService {
         }
     }
     
-    func getNewsfeed(groupId: Any, startTime: Int? = nil, startFrom: String? = nil, completion: @escaping ([News],[NewsGroup],[NewsProfile]) -> Void) {
+    func getNewsfeed(groupId: Any, startTime: Int? = nil, startFrom: String? = nil, completion: @escaping ([News],[NewsGroup],[NewsProfile], String) -> Void) {
         
         let url = "https://api.vk.com/method/newsfeed.get"
         var parameters: Parameters = [
@@ -151,13 +151,14 @@ class NetworkService {
                 var postNews = [News]()
                 var groups = [NewsGroup]()
                 var profiles = [NewsProfile]()
+                var nextFrom = String()
                 
                 DispatchQueue.global().async(group: self.dispatchGroup) {
                     let json = JSON(data)
                     let newsJSONs = json["response"]["items"].arrayValue
                     let news = newsJSONs.map { News($0) }
                     postNews = news.filter { $0.type == "post" }
-                    //let nextFrom = json["response"]["next_from"].stringValue
+                    nextFrom = json["response"]["next_from"].stringValue
                 }
                 
                 DispatchQueue.global().async(group: self.dispatchGroup) {
@@ -173,12 +174,12 @@ class NetworkService {
                 }
                 
                 self.dispatchGroup.notify(queue: .main) {
-                    completion(postNews, groups, profiles)
+                    completion(postNews, groups, profiles, nextFrom)
                 }
                 
             case .failure(let error):
                 print(error)
-                completion([],[],[])
+                completion([],[],[],"")
             }
         }
     }

@@ -33,11 +33,12 @@ class NewsfeedViewController: UITableViewController {
         tableView.register(NewsHeaderCell.self, forCellReuseIdentifier: NewsHeaderCell.reuseID)
         tableView.register(NewsTextCell.self, forCellReuseIdentifier: NewsTextCell.reuseID)
         
-        networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news, groups, profiles  in
+        networkService.getNewsfeed(groupId: "groups", completion: { [weak self] news, groups, profiles, nextFrom  in
             guard let self = self else { return }
             self.news = news
             self.groups = groups
             self.profiles = profiles
+            self.nextFrom = nextFrom
             self.newsfeedTable.reloadData()
         })
         
@@ -52,7 +53,7 @@ class NewsfeedViewController: UITableViewController {
     // MARK: -  Private helper methods
     @objc func refreshNews(_ sender: Any) {
         let firstNewsDate = news.first!.date + 1
-        networkService.getNewsfeed(groupId: "groups", startTime: firstNewsDate) { news, groups, profiles  in
+        networkService.getNewsfeed(groupId: "groups", startTime: firstNewsDate) { news, groups, profiles, _  in
             guard news.count > 0 else { self.refreshControl?.endRefreshing(); return }
             self.news = news + self.news
             self.groups = groups + self.groups
@@ -163,7 +164,7 @@ class NewsfeedViewController: UITableViewController {
                             let news = self.news[indexPath.section]
                             height = tableWidth / 2 * news.aspectRatio
                         } else {
-                            height = 400
+                            height = 450
                         }
                     }
                 }
@@ -216,8 +217,11 @@ extension NewsfeedViewController: UITableViewDataSourcePrefetching {
         if maxSection > news.count - 3,
             !isLoading {
             isLoading = true
-            networkService.getNewsfeed(groupId: "groups", startFrom: nextFrom) { [weak self] (news,_, nextFrom) in
+            networkService.getNewsfeed(groupId: "groups", startFrom: nextFrom) { [weak self] (news,groups,profiles, nextFrom) in
                 self?.news.append(contentsOf: news)
+                self?.groups.append(contentsOf: groups)
+                self?.profiles.append(contentsOf: profiles)
+                self?.nextFrom = nextFrom
                 self?.tableView.reloadData()
                 self?.isLoading = false
             }
