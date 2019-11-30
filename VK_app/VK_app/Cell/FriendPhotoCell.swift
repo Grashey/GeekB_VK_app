@@ -12,17 +12,8 @@ class FriendPhotoCell: UICollectionViewCell {
   
     @IBOutlet weak var photoView: UIImageView!
     
-    public func configure(with photo: Photo, by photoService: PhotoService) {
-        let urlString = photo.photoUrl
-        photoService.photo(urlString: urlString) { [weak self] image in
-            guard let self = self else { return }
-            self.photoView.image = image
-        }
+    public func configure(with photo: Photo) {
+        let imageUrl = URL(string: photo.photoUrl)
+        photoView.kf.setImage(with: imageUrl)
     }
-    
-    override func prepareForReuse() {
-         super.prepareForReuse()
-         
-         setNeedsLayout()
-     }
 }

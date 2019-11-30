@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -303,7 +303,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultGroup" translatesAutoresizingMaskIntoConstraints="NO" id="ep9-UR-Qs1" userLabel="Group Avatar View">
+                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ep9-UR-Qs1" userLabel="Group Avatar View">
                                             <rect key="frame" x="10" y="10" width="100" height="188"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="W7f-VD-aLL"/>
@@ -614,7 +614,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsHeaderCell" rowHeight="233" translatesAutoresizingMaskIntoConstraints="NO" id="s8W-2r-qc3" customClass="NewsHeaderCell" customModule="VK_app" customModuleProvider="target">
+                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsHeaderCell" rowHeight="233" translatesAutoresizingMaskIntoConstraints="NO" id="s8W-2r-qc3" customClass="NewsHeaderCell" customModule="VK_app" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="233"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s8W-2r-qc3" id="PQS-lp-Gpd">
@@ -654,7 +654,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="346"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultNews" translatesAutoresizingMaskIntoConstraints="NO" id="3Dt-eA-W1i">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Dt-eA-W1i">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="346"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="3Dt-eA-W1i" secondAttribute="height" multiplier="1:1" id="SXF-LP-cJ9"/>
@@ -852,7 +852,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultGroup" translatesAutoresizingMaskIntoConstraints="NO" id="LLQ-B7-mqL">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LLQ-B7-mqL">
                                             <rect key="frame" x="304" y="10" width="100" height="124"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="LLQ-B7-mqL" secondAttribute="height" multiplier="1:1" id="Ks7-8P-B3m"/>
@@ -949,7 +949,7 @@
                                                         <constraint firstAttribute="height" constant="80" id="ft7-mH-Hug"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="Rv1-Yv-Nk4">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rv1-Yv-Nk4">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
@@ -1038,7 +1038,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpE-Dx-l2b">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpE-Dx-l2b">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         </imageView>
                                     </subviews>
@@ -1077,11 +1077,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="odG-de-iSh">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="odG-de-iSh">
                                 <rect key="frame" x="0.0" y="66" width="414" height="764"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultAva" translatesAutoresizingMaskIntoConstraints="NO" id="TCu-tC-1v4">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TCu-tC-1v4">
                                 <rect key="frame" x="0.0" y="66" width="414" height="764"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -1172,9 +1172,6 @@
     <resources>
         <image name="background" width="1920" height="1280"/>
         <image name="commentIcon" width="200" height="200"/>
-        <image name="defaultAva" width="225" height="225"/>
-        <image name="defaultGroup" width="225" height="225"/>
-        <image name="defaultNews" width="750" height="467"/>
         <image name="kittenHead" width="301" height="320"/>
         <image name="kittenPaws" width="538" height="172"/>
         <image name="repostIcon" width="225" height="225"/>

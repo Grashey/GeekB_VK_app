@@ -21,6 +21,7 @@ class PhotoViewController: UIViewController {
     var index = Int()
     var ownerId = Int()
     var photos = [Photo]()
+    let photoServise = PhotoService()
     
     override func viewDidLoad() {
         
@@ -34,8 +35,11 @@ class PhotoViewController: UIViewController {
         likeCountView.textColor = .lightGray
         likeCountView.text = String(likeCount)
         
-        let imageUrl = URL(string: self.photos[index].photoMaxUrl)
-        photoFullScreenView.kf.setImage(with: imageUrl)
+        let imageUrl = self.photos[index].photoMaxUrl
+        photoServise.setPhoto(urlString: imageUrl) { [weak self] image in
+            guard let self = self else { return }
+            self.photoFullScreenView.image = image
+        }
         nextPhotoView.isHidden = true
         
         let likeGR = UITapGestureRecognizer(target: self, action: #selector(heartStateChanged))
@@ -75,8 +79,11 @@ class PhotoViewController: UIViewController {
         let goRightTransform = CGAffineTransform.init(translationX: view.bounds.width, y: 0)
         
         let nextIndex = self.index - 1
-        let nextImageUrl = URL(string: photos[nextIndex].photoMaxUrl)
-        self.nextPhotoView.kf.setImage(with: nextImageUrl)
+        let nextImageUrl = photos[nextIndex].photoMaxUrl
+        photoServise.setPhoto(urlString: nextImageUrl) { [weak self] image in
+            guard let self = self else { return }
+            self.nextPhotoView.image = image
+        }
         self.nextPhotoView.isHidden = false
         self.nextPhotoView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8).concatenating(goLeftTransform)
         
@@ -100,8 +107,11 @@ class PhotoViewController: UIViewController {
         }, completion: { _ in
             self.nextPhotoView.isHidden = true
             self.index -= 1
-            let imageUrl = URL(string: self.photos[self.index].photoMaxUrl)
-            self.photoFullScreenView.kf.setImage(with: imageUrl)
+            let imageUrl = self.photos[self.index].photoMaxUrl
+            self.photoServise.setPhoto(urlString: imageUrl) { [weak self] image in
+                guard let self = self else { return }
+                self.photoFullScreenView.image = image
+            }
             self.photoFullScreenView.transform = .identity
         })
     }
@@ -114,8 +124,11 @@ class PhotoViewController: UIViewController {
         let goRightTransform = CGAffineTransform.init(translationX: view.bounds.width, y: 0)
         
         let nextIndex = self.index + 1
-        let nextImageUrl = URL(string: photos[nextIndex].photoMaxUrl)
-        self.nextPhotoView.kf.setImage(with: nextImageUrl)
+        let nextImageUrl = photos[nextIndex].photoMaxUrl
+        self.photoServise.setPhoto(urlString: nextImageUrl) { [weak self] image in
+            guard let self = self else { return }
+            self.nextPhotoView.image = image
+        }
         self.nextPhotoView.isHidden = false
         self.nextPhotoView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8).concatenating(goRightTransform)
         
@@ -139,8 +152,11 @@ class PhotoViewController: UIViewController {
         }, completion: { _ in
             self.nextPhotoView.isHidden = true
             self.index += 1
-            let imageUrl = URL(string: self.photos[self.index].photoMaxUrl)
-            self.photoFullScreenView.kf.setImage(with: imageUrl)
+            let imageUrl = self.photos[self.index].photoMaxUrl
+            self.photoServise.setPhoto(urlString: imageUrl) { [weak self] image in
+                guard let self = self else { return }
+                self.photoFullScreenView.image = image
+            }
             self.photoFullScreenView.transform = .identity
         })
     }

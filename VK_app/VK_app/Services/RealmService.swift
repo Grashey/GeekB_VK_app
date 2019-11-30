@@ -34,8 +34,9 @@ class RealmService {
         let realm = try Realm(configuration: configuration)
         let friend = realm.objects(Friend.self).filter("id == [cd] %@", userId)
         for object in friend {
+            let newPhotos = photos.filter{!object.photos.contains($0)}
             try realm.write {
-                object.photos.append(objectsIn: photos)
+                object.photos.append(objectsIn: newPhotos)
             }
         }
     }

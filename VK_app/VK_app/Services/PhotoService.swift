@@ -71,7 +71,7 @@ class PhotoService {
         }
     }
     
-    func photo(urlString: String, completion: @escaping (UIImage?) -> Void) {
+    func setPhoto(urlString: String, completion: @escaping (UIImage?) -> Void) {
         
         if let image = memoryCache[urlString] {
             completion(image)
