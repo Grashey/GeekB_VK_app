@@ -21,7 +21,6 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
         let itemsCount = collectionView.numberOfItems(inSection: 0)
         guard itemsCount > 0 else { return }
         
-<<<<<<< HEAD
         let viewWidth = collectionView.frame.width
         let viewHeight = collectionView.frame.height
         //let aspectRatio = cellHeight / cellWidth
@@ -33,25 +32,12 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
         let indent: CGFloat = 4
         let twoItems: CGFloat = 2
         let threeItems: CGFloat = 3
-=======
-        let cellWidth = collectionView.frame.width
-        let cellHeight = collectionView.frame.height
-        let aspectRatio = cellHeight / cellWidth
-        
-        var lastY: CGFloat = 0
-        var lastX: CGFloat = 0
-        let indent: CGFloat = 3
->>>>>>> remaster
     
         switch itemsCount {
         case 1:
             let indexPath = IndexPath(item: 0, section: 0)
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-<<<<<<< HEAD
             attributes.frame = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
-=======
-            attributes.frame = CGRect(x: 0, y: 0, width: cellWidth, height: cellHeight)
->>>>>>> remaster
             cacheAttributes[indexPath] = attributes
             
         case 2:
@@ -59,7 +45,6 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
                 let indexPath = IndexPath(item: index, section: 0)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 if index == 0 {
-<<<<<<< HEAD
                     originX = 0
                     originY = 0
                     height = viewHeight
@@ -71,13 +56,6 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
                     width = (viewWidth - indent) / twoItems
                 }
                 attributes.frame = CGRect(x: originX, y: originY, width: width, height: height)
-=======
-                    lastX = 0
-                } else {
-                    lastX = cellWidth / 2
-                }
-                attributes.frame = CGRect(x: lastX, y: lastY, width: (cellWidth / 2) - indent, height: cellHeight)
->>>>>>> remaster
                 cacheAttributes[indexPath] = attributes
             }
             
@@ -85,7 +63,6 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
             for index in 0..<itemsCount {
                 let indexPath = IndexPath(item: index, section: 0)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-<<<<<<< HEAD
                 if index == 0 {
                     originX = 0
                     originY = 0
@@ -103,27 +80,6 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
                     width = (viewWidth - indent) / threeItems
                 }
                 attributes.frame = CGRect(x: originX, y: originY, width: width, height: height)
-=======
-                var height = CGFloat()
-                var width = CGFloat()
-                if index == 0 {
-                    lastX = 0
-                    lastY = 0
-                    height = cellHeight
-                    width = cellWidth / 3 * 2 - indent
-                } else if index == 1 {
-                    lastX = cellWidth / 3 * 2 //+ indent
-                    lastY = 0
-                    height = cellHeight / 2 - indent
-                    width = cellWidth / 3 - indent
-                } else if index == 2 {
-                    lastX = cellWidth / 3 * 2 //+ indent
-                    lastY = cellHeight / 2 //+ indent
-                    height = cellHeight / 2 - indent
-                    width = cellWidth / 3 - indent
-                }
-                attributes.frame = CGRect(x: lastX, y: lastY, width: width, height: height)
->>>>>>> remaster
                 cacheAttributes[indexPath] = attributes
            }
             
@@ -131,7 +87,6 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
             for index in 0..<itemsCount {
                 let indexPath = IndexPath(item: index, section: 0)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-<<<<<<< HEAD
                 if index == 0 {
                     originX = 0
                     originY = 0
@@ -154,32 +109,6 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
                     width = (viewWidth - indent) / twoItems
                 }
                 attributes.frame = CGRect(x: originX, y: originY, width: width, height: height)
-=======
-                var height = CGFloat()
-                var width = CGFloat()
-                if index == 0 {
-                    lastX = 0
-                    lastY = 0
-                    height = cellHeight / 2 - indent
-                    width = cellWidth / 2 - indent
-                } else if index == 1 {
-                    lastX = cellWidth / 2 //+ indent
-                    lastY = 0
-                    height = cellHeight / 2 - indent
-                    width = cellWidth / 2 - indent
-                } else if index == 2 {
-                    lastX = 0
-                    lastY = cellHeight / 2 //+ indent
-                    height = cellHeight / 2 - indent
-                    width = cellWidth / 2 - indent
-                } else if index == 3 {
-                    lastX = cellWidth / 2 //+ indent
-                    lastY = cellHeight / 2 //+ indent
-                    height = cellHeight / 2 - indent
-                    width = cellWidth / 2 - indent
-                }
-                attributes.frame = CGRect(x: lastX, y: lastY, width: width, height: height)
->>>>>>> remaster
                 cacheAttributes[indexPath] = attributes
             }
             
@@ -187,7 +116,6 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
             for index in 0..<itemsCount {
                 let indexPath = IndexPath(item: index, section: 0)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-<<<<<<< HEAD
                 if index == 0 {
                     originX = 0
                     originY = 0
@@ -215,37 +143,6 @@ class NewsCollectionViewLayout: UICollectionViewLayout {
                     width = (viewWidth - indent * 2) / threeItems
                 }
                 attributes.frame = CGRect(x: originX, y: originY, width: width, height: height)
-=======
-                var height = CGFloat()
-                var width = CGFloat()
-                if index == 0 {
-                    lastX = 0
-                    lastY = 0
-                    height = cellHeight / 3 * 2 - indent
-                    width = cellWidth / 2 - indent
-                } else if index == 1 {
-                    lastX = cellWidth / 2 //+ indent
-                    lastY = 0
-                    height = cellHeight / 3 * 2 - indent
-                    width = cellWidth / 2 - indent
-                } else if index == 2 {
-                    lastX = 0
-                    lastY = cellHeight / 3 * 2 //+ indent
-                    height = cellHeight / 3 - indent
-                    width = cellWidth / 3 - indent
-                } else if index == 3 {
-                    lastX = cellWidth / 3 //+ indent
-                    lastY = cellHeight / 3 * 2 //+ indent
-                    height = cellHeight / 3 - indent
-                    width = cellWidth / 3 - indent
-                } else if index == 4 {
-                    lastX = cellWidth / 3 * 2 //+ indent
-                    lastY = cellHeight / 3 * 2 //+ indent
-                    height = cellHeight / 3 - indent
-                    width = cellWidth / 3 - indent
-                }
-                attributes.frame = CGRect(x: lastX, y: lastY, width: width, height: height)
->>>>>>> remaster
                 cacheAttributes[indexPath] = attributes
             }
         }
