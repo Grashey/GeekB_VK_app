@@ -155,6 +155,7 @@ class NewsfeedViewController: UITableViewController {
                         height = cell.heightForCell(with: data)
                         
                     } else if element == NewsPhotoCell.reuseID {
+<<<<<<< HEAD
                         if news[indexPath.section].photos.count == 1 {
                             let tableWidth = tableView.bounds.width
                             let news = self.news[indexPath.section]
@@ -166,6 +167,9 @@ class NewsfeedViewController: UITableViewController {
                         } else {
                             height = 450
                         }
+=======
+                            height = 400
+>>>>>>> remaster
                     }
                 }
             }
@@ -199,10 +203,16 @@ extension NewsfeedViewController: UICollectionViewDelegate, UICollectionViewData
         let imageUrl = URL(string: urlString)
         cell.photoView.kf.setImage(with: imageUrl)
         for (index,_) in photosString.enumerated() {
+<<<<<<< HEAD
             switch index {
             case 0:
                 cell.photoView.contentMode = .scaleAspectFit
             default:
+=======
+            if index == 0 {
+                cell.photoView.contentMode = .scaleAspectFit
+            } else {
+>>>>>>> remaster
                 cell.photoView.contentMode = .scaleAspectFill
             }
         }
