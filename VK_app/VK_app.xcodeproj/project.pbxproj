@@ -39,7 +39,7 @@
 		B678876E22FC6624009298A7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B678876D22FC6624009298A7 /* Session.swift */; };
 		B678879023018F0F009298A7 /* NewsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */; };
 		B6892F4523AD0586007CAED6 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6892F4423AD0586007CAED6 /* UIColor+Ext.swift */; };
-		B6892F4923AD0EEC007CAED6 /* LexingtonHigh - regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6892F4823AD0EEC007CAED6 /* LexingtonHigh - regular.ttf */; };
+		B6892F4C23AD1277007CAED6 /* MinionBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6892F4B23AD1277007CAED6 /* MinionBold.ttf */; };
 		B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */; };
 		B69C4C522349574300324B13 /* NewsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69C4C512349574300324B13 /* NewsProfileCell.swift */; };
 		B69D0E052306AE7C003C9109 /* VKLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69D0E042306AE7C003C9109 /* VKLoginController.swift */; };
@@ -98,7 +98,7 @@
 		B678876D22FC6624009298A7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		B6892F4423AD0586007CAED6 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
-		B6892F4823AD0EEC007CAED6 /* LexingtonHigh - regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexingtonHigh - regular.ttf"; sourceTree = "<group>"; };
+		B6892F4B23AD1277007CAED6 /* MinionBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MinionBold.ttf; sourceTree = "<group>"; };
 		B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
 		B69C4C512349574300324B13 /* NewsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsProfileCell.swift; sourceTree = "<group>"; };
 		B69D0E042306AE7C003C9109 /* VKLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginController.swift; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 		B6892F4A23AD10DB007CAED6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				B6892F4823AD0EEC007CAED6 /* LexingtonHigh - regular.ttf */,
+				B6892F4B23AD1277007CAED6 /* MinionBold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -394,7 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6892F4923AD0EEC007CAED6 /* LexingtonHigh - regular.ttf in Resources */,
+				B6892F4C23AD1277007CAED6 /* MinionBold.ttf in Resources */,
 				B675DC9922C679C40074C418 /* LaunchScreen.storyboard in Resources */,
 				B675DC9622C679C40074C418 /* Assets.xcassets in Resources */,
 				B675DC9422C679C30074C418 /* Main.storyboard in Resources */,

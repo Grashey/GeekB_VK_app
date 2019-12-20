@@ -22,7 +22,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>lexington_high_font</string>
+		<string>MinionBold</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
