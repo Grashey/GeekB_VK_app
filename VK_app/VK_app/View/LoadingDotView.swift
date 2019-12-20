@@ -14,8 +14,8 @@ class LoadingDotView: UIView {
         
         var path = UIBezierPath()
         path = UIBezierPath(ovalIn: CGRect(x: frame.height/4, y: frame.width/4, width: frame.width/3, height: frame.height/3))
-        UIColor.white.setStroke()
-        UIColor.white.setFill()
+        UIColor.vkWhite.setStroke()
+        UIColor.vkWhite.setFill()
         path.lineWidth = 5
         path.stroke()
         path.fill()

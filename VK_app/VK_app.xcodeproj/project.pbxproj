@@ -38,6 +38,8 @@
 		B675DC9922C679C40074C418 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B675DC9722C679C40074C418 /* LaunchScreen.storyboard */; };
 		B678876E22FC6624009298A7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B678876D22FC6624009298A7 /* Session.swift */; };
 		B678879023018F0F009298A7 /* NewsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */; };
+		B6892F4523AD0586007CAED6 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6892F4423AD0586007CAED6 /* UIColor+Ext.swift */; };
+		B6892F4923AD0EEC007CAED6 /* LexingtonHigh - regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6892F4823AD0EEC007CAED6 /* LexingtonHigh - regular.ttf */; };
 		B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */; };
 		B69C4C522349574300324B13 /* NewsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69C4C512349574300324B13 /* NewsProfileCell.swift */; };
 		B69D0E052306AE7C003C9109 /* VKLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69D0E042306AE7C003C9109 /* VKLoginController.swift */; };
@@ -95,6 +97,8 @@
 		B675DC9A22C679C40074C418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B678876D22FC6624009298A7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewLayout.swift; sourceTree = "<group>"; };
+		B6892F4423AD0586007CAED6 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		B6892F4823AD0EEC007CAED6 /* LexingtonHigh - regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexingtonHigh - regular.ttf"; sourceTree = "<group>"; };
 		B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
 		B69C4C512349574300324B13 /* NewsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsProfileCell.swift; sourceTree = "<group>"; };
 		B69D0E042306AE7C003C9109 /* VKLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginController.swift; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 		B675DC8D22C679C30074C418 /* VK_app */ = {
 			isa = PBXGroup;
 			children = (
+				B6892F4A23AD10DB007CAED6 /* Fonts */,
 				B675DC8E22C679C30074C418 /* AppDelegate.swift */,
 				B6C7251C23AC157400D4A249 /* Animation */,
 				B68F97C322D24E0B00E0ACB4 /* Storyboard */,
@@ -212,6 +217,14 @@
 				B675DC9A22C679C40074C418 /* Info.plist */,
 			);
 			path = VK_app;
+			sourceTree = "<group>";
+		};
+		B6892F4A23AD10DB007CAED6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B6892F4823AD0EEC007CAED6 /* LexingtonHigh - regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B68F97C022D24DCD00E0ACB4 /* Cell */ = {
@@ -295,6 +308,7 @@
 				B6B26C162326416F00A965D1 /* UIViewController+Ext.swift */,
 				B66F3D3A236DE2CF00A5FC89 /* ViewCell+Ext.swift */,
 				B6B26C182326448700A965D1 /* UITableView+Ext.swift */,
+				B6892F4423AD0586007CAED6 /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -380,6 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6892F4923AD0EEC007CAED6 /* LexingtonHigh - regular.ttf in Resources */,
 				B675DC9922C679C40074C418 /* LaunchScreen.storyboard in Resources */,
 				B675DC9622C679C40074C418 /* Assets.xcassets in Resources */,
 				B675DC9422C679C30074C418 /* Main.storyboard in Resources */,
@@ -455,6 +470,7 @@
 				B6B26C172326416F00A965D1 /* UIViewController+Ext.swift in Sources */,
 				B62B20F122D22EF0007F9161 /* GroupController.swift in Sources */,
 				B608C5B8236CAA8600DBC1AB /* NewsPhotoCollection.swift in Sources */,
+				B6892F4523AD0586007CAED6 /* UIColor+Ext.swift in Sources */,
 				B618FDCA22D389AD004467E2 /* FriendPhotoController.swift in Sources */,
 				B6281C342353A33400473926 /* ParseGroupData.swift in Sources */,
 				B608C5B6236CAA1E00DBC1AB /* NewsPhotoCell.swift in Sources */,

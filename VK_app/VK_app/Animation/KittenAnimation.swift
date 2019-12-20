@@ -51,7 +51,7 @@ class KittenAnimation {
         let pointRightLayer = CAShapeLayer()
         pointRightLayer.path = ballonrightpart.cgPath
         pointRightLayer.lineWidth = 2
-        pointRightLayer.strokeColor = UIColor.black.cgColor
+        pointRightLayer.strokeColor = UIColor.vkBlack.cgColor
         pointRightLayer.fillColor = UIColor.clear.cgColor
         pointRightLayer.strokeEnd = 1
         wordBallon.layer.addSublayer(pointRightLayer)
@@ -59,7 +59,7 @@ class KittenAnimation {
         let pointLeftLayer = CAShapeLayer()
         pointLeftLayer.path = ballonleftpart.cgPath
         pointLeftLayer.lineWidth = 2
-        pointLeftLayer.strokeColor = UIColor.black.cgColor
+        pointLeftLayer.strokeColor = UIColor.vkBlack.cgColor
         pointLeftLayer.fillColor = UIColor.clear.cgColor
         pointLeftLayer.strokeEnd = 1
         wordBallon.layer.addSublayer(pointLeftLayer)

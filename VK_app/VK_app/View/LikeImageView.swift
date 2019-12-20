@@ -22,20 +22,20 @@ class LikeImageView: UIControl {
         }
     }
     
-    public var heartColor:UIColor = .red
+    public var heartColor:UIColor = .vkRed
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        context.setStrokeColor(UIColor.lightGray.cgColor)
-        context.setFillColor(UIColor.red.cgColor)
+        context.setStrokeColor(UIColor.vkGray.cgColor)
+        context.setFillColor(UIColor.vkRed.cgColor)
         context.saveGState()
         
         heart.stroke()
         
         if isHeartFilled {
-            context.setStrokeColor(UIColor.red.cgColor)
+            context.setStrokeColor(UIColor.vkRed.cgColor)
             heart.stroke()
             heart.fill()
         }

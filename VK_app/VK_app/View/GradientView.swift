@@ -18,10 +18,10 @@ import UIKit
         return self.layer as! CAGradientLayer
     }
     
-    @IBInspectable var startColor: UIColor = .white {
+    @IBInspectable var startColor: UIColor = .vkWhite {
         didSet { self.updateColors() }
     }
-    @IBInspectable var endColor: UIColor = .black {
+    @IBInspectable var endColor: UIColor = .vkBlack {
         didSet { self.updateColors() }
     }
     @IBInspectable var startLocation: CGFloat = 0 {
