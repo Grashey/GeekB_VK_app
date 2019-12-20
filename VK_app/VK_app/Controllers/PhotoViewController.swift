@@ -25,6 +25,7 @@ class PhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        // добавить загрузку след. фото если ее нет в рилме
         let allPhotos = try? RealmService.getData(type: Photo.self)
         let photos = allPhotos?.filter("ownerId == [cd] %@", String(self.ownerId))
         photos?.forEach{ photo in

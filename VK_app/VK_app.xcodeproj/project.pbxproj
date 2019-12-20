@@ -40,6 +40,7 @@
 		B678879023018F0F009298A7 /* NewsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */; };
 		B6892F4523AD0586007CAED6 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6892F4423AD0586007CAED6 /* UIColor+Ext.swift */; };
 		B6892F4C23AD1277007CAED6 /* MinionBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6892F4B23AD1277007CAED6 /* MinionBold.ttf */; };
+		B6892F4E23AD1879007CAED6 /* PhotoAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6892F4D23AD1879007CAED6 /* PhotoAdapter.swift */; };
 		B68F97BF22D24D6E00E0ACB4 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */; };
 		B69C4C522349574300324B13 /* NewsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69C4C512349574300324B13 /* NewsProfileCell.swift */; };
 		B69D0E052306AE7C003C9109 /* VKLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69D0E042306AE7C003C9109 /* VKLoginController.swift */; };
@@ -99,6 +100,7 @@
 		B678878F23018F0F009298A7 /* NewsCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		B6892F4423AD0586007CAED6 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		B6892F4B23AD1277007CAED6 /* MinionBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MinionBold.ttf; sourceTree = "<group>"; };
+		B6892F4D23AD1879007CAED6 /* PhotoAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAdapter.swift; sourceTree = "<group>"; };
 		B68F97BE22D24D6E00E0ACB4 /* AllGroupsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
 		B69C4C512349574300324B13 /* NewsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsProfileCell.swift; sourceTree = "<group>"; };
 		B69D0E042306AE7C003C9109 /* VKLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginController.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				B69D0E0823071C39003C9109 /* NetworkService.swift */,
 				B6BA0A2C236233AB00A701B7 /* PhotoService.swift */,
 				B6BA0A302367080900A701B7 /* NewsfeedDateFormatter.swift */,
+				B6892F4D23AD1879007CAED6 /* PhotoAdapter.swift */,
 				B66A63C92318A254004AF737 /* RealmService.swift */,
 				B6281C372353A44500473926 /* Operation */,
 			);
@@ -470,6 +473,7 @@
 				B6B26C172326416F00A965D1 /* UIViewController+Ext.swift in Sources */,
 				B62B20F122D22EF0007F9161 /* GroupController.swift in Sources */,
 				B608C5B8236CAA8600DBC1AB /* NewsPhotoCollection.swift in Sources */,
+				B6892F4E23AD1879007CAED6 /* PhotoAdapter.swift in Sources */,
 				B6892F4523AD0586007CAED6 /* UIColor+Ext.swift in Sources */,
 				B618FDCA22D389AD004467E2 /* FriendPhotoController.swift in Sources */,
 				B6281C342353A33400473926 /* ParseGroupData.swift in Sources */,

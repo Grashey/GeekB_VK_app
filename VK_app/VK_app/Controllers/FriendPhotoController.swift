@@ -17,17 +17,22 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     var friendId = Int()
     var photos: Results<Photo>?
     private var notificationToken: NotificationToken?
+    let networkService = NetworkService()
+    var isLoading = false
+    var nextFrom = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkService = NetworkService()
+        collectionView.prefetchDataSource = self
+   
         networkService.getPhotos(userId: "\(friendId)") { [weak self] photos in
             guard let self = self else { return }
             try? RealmService.saveData(objects: photos)
             try? RealmService.linkPhotosToFriend(userId: self.friendId, photos: photos)
         }
-        
+
         photos = try? RealmService.getData(type: Photo.self).filter("ownerId == [cd] %@", String(self.friendId))
         notificationToken = photos?.observe { change in
             switch change {
@@ -57,6 +62,7 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendPhotoCell.reuseID, for: indexPath) as! FriendPhotoCell
+        
         if let photo = photos?[indexPath.row] {
             cell.configure(with: photo)
         }
@@ -64,19 +70,21 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        cell.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
-        cell.layer.opacity = 0
-        
-        UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-            cell.transform = CGAffineTransform.identity
-        }, completion: nil)
-        
-        UIView.animateKeyframes(withDuration: 1, delay: 0, animations: {
-            cell.layer.opacity = 1
-        }, completion: nil)
-    }
+    // NOTE: анимация плохо сочетается с reloadData при prefetch
+    
+//    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//
+//        cell.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
+//        cell.layer.opacity = 0
+//
+//        UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+//            cell.transform = CGAffineTransform.identity
+//        }, completion: nil)
+//
+//        UIView.animateKeyframes(withDuration: 1, delay: 0, animations: {
+//            cell.layer.opacity = 1
+//        }, completion: nil)
+//    }
     
     override func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -87,4 +95,20 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     }
 }
 
+extension FriendPhotoController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+           guard let maxSection = indexPaths.map({ $0.row }).max() else { return }
+        if maxSection > (photos?.count ?? 0) - 3,
+                 !isLoading {
+                isLoading = true
+                networkService.getPhotos(userId: "\(friendId)", startFrom: photos?.count) {[weak self] photos in
+                guard let self = self else { return }
+                try? RealmService.saveData(objects: photos)
+                try? RealmService.linkPhotosToFriend(userId: self.friendId, photos: photos)
+                self.photos = try? RealmService.getData(type: Photo.self).filter("ownerId == [cd] %@", String(self.friendId))
+                self.isLoading = false
+            }
+         }
+    }
+}
 
