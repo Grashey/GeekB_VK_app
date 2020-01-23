@@ -40,16 +40,20 @@ class NetworkService: NetworkServiceInterface {
             }
         }
   
-    func getPhotos(userId: String, completion: @escaping ([Photo]) -> Void){
+    func getPhotos(userId: String, startFrom: Int? = nil, completion: @escaping ([Photo]) -> Void){
         
         let url = "https://api.vk.com/method/photos.getAll"
-        let parameters: Parameters = [
+        var parameters: Parameters = [
             "v" : "5.96",
             "access_token" : Session.instance.token,
             "owner_id" : userId,
-            "count" : 200,
+            "count" : 20,
             "offset" : 0
         ]
+        
+        if let startFrom = startFrom {
+            parameters["offset"] = startFrom + 1
+        }
         
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON { responce in
             switch responce.result {
