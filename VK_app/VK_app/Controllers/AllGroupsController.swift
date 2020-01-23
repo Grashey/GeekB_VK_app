@@ -22,8 +22,8 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkService = NetworkService()
-        networkService.getPopularGroups() { [weak self] group in
+        let networkServiceProxy = NetworkServiceProxy(networkService: NetworkService())
+        networkServiceProxy.getPopularGroups() { [weak self] group in
             guard let self = self else { return }
             self.allGroups = group
             self.allGroupsTable.reloadData()

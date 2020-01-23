@@ -21,8 +21,8 @@ class FriendPhotoController: UICollectionViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkService = NetworkService()
-        networkService.getPhotos(userId: "\(friendId)") { [weak self] photos in
+        let networkServiceProxy = NetworkServiceProxy(networkService: NetworkService())
+        networkServiceProxy.getPhotos(userId: "\(friendId)") { [weak self] photos in
             guard let self = self else { return }
             try? RealmService.saveData(objects: photos)
             try? RealmService.linkPhotosToFriend(userId: self.friendId, photos: photos)

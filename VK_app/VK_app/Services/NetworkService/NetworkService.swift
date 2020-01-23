@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import PromiseKit
 
-class NetworkService {
+class NetworkService: NetworkServiceInterface {
     
     public let dispatchGroup = DispatchGroup()
     

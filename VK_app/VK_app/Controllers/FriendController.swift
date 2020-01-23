@@ -29,8 +29,8 @@ class FriendController: UITableViewController, FriendCellDelegate, UISearchBarDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkService = NetworkService()
-        let promise = networkService.getFriends()
+        let networkServiceProxy = NetworkServiceProxy(networkService: NetworkService())
+        let promise = networkServiceProxy.getFriends()
         
         promise
             .done { friends in
